@@ -1,24 +1,25 @@
-import React from 'react';
-import Link from 'next/link';
+import React, {Fragment} from 'react';
+import {createStyles, WithStyles, withStyles} from '@material-ui/core/styles';
 import {NextComponentType} from 'next';
-import Footer from '@/components/Footer';
+import {compose} from 'recompose';
+import NavTop from '@/components/ToolBar/NavTop';
 
+const styles = createStyles({});
 
-const Index: NextComponentType<any> = (props) => {
+interface IProps extends WithStyles<typeof styles> {
+
+}
+
+const Index: NextComponentType<IProps> = (props: IProps) => {
+  const {classes} = props;
+
   return (
-    <div>
-      <Link as = {`/p/${props.id}`}>
-        <a>To the beyond and</a>
-      </Link>
-      <Footer/>
-    </div>
+    <Fragment>
+      <NavTop />
+    </Fragment>
   );
 };
 
-Index.getInitialProps = async () => {
-  return {
-    lasana: 'abc'
-  }
-}
-
-export default Index;
+export default compose<IProps, any>(
+  withStyles(styles),
+)(Index);
