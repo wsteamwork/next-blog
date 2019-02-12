@@ -1,7 +1,7 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import React, {Fragment, ComponentType, useEffect} from 'react';
+import React, {Fragment, ComponentType, useEffect, useState, Dispatch} from 'react';
 import {compose} from 'recompose';
 import {NextComponentType} from 'next';
 import GridContainer from '@/layouts/Grid/Container';
@@ -13,51 +13,39 @@ import GridList from '@material-ui/core/GridList/GridList';
 import GridListTile from '@material-ui/core/GridListTile/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton/IconButton';
+import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import ArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import MenuCard from '@/components/Cards/MenuCard';
 import Grid from '@material-ui/core/Grid/Grid';
+import PlaceToGo from '@/components/MenuContent/PlaceToGo';
+import {useElementHover} from '@/store/hooks/AnimationHooks';
 
-const styles: any = (theme: ThemeCustom) => createStyles({
-  ignoreSpacing: {
-    margin: 0,
-    width: '100%',
-  },
-});
+const styles: any = (theme: ThemeCustom) => createStyles({});
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
   index: number
+  setIndex: Dispatch<number>
   bindRef: HTMLElement
 }
 
 // @ts-ignore
 const MegaMenu: ComponentType<IProps> = (props: IProps) => {
-  const {classes, index, bindRef} = props;
+  const {classes, index, bindRef, setIndex} = props;
+  const [hover, hoverProps]                 = useElementHover();
 
   useEffect(() => {
-    console.log(bindRef);
-  }, [bindRef]);
+    if (!hover) {
+      setIndex(0);
+    }
+  }, [hover]);
 
   return (
     <Fragment>
-      <Popper open = {index !== 0} placement = 'bottom' anchorEl = {bindRef} transition>
+      <Popper open = {index !== 0 || hover} placement = 'bottom' anchorEl = {bindRef} transition>
         {({TransitionProps}) => (
           <Fade {...TransitionProps} timeout = {200}>
-            <Paper square elevation = {2}>
-              <Fragment>
-                <Grid container spacing = {24} className = {classes.ignoreSpacing}>
-                  <Grid item xs = {3}>
-                    <MenuCard />
-                  </Grid>
-                  <Grid item xs = {3}>
-                    <MenuCard />
-                  </Grid>
-                  <Grid item xs = {3}>
-                    <MenuCard />
-                  </Grid>
-                  <Grid item xs = {3}>
-                    <MenuCard />
-                  </Grid>
-                </Grid>
-              </Fragment>
+            <Paper square elevation = {2} {...hoverProps}>
+              <PlaceToGo />
             </Paper>
           </Fade>
         )}

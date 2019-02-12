@@ -45,7 +45,7 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
     <Fragment>
       <RootRef rootRef = {megaRef}>
         <AppBar position = 'static'>
-          <Toolbar>
+          <Toolbar onMouseLeave = {() => menuIndexChange(0)}>
             <Typography variant = 'h6' color = 'inherit'>
               Blog
             </Typography>
@@ -83,6 +83,7 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
         </AppBar>
       </RootRef>
       <MegaMenu
+        setIndex = {setMenuIndex}
         index = {menuIndex}
         bindRef = {megaRef.current}
       />

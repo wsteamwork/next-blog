@@ -23,6 +23,12 @@
       ],
       "@/layouts/*": [
         "layouts/*"
+      ],
+      "@/store/*": [
+        "store/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
       ]
     },
     "typeRoots": [

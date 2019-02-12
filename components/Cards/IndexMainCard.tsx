@@ -1,30 +1,36 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import React, {ComponentType, Fragment, useState} from 'react';
+import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
+import MenuCard from '@/components/Cards/MenuCard';
 import Grid from '@material-ui/core/Grid/Grid';
-import Typography from '@material-ui/core/Typography/Typography';
 import Gray from '@material-ui/core/colors/grey';
 import Blue from '@material-ui/core/colors/blue';
 import classNames from 'classnames';
+import Typography from '@material-ui/core/Typography/Typography';
 import {useElementHover} from '@/store/hooks/AnimationHooks';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
-  overLayChip: {
-    position: 'absolute',
-    bottom: 5,
-    left: 5,
+  imgSize: {
+    maxHeight: 300,
+    width: '100%',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    objectFit: 'cover',
+    borderRadius: 12,
   },
-  root: {
-    maxWidth: 200,
+  imgContainer: {
+    position: 'relative',
   },
   chipTitle: {
     cursor: 'pointer',
+    fontStyle: 'italic',
+    borderRadius: 24,
     backgroundColor: Gray[900],
-    padding: '0 3px 0 3px',
+    padding: '6px 12px 4px 9px',
     '&:hover': {
-      backgroundColor: Blue[400],
+      backgroundColor: Blue[700],
     },
   },
   transitionDuration: {
@@ -33,19 +39,17 @@ const styles: any = (theme: ThemeCustom) => createStyles({
       easing: 'ease-in-out',
     }),
   },
-  imgSize: {
-    height: 150,
-    width: 200,
-  },
-  imgContainer: {
-    position: 'relative',
-  },
   mainTitle: {
     padding: 5,
   },
   titleHover: {
     color: Blue[400],
     cursor: 'pointer',
+  },
+  overLayChip: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
   },
 });
 
@@ -54,18 +58,14 @@ interface IProps extends Partial<WithStyles<typeof styles>> {
 }
 
 // @ts-ignore
-const MenuCard: ComponentType<IProps> = (props: IProps) => {
-  const {classes}                   = props;
-  const [cardHover, cardHoverProps] = useElementHover();
+const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
+  const {classes} = props;
 
+  const [cardHover, cardHoverProps] = useElementHover();
   return (
     <Fragment>
-      <Grid
-        container
-        className = {classes.root}
-        {...cardHoverProps}
-      >
-        <Grid item container className = {classes.imgContainer}>
+      <Grid container spacing = {16} {...cardHoverProps}>
+        <Grid item xs = {12} container className = {classes.imgContainer}>
           <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize} />
           <Grid item xs = {12} className = {classes.overLayChip}>
             <div className = {classNames(
@@ -76,18 +76,28 @@ const MenuCard: ComponentType<IProps> = (props: IProps) => {
                 variant = 'subtitle2'
                 color = 'primary'
               >
-                Hà Nội
+                Mẹo vặt
               </Typography>
             </div>
           </Grid>
         </Grid>
-        <Grid item xs = {12} className = {classes.mainTitle}>
-          <Typography variant = 'subtitle2' className = {
+        <Grid item xs = {12}>
+          <Typography variant = 'h4' className = {
             classNames({
               [classes.titleHover]: cardHover,
             }, classes.transitionDuration)
           }>
-            Ngôi nhà có mái tôn màu đỏ trên đồi thảo nguyên
+            Một ngôi nhà cực đẹp vừa được lên sóng
+          </Typography>
+        </Grid>
+        <Grid item xs = {12}>
+          <Typography variant = 'subheading'>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi delectus, inventore maiores omnis
+            qui. Cupiditate dicta dolorum eius esse, incidunt molestias quaerat quam quasi quod repellendus sit soluta
+            voluptatem?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi delectus, inventore maiores omnis
+            qui. Cupiditate dicta dolorum eius esse, incidunt molestias quaerat quam quasi quod repellendus sit soluta
+            voluptatem?
           </Typography>
         </Grid>
       </Grid>
@@ -97,4 +107,4 @@ const MenuCard: ComponentType<IProps> = (props: IProps) => {
 
 export default compose<IProps, any>(
   withStyles(styles),
-)(MenuCard);
+)(IndexMainCard);
