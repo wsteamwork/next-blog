@@ -27,15 +27,22 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     position: 'relative',
     maxHeight: '98%',
     '&:after': {
+      transition: theme!.transitions!.create!(['all'], {
+        duration: 200,
+        easing: 'ease-in-out',
+      }),
       display: 'block',
       position: 'absolute',
       bottom: 0,
       backgroundImage: 'linear-gradient(to top,#000, transparent)',
-      opacity: .76,
+      opacity: .67,
       content: `''`,
       width: '100%',
       borderRadius: 12,
       height: '50%',
+    },
+    '&:hover:after': {
+      opacity: .76,
     },
   },
   imgContainer: {
@@ -86,7 +93,7 @@ interface IProps extends Partial<WithStyles<typeof styles>> {
 
 }
 
-let placeHolder = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium amet animi aperiam consectetur culpa distinctio eaque harum hic laborum magni molestias neque odio, omnis praesentium quae sit tempore vero? Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium amet animi aperiam consectetur culpa distinctio eaque harum hic laborum magni molestias neque odio, omnis praesentium quae sit tempore vero?';
+let placeHolder = 'Divided, sweet pudding is best rinsed with melted hollandaise sauce. Roast five white breads, tofu, and garlic in a large bucket over medium heat, roast for four minutes and blend with some pork butt. Sausages can be marinateed with warm quinoa, also try mash uping the tart with beer. To the springy rice add leek, chickpeas, mint sauce and cold onion?. Mash caviar roughly, then mix with white wine and serve carefully iced in bottle.';
 
 // @ts-ignore
 const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
@@ -98,7 +105,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
       <Grid container spacing = {8}>
         <Grid item xs = {12} container className = {classes.imgContainer}>
           <div className = {classes.imgGradient}>
-            <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize}  />
+            <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize} />
           </div>
           <Grid item xs = {12} className = {classes.overLayChip}>
             <div className = {classNames(

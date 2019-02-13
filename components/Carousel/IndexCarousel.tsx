@@ -27,6 +27,9 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     textAlign: 'center',
   },
   infoOverlay: {
+    position: 'absolute',
+    bottom: 40,
+    textAlign: 'center',
     cursor: 'pointer',
     backgroundColor: Gray[100],
     padding: 12,
@@ -34,6 +37,14 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     boxShadow: '2px 4px 17px 0px rgba(0,0,0,0.3)',
     textShadow: '1px 2px 5px rgba(164,164,164,0.5)',
     display: 'initial',
+  },
+  parallaxContainer: {
+    width: '100%',
+  },
+  contentParallax: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: '85vh',
   },
 });
 
@@ -49,14 +60,18 @@ const IndexCarousel: ComponentType<IProps> = (props: IProps) => {
     <Fragment>
       <Grid container>
         <Grid container item xs = {12}>
-          <Parallax bgImage = '/static/room_demo.jpeg' strength = {500} bgClassName = {classes.img} className = {'abc'}>
-            <div style = {{height: '50vh'}}>
-              <Typography variant = 'subtitle2' component = 'span' classes = {{
-                root: classes.infoOverlay,
-              }}>
-                Very simple but still keep the elegant style
-              </Typography>
-            </div>
+          <Parallax
+            bgImage = '/static/room_demo.jpeg'
+            strength = {-200}
+            bgClassName = {classes.img}
+            className = {classes.parallaxContainer}
+            contentClassName = {classes.contentParallax}
+          >
+            <Typography variant = 'subtitle2' component = 'span' classes = {{
+              root: classes.infoOverlay,
+            }}>
+              Very simple but still keep the elegant style
+            </Typography>
           </Parallax>
         </Grid>
         {/*<Grid container item className = {classes.root}>*/}

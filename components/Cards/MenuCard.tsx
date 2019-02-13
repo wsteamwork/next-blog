@@ -20,11 +20,13 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     maxWidth: 200,
   },
   chipTitle: {
+    borderRadius: 12,
     cursor: 'pointer',
     backgroundColor: Gray[900],
-    padding: '0 3px 0 3px',
+    padding: '2px 8px 2px 8px',
     '&:hover': {
-      backgroundColor: Blue[400],
+      textShadow: '1px 1px 6px rgba(0,0,0,0.66)',
+      backgroundColor: Blue[700],
     },
   },
   transitionDuration: {

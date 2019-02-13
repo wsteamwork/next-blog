@@ -33,7 +33,7 @@ const PlaceToGo: ComponentType<IProps> = (props: IProps) => {
   return (
     <Fragment>
       <Grid container>
-        <Grid container item xs = {12} spacing = {24} className = {classes.ignoreSpacing}>
+        <Grid container item xs = {12} spacing = {16} className = {classes.ignoreSpacing}>
           <Grid item xs = {3}>
             <MenuCard />
           </Grid>
