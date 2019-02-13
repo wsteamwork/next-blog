@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useLayoutEffect, useEffect} from 'react';
 import {createStyles, WithStyles, withStyles} from '@material-ui/core/styles';
 import {NextComponentType} from 'next';
 import {compose} from 'recompose';
@@ -8,6 +8,8 @@ import GridContainer from '@/layouts/Grid/Container';
 import Grid from '@material-ui/core/Grid/Grid';
 import IndexCategoryCarousel from '@/components/Carousel/IndexCategoryCarousel';
 import MainIndexContent from '@/layouts/Index/MainIndexContent';
+import 'moment/locale/vi';
+import moment from 'moment';
 
 const styles = createStyles({
   mainContent: {
@@ -21,6 +23,10 @@ interface IProps extends WithStyles<typeof styles> {
 
 const Index: NextComponentType<IProps> = (props: IProps) => {
   const {classes} = props;
+
+  useEffect(() => {
+    moment.locale('vi');
+  }, []);
 
   return (
     <Fragment>

@@ -38,6 +38,7 @@
           "@/layouts": "./layouts/",
           "@/assets": "./assets/",
           "@/store": "./store/",
+          "@/types": "./types/",
           "@/styles": "./styles/"
         }
       }

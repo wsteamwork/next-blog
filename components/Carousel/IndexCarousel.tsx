@@ -6,13 +6,14 @@ import {compose} from 'recompose';
 import Grid from '@material-ui/core/Grid/Grid';
 import Typography from '@material-ui/core/Typography/Typography';
 import Gray from '@material-ui/core/colors/grey';
+import {Parallax} from 'react-parallax';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   img: {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     objectFit: 'cover',
-    maxHeight: '60vh',
+    // maxHeight: '60vh',
     width: '100%',
     verticalAlign: 'middle',
   },
@@ -47,16 +48,27 @@ const IndexCarousel: ComponentType<IProps> = (props: IProps) => {
   return (
     <Fragment>
       <Grid container>
-        <Grid container item className = {classes.root}>
-          <img src = '/static/room_demo.jpeg' alt = '' className = {classes.img} />
-          <Grid item xs = {12} className = {classes.infoOverlayContainer}>
-            <Typography variant = 'subtitle2' component = 'span' classes = {{
-              root: classes.infoOverlay,
-            }}>
-              Very simple but still keep the elegant style
-            </Typography>
-          </Grid>
+        <Grid container item xs = {12}>
+          <Parallax bgImage = '/static/room_demo.jpeg' strength = {500} bgClassName = {classes.img} className = {'abc'}>
+            <div style = {{height: '50vh'}}>
+              <Typography variant = 'subtitle2' component = 'span' classes = {{
+                root: classes.infoOverlay,
+              }}>
+                Very simple but still keep the elegant style
+              </Typography>
+            </div>
+          </Parallax>
         </Grid>
+        {/*<Grid container item className = {classes.root}>*/}
+        {/*<img src = '/static/room_demo.jpeg' alt = '' className = {classes.img} />*/}
+        {/*<Grid item xs = {12} className = {classes.infoOverlayContainer}>*/}
+        {/*<Typography variant = 'subtitle2' component = 'span' classes = {{*/}
+        {/*root: classes.infoOverlay,*/}
+        {/*}}>*/}
+        {/*Very simple but still keep the elegant style*/}
+        {/*</Typography>*/}
+        {/*</Grid>*/}
+        {/*</Grid>*/}
       </Grid>
     </Fragment>
   );

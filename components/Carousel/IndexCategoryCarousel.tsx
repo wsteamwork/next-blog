@@ -29,7 +29,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     },
   },
   imgContainer: {
-    marginTop: 12,
+    marginTop: 40,
     maxHeight: 300,
     minWidth: 50,
   },

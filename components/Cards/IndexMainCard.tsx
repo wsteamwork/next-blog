@@ -10,18 +10,37 @@ import Blue from '@material-ui/core/colors/blue';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography/Typography';
 import {useElementHover} from '@/store/hooks/AnimationHooks';
+import _ from 'lodash';
+import moment from 'moment';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
-    maxHeight: 300,
+    maxHeight: 260,
     width: '100%',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     objectFit: 'cover',
     borderRadius: 12,
   },
+  imgGradient: {
+    display: 'inline-block',
+    position: 'relative',
+    maxHeight: '98%',
+    '&:after': {
+      display: 'block',
+      position: 'absolute',
+      bottom: 0,
+      backgroundImage: 'linear-gradient(to top,#000, transparent)',
+      opacity: .76,
+      content: `''`,
+      width: '100%',
+      borderRadius: 12,
+      height: '50%',
+    },
+  },
   imgContainer: {
     position: 'relative',
+    cursor: 'pointer',
   },
   chipTitle: {
     cursor: 'pointer',
@@ -30,7 +49,8 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     backgroundColor: Gray[900],
     padding: '6px 12px 4px 9px',
     '&:hover': {
-      backgroundColor: Blue[700],
+      textShadow: '1px 1px 6px rgba(0,0,0,0.66)',
+      backgroundColor: Blue[900],
     },
   },
   transitionDuration: {
@@ -51,22 +71,35 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     bottom: 20,
     left: 20,
   },
+  title: {
+    fontSize: '1.675rem',
+  },
+  description: {
+    color: 'rgba(0,0,0,0.7)',
+  },
+  timeIndicate: {
+    color: 'rgba(0,0,0,0.46)',
+  },
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
 
 }
 
+let placeHolder = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium amet animi aperiam consectetur culpa distinctio eaque harum hic laborum magni molestias neque odio, omnis praesentium quae sit tempore vero? Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium amet animi aperiam consectetur culpa distinctio eaque harum hic laborum magni molestias neque odio, omnis praesentium quae sit tempore vero?';
+
 // @ts-ignore
 const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
   const {classes} = props;
 
-  const [cardHover, cardHoverProps] = useElementHover();
+  const [cardHover, titleHoverProps] = useElementHover();
   return (
     <Fragment>
-      <Grid container spacing = {16} {...cardHoverProps}>
+      <Grid container spacing = {8}>
         <Grid item xs = {12} container className = {classes.imgContainer}>
-          <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize} />
+          <div className = {classes.imgGradient}>
+            <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize}  />
+          </div>
           <Grid item xs = {12} className = {classes.overLayChip}>
             <div className = {classNames(
               classes.chipTitle,
@@ -82,22 +115,35 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
           </Grid>
         </Grid>
         <Grid item xs = {12}>
-          <Typography variant = 'h4' className = {
-            classNames({
-              [classes.titleHover]: cardHover,
-            }, classes.transitionDuration)
-          }>
+          <Typography
+            variant = 'h4'
+            className = {
+              classNames({
+                [classes.titleHover]: cardHover,
+              }, classes.transitionDuration)
+            }
+            classes = {{
+              root: classes.title,
+            }}
+            {...titleHoverProps}
+          >
             Một ngôi nhà cực đẹp vừa được lên sóng
           </Typography>
         </Grid>
         <Grid item xs = {12}>
-          <Typography variant = 'subheading'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi delectus, inventore maiores omnis
-            qui. Cupiditate dicta dolorum eius esse, incidunt molestias quaerat quam quasi quod repellendus sit soluta
-            voluptatem?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi delectus, inventore maiores omnis
-            qui. Cupiditate dicta dolorum eius esse, incidunt molestias quaerat quam quasi quod repellendus sit soluta
-            voluptatem?
+          <Typography variant = 'subtitle2' classes = {{
+            root: classes.timeIndicate,
+          }}>
+            {moment().calendar()}
+          </Typography>
+        </Grid>
+        <Grid item xs = {12}>
+          <Typography variant = 'body2' classes = {{
+            root: classes.description,
+          }}>
+            {_.truncate(placeHolder, {
+              length: 200,
+            })}
           </Typography>
         </Grid>
       </Grid>

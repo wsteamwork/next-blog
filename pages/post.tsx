@@ -10,7 +10,7 @@ interface IPostPage extends WithRouterProps {
 const PostPage: NextComponentType<IPostPage> = (props) => {
   return (
     <div>
-      <h1>{props.router.query.title}</h1>
+      <h1>Post</h1>
     </div>
   );
 };

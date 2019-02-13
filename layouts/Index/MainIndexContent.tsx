@@ -7,17 +7,10 @@ import Typography from '@material-ui/core/Typography/Typography';
 import Gray from '@material-ui/core/colors/grey';
 import Grid from '@material-ui/core/Grid/Grid';
 import IndexMainCard from '@/components/Cards/IndexMainCard';
+import CategoryTitle from '@/components/Bars/CategoryTitle';
+import ReactParallax from 'react-parallax';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
-  categoryTitle: {
-    borderBottom: `2px ${Gray[700]} solid`,
-    paddingBottom: 12,
-    fontWeight: 600,
-    marginBottom: -2,
-  },
-  categoryTitleContainer: {
-    borderBottom: `2px ${Gray[300]} solid`,
-  },
   mainContent: {
     marginTop: 24,
   },
@@ -33,18 +26,15 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
-      <Grid container item xs = {12} className = {classes.categoryTitleContainer}>
-        <Typography variant = 'h4' classes = {{
-          root: classes.categoryTitle,
-        }}>
-          Tin họa mi hót
-        </Typography>
-      </Grid>
+      <CategoryTitle title = 'Tin họa mi hót' />
       <Grid container item xs = {12} className = {classes.mainContent} spacing = {16}>
         <Grid item lg = {6}>
           <IndexMainCard />
         </Grid>
         <Grid item lg = {6}>
+          <IndexMainCard />
+        </Grid>
+        <Grid item lg = {12}>
           <IndexMainCard />
         </Grid>
       </Grid>
