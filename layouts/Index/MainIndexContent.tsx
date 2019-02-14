@@ -10,11 +10,7 @@ import IndexMainCard from '@/components/Cards/IndexMainCard';
 import CategoryTitle from '@/components/Bars/CategoryTitle';
 import ReactParallax from 'react-parallax';
 
-const styles: any = (theme: ThemeCustom) => createStyles({
-  mainContent: {
-    marginTop: 24,
-  },
-});
+const styles: any = (theme: ThemeCustom) => createStyles({});
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
 
@@ -27,7 +23,7 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
   return (
     <Fragment>
       <CategoryTitle title = 'Tin họa mi hót' />
-      <Grid container item xs = {12} className = {classes.mainContent} spacing = {16}>
+      <Grid container item xs = {12} spacing = {16}>
         <Grid item lg = {6}>
           <IndexMainCard />
         </Grid>
@@ -35,7 +31,13 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
           <IndexMainCard />
         </Grid>
         <Grid item lg = {12}>
-          <IndexMainCard />
+          <IndexMainCard cardStyle = 'inside' />
+        </Grid>
+        <Grid item lg = {6}>
+          <IndexMainCard cardStyle = 'inside' imgHeight = {600} />
+        </Grid>
+        <Grid item lg = {6}>
+          <IndexMainCard cardStyle = 'inside' imgHeight = {600} />
         </Grid>
       </Grid>
     </Fragment>

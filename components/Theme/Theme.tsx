@@ -22,7 +22,7 @@ const options: ThemeCustom = {
   },
   palette: {
     primary: {
-      main: '#fff',
+      main: Gray[100],
     },
     secondary: {
       main: Gray[900],

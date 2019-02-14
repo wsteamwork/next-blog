@@ -1,7 +1,7 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
-import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import React, {ComponentType, Fragment} from 'react';
+import withStyles, {WithStyles, StyleRules, CSSProperties} from '@material-ui/core/styles/withStyles';
+import React, {ComponentType, Fragment, useMemo} from 'react';
 import {compose} from 'recompose';
 import MenuCard from '@/components/Cards/MenuCard';
 import Grid from '@material-ui/core/Grid/Grid';
@@ -15,7 +15,7 @@ import moment from 'moment';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
-    maxHeight: 260,
+    maxHeight: 300,
     width: '100%',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -23,9 +23,9 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     borderRadius: 12,
   },
   imgGradient: {
-    display: 'inline-block',
     position: 'relative',
-    maxHeight: '98%',
+    overflow: 'hidden',
+    maxHeight: '99%',
     '&:after': {
       transition: theme!.transitions!.create!(['all'], {
         duration: 200,
@@ -39,10 +39,10 @@ const styles: any = (theme: ThemeCustom) => createStyles({
       content: `''`,
       width: '100%',
       borderRadius: 12,
-      height: '50%',
+      height: '60%',
     },
     '&:hover:after': {
-      opacity: .76,
+      opacity: .86,
     },
   },
   imgContainer: {
@@ -52,6 +52,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   chipTitle: {
     cursor: 'pointer',
     fontStyle: 'italic',
+    display: 'inline-block',
     borderRadius: 24,
     backgroundColor: Gray[900],
     padding: '6px 12px 4px 9px',
@@ -73,10 +74,11 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     color: Blue[400],
     cursor: 'pointer',
   },
-  overLayChip: {
+  overLayContent: {
     position: 'absolute',
-    bottom: 20,
-    left: 20,
+    bottom: 28,
+    left: 28,
+    maxWidth: '90%',
   },
   title: {
     fontSize: '1.675rem',
@@ -87,75 +89,129 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   timeIndicate: {
     color: 'rgba(0,0,0,0.46)',
   },
+  titleInside: {
+    color: Gray[400],
+    fontSize: '0.775rem',
+  },
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
-
+  cardStyle?: 'inside' | 'outside'
+  imgHeight?: number
 }
 
 let placeHolder = 'Divided, sweet pudding is best rinsed with melted hollandaise sauce. Roast five white breads, tofu, and garlic in a large bucket over medium heat, roast for four minutes and blend with some pork butt. Sausages can be marinateed with warm quinoa, also try mash uping the tart with beer. To the springy rice add leek, chickpeas, mint sauce and cold onion?. Mash caviar roughly, then mix with white wine and serve carefully iced in bottle.';
 
 // @ts-ignore
 const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
-  const {classes} = props;
+  const {classes, cardStyle, imgHeight} = props;
 
   const [cardHover, titleHoverProps] = useElementHover();
+
+  const imgStyles = useMemo<CSSProperties>(() => ({
+    maxHeight: imgHeight ? imgHeight : undefined,
+    height: imgHeight ? imgHeight : undefined,
+  }), [imgHeight]);
+
+  const InsideDescription = () => (
+    <Fragment>
+      <Grid item xs = {12}>
+        <Typography
+          variant = 'h4'
+          color = 'primary'
+          classes = {{
+            root: classNames(
+              classes.title,
+            ),
+          }}
+        >
+          Một ngôi nhà cực đẹp vừa được lên sóng
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Typography variant = 'subtitle2' classes = {{
+          root: classes.titleInside,
+        }}>
+          Nanahira, {moment().calendar()}
+        </Typography>
+      </Grid>
+    </Fragment>
+  );
+
   return (
     <Fragment>
       <Grid container spacing = {8}>
         <Grid item xs = {12} container className = {classes.imgContainer}>
           <div className = {classes.imgGradient}>
-            <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize} />
+            <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize} style = {imgStyles} />
           </div>
-          <Grid item xs = {12} className = {classes.overLayChip}>
-            <div className = {classNames(
-              classes.chipTitle,
-              classes.transitionDuration,
-            )}>
-              <Typography
-                variant = 'subtitle2'
-                color = 'primary'
-              >
+          <Grid container item xs = {12} className = {classes.overLayContent} spacing = {8}>
+            <Grid item xs = {12}>
+              <div className = {classNames(
+                classes.chipTitle,
+                classes.transitionDuration,
+              )}>
+              <span>
+                <Typography
+                  variant = 'subtitle2'
+                  color = 'primary'
+                >
                 Mẹo vặt
               </Typography>
-            </div>
+              </span>
+              </div>
+            </Grid>
+            {cardStyle === 'inside' ? (
+              <Fragment>
+                <InsideDescription />
+              </Fragment>
+            ) : ''}
           </Grid>
         </Grid>
-        <Grid item xs = {12}>
-          <Typography
-            variant = 'h4'
-            className = {
-              classNames({
-                [classes.titleHover]: cardHover,
-              }, classes.transitionDuration)
-            }
-            classes = {{
-              root: classes.title,
-            }}
-            {...titleHoverProps}
-          >
-            Một ngôi nhà cực đẹp vừa được lên sóng
-          </Typography>
-        </Grid>
-        <Grid item xs = {12}>
-          <Typography variant = 'subtitle2' classes = {{
-            root: classes.timeIndicate,
-          }}>
-            {moment().calendar()}
-          </Typography>
-        </Grid>
-        <Grid item xs = {12}>
-          <Typography variant = 'body2' classes = {{
-            root: classes.description,
-          }}>
-            {_.truncate(placeHolder, {
-              length: 200,
-            })}
-          </Typography>
-        </Grid>
+        {cardStyle === 'outside' ? (
+          <Fragment>
+            <Grid item xs = {12}>
+              <Typography
+                variant = 'h4'
+                className = {
+                  classNames({
+                    [classes.titleHover]: cardHover,
+                  }, classes.transitionDuration)
+                }
+                classes = {{
+                  root: classes.title,
+                }}
+                {...titleHoverProps}
+              >
+                Một ngôi nhà cực đẹp vừa được lên sóng
+              </Typography>
+            </Grid>
+            <Grid item xs = {12}>
+              <Typography variant = 'subtitle2' classes = {{
+                root: classes.timeIndicate,
+              }}>
+                Nanahira, {moment().calendar()}
+              </Typography>
+            </Grid>
+            <Grid item xs = {12}>
+              <Typography variant = 'body2' classes = {{
+                root: classes.description,
+              }}>
+                {_.truncate(placeHolder, {
+                  length: 200,
+                })}
+              </Typography>
+            </Grid>
+          </Fragment>
+        ) : ''}
       </Grid>
     </Fragment>
   );
+};
+
+IndexMainCard.defaultProps = {
+  cardStyle: 'outside',
+  imgHeight: 0,
 };
 
 export default compose<IProps, any>(

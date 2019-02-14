@@ -10,6 +10,7 @@ import IndexCategoryCarousel from '@/components/Carousel/IndexCategoryCarousel';
 import MainIndexContent from '@/layouts/Index/MainIndexContent';
 import 'moment/locale/vi';
 import moment from 'moment';
+import SocialIndexBar from '@/layouts/Index/SocialIndexBar';
 
 const styles = createStyles({
   mainContent: {
@@ -34,11 +35,13 @@ const Index: NextComponentType<IProps> = (props: IProps) => {
       <IndexCarousel />
       <GridContainer xs = {11}>
         <IndexCategoryCarousel />
-        <Grid container item lg = {8} className = {classes.mainContent}>
-          <MainIndexContent />
-        </Grid>
-        <Grid container item lg = {4}>
-
+        <Grid container className = {classes.mainContent} spacing = {32}>
+          <Grid item lg = {8}>
+            <MainIndexContent />
+          </Grid>
+          <Grid item lg = {4}>
+            <SocialIndexBar />
+          </Grid>
         </Grid>
       </GridContainer>
     </Fragment>
