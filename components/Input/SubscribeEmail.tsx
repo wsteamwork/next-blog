@@ -32,16 +32,17 @@ const SubscribeEmail: ComponentType<IProps> = (props: IProps) => {
         className={classes.textField}
         variant="outlined"
         type='email'
-        label="Password"
+        label="email"
         // onChange={handleChange}
         InputProps={{
           endAdornment: (
-            <InputAdornment position="end">
+            <InputAdornment position="end" className={classes.textForm}>
               <IconButton aria-label="send">
                 <SendRounded/>
               </IconButton>
             </InputAdornment>
           ),
+          classes:{root:classes.textForm}
         }}
 
       />

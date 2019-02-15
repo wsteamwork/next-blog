@@ -15,6 +15,8 @@ import GridContainer from '@/layouts/Grid/Container';
 import {Facebook,Twitter,Google} from 'mdi-material-ui';
 import Review from '@/components/Cards/Review';
 import SubscribeEmail from '@/components/Input/SubscribeEmail';
+import CategoryTitle from '@/components/Bars/CategoryTitle';
+import ChipCard from '@/components/Button/ChipCard';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   insideParallax: {
@@ -54,6 +56,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   postTitle: {
     color: '#ffffff',
     paddingBottom: 25,
+    paddingTop: 10,
     fontSize: '2.5rem',
   },
   postTime: {
@@ -88,6 +91,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
           <div className = {classes.insideParallax}>
             <div className = {classes.boxTitle}>
               <div className = {classes.Title}>
+                <ChipCard text='Mẹo vặt'/>
                 <Typography variant = 'h3' className = {classes.postTitle}>Cuộc sống đâu lường trước điều gì
                                                                            !!!</Typography>
                 <Typography variant = 'subtitle2'>
