@@ -49,7 +49,7 @@ declare module 'react-parallax' {
      */
     contentClassName?: string
 
-    bgImageStyle?: CSSStyles
+    bgImageStyle?: object
 
     strength?: number
 
