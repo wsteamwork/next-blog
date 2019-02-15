@@ -19,10 +19,19 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
-      <Grid container>
-        <CategoryTitle title = 'Mạng xã hội' scale = 'small' />
+      <CategoryTitle title = 'Mạng xã hội' scale = 'small' />
+      <Grid container spacing = {16}>
         <Grid container item xs = {12}>
-          <SocialMediaButton />
+          <SocialMediaButton socialName = 'facebook' text = 'Thích' />
+        </Grid>
+        <Grid container item xs = {12}>
+          <SocialMediaButton socialName = 'instagram' text = 'Theo dõi' />
+        </Grid>
+        <Grid container item xs = {12}>
+          <SocialMediaButton socialName = 'youtube' text = 'Đăng ký kênh' />
+        </Grid>
+        <Grid container item xs = {12}>
+          <SocialMediaButton socialName = 'twitter' text = 'Theo dõi' />
         </Grid>
       </Grid>
     </Fragment>

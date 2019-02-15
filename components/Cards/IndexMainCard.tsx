@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography/Typography';
 import {useElementHover} from '@/store/hooks/AnimationHooks';
 import _ from 'lodash';
 import moment from 'moment';
+import ChipCard from '@/components/Button/ChipCard';
+import InformationIndicate from '@/components/Bars/InformationIndicate';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
@@ -49,18 +51,6 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     position: 'relative',
     cursor: 'pointer',
   },
-  chipTitle: {
-    cursor: 'pointer',
-    fontStyle: 'italic',
-    display: 'inline-block',
-    borderRadius: 24,
-    backgroundColor: Gray[900],
-    padding: '6px 12px 4px 9px',
-    '&:hover': {
-      textShadow: '1px 1px 6px rgba(0,0,0,0.66)',
-      backgroundColor: Blue[900],
-    },
-  },
   transitionDuration: {
     transition: theme!.transitions!.create!(['color', 'background-color'], {
       duration: 200,
@@ -75,6 +65,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     cursor: 'pointer',
   },
   overLayContent: {
+    pointerEvents: 'none',
     position: 'absolute',
     bottom: 28,
     left: 28,
@@ -129,11 +120,12 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant = 'subtitle2' classes = {{
-          root: classes.titleInside,
-        }}>
-          Nanahira, {moment().calendar()}
-        </Typography>
+        <InformationIndicate
+          customClasses = {{
+            root: classes.titleInside,
+          }}
+          userName = 'Nayuta'
+        />
       </Grid>
     </Fragment>
   );
@@ -147,19 +139,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
           </div>
           <Grid container item xs = {12} className = {classes.overLayContent} spacing = {8}>
             <Grid item xs = {12}>
-              <div className = {classNames(
-                classes.chipTitle,
-                classes.transitionDuration,
-              )}>
-              <span>
-                <Typography
-                  variant = 'subtitle2'
-                  color = 'primary'
-                >
-                Mẹo vặt
-              </Typography>
-              </span>
-              </div>
+              <ChipCard text = 'Mẹo vặt' />
             </Grid>
             {cardStyle === 'inside' ? (
               <Fragment>
@@ -187,11 +167,10 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
               </Typography>
             </Grid>
             <Grid item xs = {12}>
-              <Typography variant = 'subtitle2' classes = {{
-                root: classes.timeIndicate,
-              }}>
-                Nanahira, {moment().calendar()}
-              </Typography>
+              <InformationIndicate
+                userName = 'Nanahira'
+                time = '2019-02-14 06:09'
+              />
             </Grid>
             <Grid item xs = {12}>
               <Typography variant = 'body2' classes = {{
