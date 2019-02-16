@@ -6,8 +6,19 @@ import {compose} from 'recompose';
 import CategoryTitle from '@/components/Bars/CategoryTitle';
 import Grid from '@material-ui/core/Grid/Grid';
 import SocialMediaButton from '@/components/Button/SocialMediaButton';
+import IndexMainCard from '@/components/Cards/IndexMainCard';
+import _ from 'lodash';
 
-const styles: any = (theme: ThemeCustom) => createStyles({});
+const styles: any = (theme: ThemeCustom) => createStyles({
+  trickOverlay: {
+    bottom: 10,
+    left: 10,
+  },
+  smallTitle: {
+    fontSize: '1.025rem',
+    fontWeight: 600,
+  },
+});
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
 
@@ -33,6 +44,23 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
         <Grid container item xs = {12}>
           <SocialMediaButton socialName = 'twitter' text = 'Theo dõi' />
         </Grid>
+      </Grid>
+      <CategoryTitle title = 'Mẹo du lịch hay' scale = 'small' />
+      <Grid container spacing = {16}>
+        {_.map([0, 1, 2, 3, 4, 5], o => (
+          <Grid item lg = {6} key = {o}>
+            <IndexMainCard
+              customClasses = {{
+                overlayContainer: classes.trickOverlay,
+                title: classes.smallTitle,
+              }}
+              chipText = 'Nghỉ'
+              description = ''
+              time = ''
+              author = ''
+            />
+          </Grid>
+        ))}
       </Grid>
     </Fragment>
   );

@@ -9,6 +9,7 @@ import Gray from '@material-ui/core/colors/grey';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   categoryTitle: {
+    color: Gray[800],
     borderBottom: `2px ${Gray[700]} solid`,
     paddingBottom: 12,
     fontWeight: 600,
@@ -17,6 +18,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   categoryTitleContainer: {
     borderBottom: `2px ${Gray[300]} solid`,
     marginBottom: 30,
+    marginTop: 30,
   },
 });
 
@@ -70,6 +72,7 @@ const CategoryTitle: ComponentType<IProps> = (props: IProps) => {
 
 CategoryTitle.defaultProps = {
   size: 0,
+  scale: 'medium',
 };
 
 export default compose<IProps, any>(

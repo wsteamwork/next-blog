@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography/Typography';
 import Gray from '@material-ui/core/colors/grey';
 import Blue from '@material-ui/core/colors/blue';
+import Hidden from '@material-ui/core/Hidden/Hidden';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   chipTitle: {
@@ -40,10 +41,11 @@ const ChipCard: ComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
-      <div className = {classNames(
-        classes.chipTitle,
-        classes.transitionDuration,
-      )}>
+      <Hidden xsUp = {!text}>
+        <div className = {classNames(
+          classes.chipTitle,
+          classes.transitionDuration,
+        )}>
           <span>
             <Typography
               variant = 'subtitle2'
@@ -52,9 +54,14 @@ const ChipCard: ComponentType<IProps> = (props: IProps) => {
               {text}
           </Typography>
           </span>
-      </div>
+        </div>
+      </Hidden>
     </Fragment>
   );
+};
+
+ChipCard.defaultProps = {
+  text: 'Mẹo vặt',
 };
 
 export default compose<IProps, any>(

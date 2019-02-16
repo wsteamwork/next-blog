@@ -22,12 +22,12 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
 });
 
-type CustomClasses = 'root'
+type InformationIndicateClasses = 'root'
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
   userName?: string
   time?: MomentInput
-  customClasses?: Partial<ClassNameMap<CustomClasses>>
+  customClasses?: Partial<ClassNameMap<InformationIndicateClasses>>
 }
 
 // @ts-ignore
@@ -40,11 +40,13 @@ const InformationIndicate: ComponentType<IProps> = (props: IProps) => {
           classes.root, customClasses.root,
         ),
       }}>
+        <Hidden xsUp = {!userName}>
         <span className = {classNames(
           classes.padR,
         )}>
           {userName}
         </span>
+        </Hidden>
         <Hidden xsUp = {!time}>
           <span className = {classNames({
             [classes.textElement]: true,

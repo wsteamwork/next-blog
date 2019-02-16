@@ -9,8 +9,17 @@ import Grid from '@material-ui/core/Grid/Grid';
 import IndexMainCard from '@/components/Cards/IndexMainCard';
 import CategoryTitle from '@/components/Bars/CategoryTitle';
 import ReactParallax from 'react-parallax';
+import Button from '@material-ui/core/Button/Button';
 
-const styles: any = (theme: ThemeCustom) => createStyles({});
+const styles: any = (theme: ThemeCustom) => createStyles({
+  showMoreLabel: {
+    padding: 8,
+  },
+  showMoreButton: {
+    border: '1px solid rgba(0, 0, 0, 0.08)',
+    boxShadow: '0px 0px 60px -6px rgba(0,0,0,0.14)',
+  },
+});
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
 
@@ -38,6 +47,17 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
         </Grid>
         <Grid item lg = {6}>
           <IndexMainCard cardStyle = 'inside' imgHeight = {600} />
+        </Grid>
+        <Grid container item xs = {12} justify = 'center'>
+          <Button
+            classes = {{
+              label: classes.showMoreLabel,
+              root: classes.showMoreButton,
+            }}
+            fullWidth
+          >
+            Xem thêm
+          </Button>
         </Grid>
       </Grid>
     </Fragment>

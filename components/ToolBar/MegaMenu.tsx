@@ -20,7 +20,11 @@ import Grid from '@material-ui/core/Grid/Grid';
 import PlaceToGo from '@/components/MenuContent/PlaceToGo';
 import {useElementHover} from '@/store/hooks/AnimationHooks';
 
-const styles: any = (theme: ThemeCustom) => createStyles({});
+const styles: any = (theme: ThemeCustom) => createStyles({
+  paperRoot: {
+    width: '70vw',
+  },
+});
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
   index: number
@@ -44,7 +48,9 @@ const MegaMenu: ComponentType<IProps> = (props: IProps) => {
       <Popper open = {index !== 0 || hover} placement = 'bottom' anchorEl = {bindRef} transition>
         {({TransitionProps}) => (
           <Fade {...TransitionProps} timeout = {200}>
-            <Paper square elevation = {2} {...hoverProps}>
+            <Paper square elevation = {2} {...hoverProps} classes = {{
+              root: classes.paperRoot,
+            }}>
               <PlaceToGo />
             </Paper>
           </Fade>

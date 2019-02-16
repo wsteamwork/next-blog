@@ -1,6 +1,6 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
-import withStyles, {WithStyles, StyleRules, CSSProperties} from '@material-ui/core/styles/withStyles';
+import withStyles, {WithStyles, StyleRules, CSSProperties, ClassNameMap} from '@material-ui/core/styles/withStyles';
 import React, {ComponentType, Fragment, useMemo} from 'react';
 import {compose} from 'recompose';
 import MenuCard from '@/components/Cards/MenuCard';
@@ -11,9 +11,10 @@ import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography/Typography';
 import {useElementHover} from '@/store/hooks/AnimationHooks';
 import _ from 'lodash';
-import moment from 'moment';
+import moment, {MomentInput} from 'moment';
 import ChipCard from '@/components/Button/ChipCard';
 import InformationIndicate from '@/components/Bars/InformationIndicate';
+import Hidden from '@material-ui/core/Hidden/Hidden';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
@@ -22,7 +23,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     objectFit: 'cover',
-    borderRadius: 12,
+    borderRadius: 8,
   },
   imgGradient: {
     position: 'relative',
@@ -40,7 +41,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
       opacity: .67,
       content: `''`,
       width: '100%',
-      borderRadius: 12,
+      borderRadius: 8,
       height: '60%',
     },
     '&:hover:after': {
@@ -65,11 +66,15 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     cursor: 'pointer',
   },
   overLayContent: {
+    opacity: .92,
     pointerEvents: 'none',
     position: 'absolute',
     bottom: 28,
     left: 28,
     maxWidth: '90%',
+    '&:hover': {
+      opacity: 1,
+    },
   },
   title: {
     fontSize: '1.675rem',
@@ -86,21 +91,39 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
 });
 
+type IndexMainCardClasses = 'image' | 'overlayContainer' | 'title'
+
 interface IProps extends Partial<WithStyles<typeof styles>> {
   cardStyle?: 'inside' | 'outside'
+  author?: string
   imgHeight?: number
+  maxHeight?: number
+  chipText?: string
+  description?: string
+  title?: string
+  time?: MomentInput
+  customClasses?: Partial<ClassNameMap<IndexMainCardClasses>>
 }
-
-let placeHolder = 'Divided, sweet pudding is best rinsed with melted hollandaise sauce. Roast five white breads, tofu, and garlic in a large bucket over medium heat, roast for four minutes and blend with some pork butt. Sausages can be marinateed with warm quinoa, also try mash uping the tart with beer. To the springy rice add leek, chickpeas, mint sauce and cold onion?. Mash caviar roughly, then mix with white wine and serve carefully iced in bottle.';
 
 // @ts-ignore
 const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
-  const {classes, cardStyle, imgHeight} = props;
+  const {
+          classes,
+          cardStyle,
+          imgHeight,
+          maxHeight,
+          customClasses,
+          chipText,
+          title,
+          description,
+          author,
+          time,
+        } = props;
 
   const [cardHover, titleHoverProps] = useElementHover();
 
   const imgStyles = useMemo<CSSProperties>(() => ({
-    maxHeight: imgHeight ? imgHeight : undefined,
+    maxHeight: imgHeight ? imgHeight : maxHeight,
     height: imgHeight ? imgHeight : undefined,
   }), [imgHeight]);
 
@@ -113,10 +136,11 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
           classes = {{
             root: classNames(
               classes.title,
+              customClasses.title,
             ),
           }}
         >
-          Một ngôi nhà cực đẹp vừa được lên sóng
+          {title}
         </Typography>
       </Grid>
       <Grid item>
@@ -124,7 +148,8 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
           customClasses = {{
             root: classes.titleInside,
           }}
-          userName = 'Nayuta'
+          userName = {author}
+          time = {time}
         />
       </Grid>
     </Fragment>
@@ -135,11 +160,25 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
       <Grid container spacing = {8}>
         <Grid item xs = {12} container className = {classes.imgContainer}>
           <div className = {classes.imgGradient}>
-            <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize} style = {imgStyles} />
+            <img
+              src = '/static/room_demo.jpeg'
+              alt = ''
+              className = {classNames(
+                classes.imgSize,
+                customClasses.image,
+              )} style = {imgStyles} />
           </div>
-          <Grid container item xs = {12} className = {classes.overLayContent} spacing = {8}>
+          <Grid
+            container
+            item xs = {12}
+            className = {classNames(
+              classes.overLayContent,
+              customClasses.overlayContainer,
+            )}
+            spacing = {8}
+          >
             <Grid item xs = {12}>
-              <ChipCard text = 'Mẹo vặt' />
+              <ChipCard text = {chipText} />
             </Grid>
             {cardStyle === 'inside' ? (
               <Fragment>
@@ -155,32 +194,37 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
                 variant = 'h4'
                 className = {
                   classNames({
-                    [classes.titleHover]: cardHover,
-                  }, classes.transitionDuration)
+                      [classes.titleHover]: cardHover,
+                    },
+                    classes.transitionDuration,
+                    customClasses.title,
+                  )
                 }
                 classes = {{
                   root: classes.title,
                 }}
                 {...titleHoverProps}
               >
-                Một ngôi nhà cực đẹp vừa được lên sóng
+                {title}
               </Typography>
             </Grid>
             <Grid item xs = {12}>
               <InformationIndicate
-                userName = 'Nanahira'
-                time = '2019-02-14 06:09'
+                userName = {author}
+                time = {time}
               />
             </Grid>
-            <Grid item xs = {12}>
-              <Typography variant = 'body2' classes = {{
-                root: classes.description,
-              }}>
-                {_.truncate(placeHolder, {
-                  length: 200,
-                })}
-              </Typography>
-            </Grid>
+            <Hidden xsUp = {!description}>
+              <Grid item xs = {12}>
+                <Typography variant = 'body2' classes = {{
+                  root: classes.description,
+                }}>
+                  {_.truncate(description, {
+                    length: 200,
+                  })}
+                </Typography>
+              </Grid>
+            </Hidden>
           </Fragment>
         ) : ''}
       </Grid>
@@ -191,6 +235,11 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
 IndexMainCard.defaultProps = {
   cardStyle: 'outside',
   imgHeight: 0,
+  author: 'Nanahira',
+  customClasses: {},
+  time: '2019-02-16',
+  title: 'Một ngôi nhà cực đẹp vừa được lên sóng',
+  description: 'Divided, sweet pudding is best rinsed with melted hollandaise sauce. Roast five white breads, tofu, and garlic in a large bucket over medium heat, roast for four minutes and blend with some pork butt. Sausages can be marinateed with warm quinoa, also try mash uping the tart with beer. To the springy rice add leek, chickpeas, mint sauce and cold onion?. Mash caviar roughly, then mix with white wine and serve carefully iced in bottle.',
 };
 
 export default compose<IProps, any>(

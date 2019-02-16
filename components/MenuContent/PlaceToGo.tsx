@@ -8,6 +8,8 @@ import MenuCard from '@/components/Cards/MenuCard';
 import IconButton from '@material-ui/core/IconButton/IconButton';
 import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import ArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import _ from 'lodash';
+import IndexMainCard from '@/components/Cards/IndexMainCard';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   ignoreSpacing: {
@@ -18,8 +20,18 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     padding: 6,
   },
   page: {
-    marginLeft: 4,
+    marginLeft: 8,
+    paddingBottom: 8,
   },
+  trickOverlay: {
+    bottom: 10,
+    left: 10,
+  },
+  smallTitle: {
+    fontSize: '1.025rem',
+    fontWeight: 600,
+  },
+
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
@@ -34,18 +46,20 @@ const PlaceToGo: ComponentType<IProps> = (props: IProps) => {
     <Fragment>
       <Grid container>
         <Grid container item xs = {12} spacing = {16} className = {classes.ignoreSpacing}>
-          <Grid item xs = {3}>
-            <MenuCard />
-          </Grid>
-          <Grid item xs = {3}>
-            <MenuCard />
-          </Grid>
-          <Grid item xs = {3}>
-            <MenuCard />
-          </Grid>
-          <Grid item xs = {3}>
-            <MenuCard />
-          </Grid>
+          {_.map([0, 1, 2, 3], o => (
+            <Grid item xs = {3} key = {o}>
+              <IndexMainCard
+                customClasses = {{
+                  overlayContainer: classes.trickOverlay,
+                  title: classes.smallTitle,
+                }}
+                chipText = 'Nghỉ'
+                description = ''
+                time = ''
+                author = ''
+              />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
       <Grid container item xs = {12} className = {classes.page}>
