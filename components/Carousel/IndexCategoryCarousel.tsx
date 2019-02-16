@@ -3,12 +3,13 @@ import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
-import 'slick-carousel/slick/slick.scss';
-import 'slick-carousel/slick/slick-theme.scss';
 import Grid from '@material-ui/core/Grid/Grid';
 import Slider, {Settings} from 'react-slick';
+import 'slick-carousel/slick/slick.scss';
+import 'slick-carousel/slick/slick-theme.scss';
 import classNames from 'classnames';
 import _ from 'lodash';
+import IndexMainCard from '@/components/Cards/IndexMainCard';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
@@ -57,17 +58,13 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
-      <Grid container item xs = {12} className = {classes.imgContainer} justify = 'center'>
+      <div >
         <Slider {...settings}>
-          {_.map([0, 1, 2, 3], (o, i) => (
-            <Grid item container key = {i} className = {classNames({
-              [classes.item]: true,
-            })}>
-              <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize} />
-            </Grid>
+          {_.map([0, 1, 2, 3, 4, 5, 6, 7, 8], (o, i) => (
+            <IndexMainCard key={i}/>
           ))}
         </Slider>
-      </Grid>
+      </div>
     </Fragment>
   );
 };

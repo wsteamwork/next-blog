@@ -12,11 +12,14 @@ import AccessTimeOutlined from '@material-ui/icons/AccessTimeRounded';
 import PersonRounded from '@material-ui/icons/PersonRounded';
 import SocialShare from '@/components/Button/SocialShare';
 import GridContainer from '@/layouts/Grid/Container';
-import {Facebook,Twitter,Google} from 'mdi-material-ui';
-import Review from '@/components/Cards/Review';
+import {Facebook, Twitter, Google} from 'mdi-material-ui';
 import SubscribeEmail from '@/components/Input/SubscribeEmail';
 import CategoryTitle from '@/components/Bars/CategoryTitle';
 import ChipCard from '@/components/Button/ChipCard';
+import Slider, {Settings} from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import IndexMainCard from '@/components/Cards/IndexMainCard';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   insideParallax: {
@@ -26,14 +29,13 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     transform: 'translate(-50%,-50%)',
     height: 450,
     width: '100%',
-    background: 'linear-gradient(to bottom,rgba(50,50,50,0) 0%,rgba(16,15,15,.90) 89%,rgba(16,15,15,.92) 93%)',
+    background: 'linear-gradient(to bottom,rgba(50,50,50,0) 0%,rgba(16,15,15,.93) 89%,rgba(16,15,15,.95) 93%)',
     transition: '.2s all ease-in-out',
-    opacity: 0.85,
+    opacity: 0.9,
     content: '""',
     position: 'absolute',
     display: 'block',
     bottom: 0,
-    zIndex: 1,
   },
   boxTitle: {
     position: 'relative',
@@ -71,17 +73,29 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   iconTitle: {
     verticalAlign: 'bottom',
   },
-  boxContent:{
-    paddingTop:20,
+  boxContent: {
+    paddingTop: 20,
+  },
+  iconColor: {
+    color: '#505050',
   },
 });
 
-interface IPostPage extends WithRouterProps, WithStyles<typeof styles> {
+interface IPostPage extends WithRouterProps, Partial<WithStyles<typeof styles>> {
   classes: any;
 }
 
 const PostPage: NextComponentType<IPostPage> = (props) => {
   const {classes} = props;
+
+  const settings: Settings = {
+    speed: 500,
+    swipeToSlide: true,
+    dots: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false,
+  };
 
   return (
     <Fragment>
@@ -91,9 +105,10 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
           <div className = {classes.insideParallax}>
             <div className = {classes.boxTitle}>
               <div className = {classes.Title}>
-                <ChipCard text='Mẹo vặt'/>
-                <Typography variant = 'h3' className = {classes.postTitle}>Cuộc sống đâu lường trước điều gì
-                                                                           !!!</Typography>
+                <ChipCard text = 'Mẹo vặt' />
+                <Typography variant = 'h3' className = {classes.postTitle}>
+                  Cuộc sống đâu lường trước điều gì !!!
+                </Typography>
                 <Typography variant = 'subtitle2'>
                   <span className = {classes.postTime}>
                     <AccessTimeOutlined className = {classes.iconTitle} /> 12-08-2011</span>
@@ -105,25 +120,39 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
           </div>
         </div>
       </Parallax>
-      <GridContainer xs={11} className={classes.boxContent}>
+      <GridContainer xs = {11} className = {classes.boxContent}>
         <Grid container>
-          <Grid item xs={1}>
-            <SocialShare>
-              <Facebook style={{color:'#505050'}}/>
+          <Grid item xs = {1} className = {classes.boxShare}>
+            <SocialShare customClasses = {{
+              icon: classes.iconColor,
+            }}>
+              <Facebook />
+            </SocialShare >
+            <SocialShare customClasses = {{
+              icon: classes.iconColor,
+            }}>
+              <Twitter />
             </SocialShare>
-            <SocialShare>
-              <Twitter style={{color:'#505050'}}/>
-            </SocialShare>
-            <SocialShare>
-              <Google style={{color:'#505050'}}/>
+            <SocialShare customClasses = {{
+              icon: classes.iconColor,
+            }}>
+              <Google />
             </SocialShare>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs = {8}>
+
+            <Slider {...settings}>
+              <IndexMainCard/>
+              <IndexMainCard/>
+              <IndexMainCard/>
+              <IndexMainCard/>
+              <IndexMainCard/>
+            </Slider>
 
           </Grid>
-          <Grid item xs={3}>
-            <Review/>
-            <SubscribeEmail/>
+          <Grid item xs = {3}>
+            <CategoryTitle title = 'Subscribe email' scale = 'small' />
+            <SubscribeEmail />
           </Grid>
         </Grid>
       </GridContainer>

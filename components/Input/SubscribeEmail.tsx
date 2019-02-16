@@ -7,13 +7,20 @@ import {TextField} from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import SendRounded from '@material-ui/icons/SendRounded';
+import Typography from '@material-ui/core/Typography';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   textField:{
     backgroundColor:'#fff',
+    borderRadius: 100
   },
   textForm:{
-    border:'none',
+    borderColor:'#ebebeb !important',
+    borderRadius: 100
+  },
+  note:{
+    padding: 10,
+    color: '#707070',
   }
 });
 
@@ -28,24 +35,29 @@ const SubscribeEmail: ComponentType<IProps> = (props: IProps) => {
   return (
     <Fragment>
       <TextField
-        id="outlined-adornment-password"
         className={classes.textField}
-        variant="outlined"
+        variant='outlined'
         type='email'
-        label="email"
+        placeholder="Email"
+        fullWidth
         // onChange={handleChange}
         InputProps={{
+          classes: {
+            notchedOutline: classes.textForm,
+          },
           endAdornment: (
-            <InputAdornment position="end" className={classes.textForm}>
+            <InputAdornment position="end">
               <IconButton aria-label="send">
                 <SendRounded/>
               </IconButton>
             </InputAdornment>
           ),
-          classes:{root:classes.textForm}
         }}
 
       />
+       <Typography variant='subtitle2' className={classes.note}>
+        * Bạn sẽ nhận được email về tin tức và những bài viết mới từ chúng tôi.
+       </Typography>
     </Fragment>
   );
 };
