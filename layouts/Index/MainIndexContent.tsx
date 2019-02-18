@@ -1,7 +1,7 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import React, {ComponentType, Fragment} from 'react';
+import React, {ComponentType, Fragment, useEffect} from 'react';
 import {compose} from 'recompose';
 import Typography from '@material-ui/core/Typography/Typography';
 import Gray from '@material-ui/core/colors/grey';

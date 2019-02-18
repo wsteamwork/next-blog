@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid/Grid';
 import Slider, {Settings} from 'react-slick';
 import classNames from 'classnames';
 import _ from 'lodash';
+import IndexMainCard from '@/components/Cards/IndexMainCard';
+import SliderArrowButton from '@/components/Button/SliderArrowButton';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
@@ -28,14 +30,11 @@ const styles: any = (theme: ThemeCustom) => createStyles({
       height: 200,
     },
   },
-  imgContainer: {
-    marginTop: 40,
-    maxHeight: 300,
-    minWidth: 50,
+  slide: {
+    padding: 12,
   },
-  item: {
-    marginLeft: 6,
-    marginRight: 6,
+  slideContainer: {
+    marginTop: 20,
   },
 });
 
@@ -53,18 +52,19 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
     slidesToShow: 4,
     infinite: true,
     swipeToSlide: true,
+    arrows: true,
+    nextArrow: <SliderArrowButton arrow = 'next' />,
+    prevArrow: <SliderArrowButton arrow = 'prev' />,
   };
 
   return (
     <Fragment>
-      <Grid container item xs = {12} className = {classes.imgContainer} justify = 'center'>
+      <Grid item xs = {12} className = {classes.slideContainer}>
         <Slider {...settings}>
-          {_.map([0, 1, 2, 3], (o, i) => (
-            <Grid item container key = {i} className = {classNames({
-              [classes.item]: true,
-            })}>
-              <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize} />
-            </Grid>
+          {_.map([0, 1, 2, 3, 4, 5, 6], (o, i) => (
+            <div className = {classes.slide} key = {o}>
+              <IndexMainCard />
+            </div>
           ))}
         </Slider>
       </Grid>

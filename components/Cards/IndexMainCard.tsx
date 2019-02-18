@@ -91,7 +91,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
 });
 
-type IndexMainCardClasses = 'image' | 'overlayContainer' | 'title'
+type IndexMainCardClasses = 'image' | 'overlayContainer' | 'title' | 'chip'
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
   cardStyle?: 'inside' | 'outside'

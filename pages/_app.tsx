@@ -4,6 +4,9 @@ import {getPageContext} from '@/components/Theme/Theme';
 import JssProvider from 'react-jss/lib/JssProvider';
 import Head from 'next/head';
 import {MuiThemeProvider, CssBaseline} from '@material-ui/core';
+import withWidth from '@material-ui/core/withWidth/withWidth';
+import {compose} from 'recompose';
+import AppWrapper from '@/store/container/AppWrapper';
 
 interface MainAppProps {
 
@@ -56,7 +59,9 @@ class CustomApp extends App<MainAppProps, MainAppState> {
             sheetsManager = {pageContext.sheetsManager}
           >
             <CssBaseline />
-            <Component pageContext = {pageContext} {...pageProps} />
+            <AppWrapper>
+              <Component pageContext = {pageContext} {...pageProps} />
+            </AppWrapper>
           </MuiThemeProvider>
         </JssProvider>
       </Container>
@@ -64,4 +69,5 @@ class CustomApp extends App<MainAppProps, MainAppState> {
   }
 }
 
-export default CustomApp;
+export default compose<MainAppProps, any>(
+)(CustomApp);

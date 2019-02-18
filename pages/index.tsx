@@ -11,8 +11,10 @@ import MainIndexContent from '@/layouts/Index/MainIndexContent';
 import 'moment/locale/vi';
 import moment from 'moment';
 import SocialIndexBar from '@/layouts/Index/SocialIndexBar';
+import {ThemeCustom} from '@/components/Theme/Theme';
+import ToTheTop from '@/components/Button/ToTheTop';
 
-const styles = createStyles({
+const styles: any = (theme: ThemeCustom) => createStyles({
   mainContent: {
     marginTop: 32,
   },
@@ -22,7 +24,7 @@ interface IProps extends WithStyles<typeof styles> {
 
 }
 
-const Index: NextComponentType<IProps> = (props: IProps) => {
+const Index: NextComponentType<IProps> = (props) => {
   const {classes} = props;
 
   useEffect(() => {
@@ -31,6 +33,7 @@ const Index: NextComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
+      <ToTheTop />
       <NavTop />
       <IndexCarousel />
       <GridContainer xs = {11}>
