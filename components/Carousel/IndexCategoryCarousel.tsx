@@ -3,10 +3,10 @@ import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
-import 'slick-carousel/slick/slick.scss';
-import 'slick-carousel/slick/slick-theme.scss';
 import Grid from '@material-ui/core/Grid/Grid';
 import Slider, {Settings} from 'react-slick';
+import 'slick-carousel/slick/slick.scss';
+import 'slick-carousel/slick/slick-theme.scss';
 import classNames from 'classnames';
 import _ from 'lodash';
 import IndexMainCard from '@/components/Cards/IndexMainCard';
@@ -67,7 +67,7 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
             </div>
           ))}
         </Slider>
-      </Grid>
+      </div>
     </Fragment>
   );
 };

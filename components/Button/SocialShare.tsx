@@ -1,8 +1,9 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
-import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
+import withStyles, {WithStyles, ClassNameMap} from '@material-ui/core/styles/withStyles';
 import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
+import classNames from 'classnames';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   buttonSocial: {
@@ -18,24 +19,34 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     '&:hover': {
       boxShadow: '0px 3px 6px 1px rgba(0,0,0,.09)',
     },
-  }
+  },
 });
 
-interface IProps extends Partial<WithStyles<typeof styles>> {
+type SocialShareClasses = 'icon'
 
+interface IProps extends Partial<WithStyles<typeof styles>> {
+  customClasses?: Partial<ClassNameMap<SocialShareClasses>>
 }
 
 // @ts-ignore
 const SocialShare: ComponentType<IProps> = (props) => {
-  const {classes} = props;
+  const {classes, customClasses} = props;
 
   return (
     <Fragment>
       <div className = {classes.buttonSocial}>
+        <span className = {classNames(
+          customClasses.icon,
+        )}>
         {props.children}
+        </span>
       </div>
     </Fragment>
   );
+};
+
+SocialShare.defaultProps = {
+  customClasses: {},
 };
 
 export default compose<IProps, any>(
