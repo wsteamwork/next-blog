@@ -20,66 +20,16 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import IndexMainCard from '@/components/Cards/IndexMainCard';
 import FormComment from '@/components/Input/FormComment';
+import SocialShareContainer from '@/components/Bars/SocialShareContainer';
+import {grey} from '@material-ui/core/colors';
+import ParallaxPostCard from '@/components/Cards/ParallaxPostCard';
+import ToTheTop from '@/components/Button/ToTheTop';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
-  insideParallax: {
-    padding: 20,
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%,-50%)',
-    height: 450,
-    width: '100%',
-    background: 'linear-gradient(to bottom,rgba(50,50,50,0) 0%,rgba(16,15,15,.93) 89%,rgba(16,15,15,.95) 93%)',
-    transition: '.2s all ease-in-out',
-    opacity: 0.9,
-    content: '""',
-    position: 'absolute',
-    display: 'block',
-    bottom: 0,
-  },
-  boxTitle: {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    textAlign: 'center',
-  },
-  Title: {
-    width: 900,
-    position: 'absolute',
-    bottom: 0,
-    paddingBottom: 16,
-    margin: '0 auto',
-    left: '50%',
-    WebkitTransform: 'translateX(-50%) translateY(0%)',
-    MozTransform: 'translateX(-50%) translateY(0%)',
-    transform: 'translateX(-50%) translateY(0%)',
-    textAlign: 'left',
-  },
-  postTitle: {
-    color: '#ffffff',
-    paddingBottom: 25,
-    paddingTop: 10,
-    fontSize: '2.5rem',
-    lineHeight: 1.08,
-  },
-  postTime: {
-    color: '#ffffff',
-    borderRight: '1px solid #fff',
-    paddingRight: 8,
-  },
-  postAuthor: {
-    color: '#ffffff',
-    padding: '0 8px',
-  },
-  iconTitle: {
-    verticalAlign: 'bottom',
-  },
   boxContent: {
     paddingTop: 40,
   },
-  iconColor: {
-    color: '#505050',
-  },
+
 });
 
 interface IPostPage extends WithRouterProps, Partial<WithStyles<typeof styles>> {
@@ -92,50 +42,18 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
   return (
     <Fragment>
       <NavTop />
-      <Parallax bgImage = '/static/room_demo.jpeg' strength = {500} bgImageStyle = {{top: '-30%'}}>
-        <div style = {{height: 450}}>
-          <div className = {classes.insideParallax}>
-            <div className = {classes.boxTitle}>
-              <div className = {classes.Title}>
-                <ChipCard text = 'Mẹo vặt' />
-                <Typography variant = 'h3' className = {classes.postTitle}>
-                  Cách trang trí phòng theo phong cách Vintage
-                </Typography>
-                <Typography variant = 'subtitle2'>
-                  <span className = {classes.postTime}>
-                    <AccessTimeOutlined className = {classes.iconTitle} /> 12-08-2011</span>
-                  <span className = {classes.postAuthor}>
-                    <PersonRounded className = {classes.iconTitle} /> Cristiano Messi </span>
-                </Typography>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Parallax>
+      <ToTheTop />
+      <ParallaxPostCard />
       <GridContainer xs = {11} className = {classes.boxContent}>
-        <Grid container  spacing={16}>
-          <Grid item xs = {1} className = {classes.boxShare}>
-            <SocialShare customClasses = {{
-              icon: classes.iconColor,
-            }}>
-              <Facebook />
-            </SocialShare >
-            <SocialShare customClasses = {{
-              icon: classes.iconColor,
-            }}>
-              <Twitter />
-            </SocialShare>
-            <SocialShare customClasses = {{
-              icon: classes.iconColor,
-            }}>
-              <Google />
-            </SocialShare>
+        <Grid container spacing = {32}>
+          <Grid item xs = {1}>
+            <SocialShareContainer />
           </Grid>
           <Grid item xs = {8}>
-            <FormComment/>
+            <FormComment />
           </Grid>
           <Grid item xs = {3}>
-            <CategoryTitle title = 'Subscribe email' scale = 'small' />
+            <CategoryTitle title = 'Đăng ký nhận tin' scale = 'small' />
             <SubscribeEmail />
           </Grid>
         </Grid>

@@ -1,9 +1,10 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import React, {Fragment, useRef, ComponentType, useState, useEffect} from 'react';
+import React, {Fragment, useRef, ComponentType, useState, useEffect, useMemo, MutableRefObject, createRef} from 'react';
 import {compose} from 'recompose';
 import {NextComponentType, NextFunctionComponent} from 'next';
+import Link from 'next/link';
 import RootRef from '@material-ui/core/RootRef';
 import AppBar from '@material-ui/core/AppBar/AppBar';
 import Toolbar from '@material-ui/core/Toolbar/Toolbar';
@@ -12,6 +13,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography/Typography';
 import Button from '@material-ui/core/Button/Button';
 import MegaMenu from '@/components/ToolBar/MegaMenu';
+import MenuPopper from '@/components/MenuContent/MenuPopper';
+import PlaceToGo from '@/components/MenuContent/PlaceToGo';
+import CategoryMenu from '@/components/MenuContent/CategoryMenu';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   root: {
@@ -25,6 +29,9 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     marginLeft: -12,
     marginRight: 20,
   },
+  pointer: {
+    cursor: 'pointer',
+  },
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
@@ -35,6 +42,7 @@ interface IProps extends Partial<WithStyles<typeof styles>> {
 const NavTop: ComponentType<IProps> = (props: IProps) => {
   const {classes}                 = props;
   const megaRef                   = useRef<HTMLElement>(null);
+  const categoryRef               = useRef<HTMLElement>(null);
   const [menuIndex, setMenuIndex] = useState<number>(0);
 
   const menuIndexChange = (index: number) => {
@@ -46,9 +54,11 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
       <RootRef rootRef = {megaRef}>
         <AppBar position = 'static'>
           <Toolbar onMouseLeave = {() => menuIndexChange(0)}>
-            <Typography variant = 'h6' color = 'inherit'>
-              Blog
-            </Typography>
+            <Link href = '/'>
+              <Typography variant = 'h6' color = 'inherit' className = {classes.pointer}>
+                Blog
+              </Typography>
+            </Link>
             <div className = {classes.categories}>
               <Button
                 color = 'inherit'
@@ -68,6 +78,7 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
               <Button
                 color = 'inherit'
                 name = 'categories'
+                buttonRef = {categoryRef}
                 onMouseOver = {() => menuIndexChange(4)}>Danh mục
               </Button>
               <Button
@@ -82,11 +93,20 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
           </Toolbar>
         </AppBar>
       </RootRef>
-      <MegaMenu
+      <MenuPopper
         setIndex = {setMenuIndex}
-        index = {menuIndex}
-        bindRef = {megaRef.current}
-      />
+        isOpen = {menuIndex === 1}
+        bindRef = {megaRef}
+      >
+        <PlaceToGo />
+      </MenuPopper>
+      <MenuPopper
+        setIndex = {setMenuIndex}
+        isOpen = {menuIndex === 4}
+        bindRef = {categoryRef}
+      >
+        <CategoryMenu />
+      </MenuPopper>
     </Fragment>
   );
 };

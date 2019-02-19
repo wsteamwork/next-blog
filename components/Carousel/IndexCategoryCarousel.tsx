@@ -67,7 +67,7 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
             </div>
           ))}
         </Slider>
-      </div>
+      </Grid>
     </Fragment>
   );
 };

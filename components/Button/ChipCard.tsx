@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography/Typography';
 import Gray from '@material-ui/core/colors/grey';
 import Blue from '@material-ui/core/colors/blue';
 import Hidden from '@material-ui/core/Hidden/Hidden';
+import {ClassNameMap} from '@material-ui/styles/withStyles';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   chipTitle: {
@@ -31,13 +32,16 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
 });
 
+type ChipCardClasses = 'root'
+
 interface IProps extends Partial<WithStyles<typeof styles>> {
   text: string
+  customClasses?: Partial<ClassNameMap<ChipCardClasses>>
 }
 
 // @ts-ignore
 const ChipCard: ComponentType<IProps> = (props: IProps) => {
-  const {classes, text} = props;
+  const {classes, text, customClasses} = props;
 
   return (
     <Fragment>
@@ -45,6 +49,7 @@ const ChipCard: ComponentType<IProps> = (props: IProps) => {
         <div className = {classNames(
           classes.chipTitle,
           classes.transitionDuration,
+          customClasses.root,
         )}>
           <span>
             <Typography
@@ -62,6 +67,7 @@ const ChipCard: ComponentType<IProps> = (props: IProps) => {
 
 ChipCard.defaultProps = {
   text: 'Mẹo vặt',
+  customClasses: {},
 };
 
 export default compose<IProps, any>(

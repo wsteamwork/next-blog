@@ -7,9 +7,12 @@ import {MuiThemeProvider, CssBaseline} from '@material-ui/core';
 import withWidth from '@material-ui/core/withWidth/withWidth';
 import {compose} from 'recompose';
 import AppWrapper from '@/store/container/AppWrapper';
+import {GlobalContext} from '@/store/context/GlobalContext';
+import {ThemeProvider, useTheme} from '@material-ui/styles';
+import {Breakpoint} from '@material-ui/core/styles/createBreakpoints';
 
 interface MainAppProps {
-
+  width: Breakpoint
 }
 
 interface MainAppState {
@@ -39,9 +42,8 @@ class CustomApp extends App<MainAppProps, MainAppState> {
   }
 
   render() {
-    const {Component, pageProps} = this.props;
-    const {pageContext}          = this.state;
-
+    const {Component, pageProps, width} = this.props;
+    const {pageContext}                 = this.state;
     return (
       <Container>
         <Head>
@@ -54,20 +56,21 @@ class CustomApp extends App<MainAppProps, MainAppState> {
           registry = {pageContext.sheetsRegistry}
           generateClassName = {pageContext.generateClassName}
         >
-          <MuiThemeProvider
-            theme = {pageContext.theme}
-            sheetsManager = {pageContext.sheetsManager}
-          >
-            <CssBaseline />
-            <AppWrapper>
-              <Component pageContext = {pageContext} {...pageProps} />
-            </AppWrapper>
-          </MuiThemeProvider>
+          <ThemeProvider theme = {pageContext.theme}>
+            <MuiThemeProvider
+              theme = {pageContext.theme}
+              sheetsManager = {pageContext.sheetsManager}
+            >
+              <AppWrapper>
+                <Component pageContext = {pageContext} {...pageProps} />
+              </AppWrapper>
+              <CssBaseline />
+            </MuiThemeProvider>
+          </ThemeProvider>
         </JssProvider>
       </Container>
     );
   }
 }
 
-export default compose<MainAppProps, any>(
-)(CustomApp);
+export default CustomApp;

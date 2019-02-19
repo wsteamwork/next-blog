@@ -2,11 +2,12 @@
   "scripts": {
     "dev": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start": "cross-env NODE_ENV=production node dist/index.js"
+    "start": "nodemon dist/index.js"
   },
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
+    "@material-ui/styles": "^3.0.0-alpha.10",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "express": "^4.16.4",
@@ -19,6 +20,7 @@
     "nuka-carousel": "^4.4.8",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "react-i18next": "^10.1.2",
     "react-jss": "^8.6.1",
     "react-parallax": "^2.1.0",
     "react-scroll": "^1.7.10",

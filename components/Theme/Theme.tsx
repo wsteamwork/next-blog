@@ -33,7 +33,7 @@ const options: ThemeCustom = {
   },
 };
 
-const theme = createMuiTheme(options);
+export const theme = createMuiTheme(options);
 
 const createPageContext = () => ({
   theme,

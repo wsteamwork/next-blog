@@ -1,7 +1,7 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import React, {Fragment, ComponentType, useEffect, useState, Dispatch} from 'react';
+import React, {Fragment, ComponentType, useEffect, useState, Dispatch, MutableRefObject} from 'react';
 import {compose} from 'recompose';
 import {NextComponentType} from 'next';
 import GridContainer from '@/layouts/Grid/Container';
@@ -19,17 +19,18 @@ import MenuCard from '@/components/Cards/MenuCard';
 import Grid from '@material-ui/core/Grid/Grid';
 import PlaceToGo from '@/components/MenuContent/PlaceToGo';
 import {useElementHover} from '@/store/hooks/AnimationHooks';
+import CategoryMenu from '@/components/MenuContent/CategoryMenu';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   paperRoot: {
-    width: '70vw',
+    maxWidth: '80vw',
   },
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
   index: number
   setIndex: Dispatch<number>
-  bindRef: HTMLElement
+  bindRef: MutableRefObject<HTMLElement>
 }
 
 // @ts-ignore
@@ -45,14 +46,16 @@ const MegaMenu: ComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
-      <Popper open = {index !== 0 || hover} placement = 'bottom' anchorEl = {bindRef} transition>
+      <Popper open = {index === 1 || hover} placement = 'bottom' anchorEl = {bindRef.current} transition>
         {({TransitionProps}) => (
           <Fade {...TransitionProps} timeout = {200}>
-            <Paper square elevation = {2} {...hoverProps} classes = {{
-              root: classes.paperRoot,
-            }}>
-              <PlaceToGo />
-            </Paper>
+            <div {...hoverProps}>
+              <Paper square elevation = {2} classes = {{
+                root: classes.paperRoot,
+              }}>
+                <PlaceToGo />
+              </Paper>
+            </div>
           </Fade>
         )}
       </Popper>

@@ -10,16 +10,20 @@ import {ReactScrollLinkProps} from 'react-scroll/modules/components/Link';
 import {animateScroll as scroll} from 'react-scroll/modules';
 import {GlobalContext, IGlobalContext} from '@/store/context/GlobalContext';
 
-const styles: any = (theme: ThemeCustom) => createStyles({
+const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   toTop: {
     position: 'fixed',
     zIndex: 9,
-    right: theme!.spacing!.unit! * 2,
-    bottom: theme!.spacing!.unit! * 2,
-    [theme!.breakpoints!.between!('xs', 'sm')]: {
+    right: theme.spacing.unit * 2,
+    bottom: theme.spacing.unit * 2,
+    [theme.breakpoints.between('xs', 'sm')]: {
       zIndex: 1,
-      bottom: theme!.spacing!.unit! * 8,
+      bottom: theme.spacing.unit * 8,
     },
+    transition: theme.transitions.create(['all'], {
+      duration: 200,
+      easing: 'ease-in-out',
+    }) + '!important',
   },
 });
 
@@ -62,8 +66,11 @@ const ToTheTop: ComponentType<IProps> = (props: IProps) => {
   return (
     <Fragment>
       <Zoom in = {toTop}>
-        <Fab className = {classes.toTop} color = 'primary' onClick = {scrollTop}
-             size = {width === 'xs' ? 'small' : 'large'}
+        <Fab
+          className = {classes.toTop}
+          color = 'primary'
+          onClick = {scrollTop}
+          size = {width === 'xs' ? 'small' : 'large'}
         >
           <UpIcon />
         </Fab>

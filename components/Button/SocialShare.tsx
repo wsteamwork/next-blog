@@ -4,13 +4,18 @@ import withStyles, {WithStyles, ClassNameMap} from '@material-ui/core/styles/wit
 import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
 import classNames from 'classnames';
+import {grey} from '@material-ui/core/colors';
 
-const styles: any = (theme: ThemeCustom) => createStyles({
+const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   buttonSocial: {
     width: 45,
     height: 45,
-    border: '1px solid #d8d5d5',
-    transition: '.3s all ease-in-out',
+    cursor: 'pointer',
+    border: `1px solid ${grey[300]}`,
+    transition: theme.transitions.create(['all'], {
+      easing: 'ease-in-out',
+      duration: 300,
+    }),
     borderRadius: 8,
     margin: '0 .6em .5em 0',
     display: 'flex',
