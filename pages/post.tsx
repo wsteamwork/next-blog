@@ -16,10 +16,10 @@ import {Facebook, Twitter, Google} from 'mdi-material-ui';
 import SubscribeEmail from '@/components/Input/SubscribeEmail';
 import CategoryTitle from '@/components/Bars/CategoryTitle';
 import ChipCard from '@/components/Button/ChipCard';
-import Slider, {Settings} from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import IndexMainCard from '@/components/Cards/IndexMainCard';
+import FormComment from '@/components/Input/FormComment';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   insideParallax: {
@@ -60,6 +60,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     paddingBottom: 25,
     paddingTop: 10,
     fontSize: '2.5rem',
+    lineHeight: 1.08,
   },
   postTime: {
     color: '#ffffff',
@@ -74,7 +75,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     verticalAlign: 'bottom',
   },
   boxContent: {
-    paddingTop: 20,
+    paddingTop: 40,
   },
   iconColor: {
     color: '#505050',
@@ -88,15 +89,6 @@ interface IPostPage extends WithRouterProps, Partial<WithStyles<typeof styles>> 
 const PostPage: NextComponentType<IPostPage> = (props) => {
   const {classes} = props;
 
-  const settings: Settings = {
-    speed: 500,
-    swipeToSlide: true,
-    dots: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: false,
-  };
-
   return (
     <Fragment>
       <NavTop />
@@ -107,7 +99,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
               <div className = {classes.Title}>
                 <ChipCard text = 'Mẹo vặt' />
                 <Typography variant = 'h3' className = {classes.postTitle}>
-                  Cuộc sống đâu lường trước điều gì !!!
+                  Cách trang trí phòng theo phong cách Vintage
                 </Typography>
                 <Typography variant = 'subtitle2'>
                   <span className = {classes.postTime}>
@@ -121,7 +113,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
         </div>
       </Parallax>
       <GridContainer xs = {11} className = {classes.boxContent}>
-        <Grid container>
+        <Grid container  spacing={16}>
           <Grid item xs = {1} className = {classes.boxShare}>
             <SocialShare customClasses = {{
               icon: classes.iconColor,
@@ -140,15 +132,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
             </SocialShare>
           </Grid>
           <Grid item xs = {8}>
-
-            <Slider {...settings}>
-              <IndexMainCard/>
-              <IndexMainCard/>
-              <IndexMainCard/>
-              <IndexMainCard/>
-              <IndexMainCard/>
-            </Slider>
-
+            <FormComment/>
           </Grid>
           <Grid item xs = {3}>
             <CategoryTitle title = 'Subscribe email' scale = 'small' />
