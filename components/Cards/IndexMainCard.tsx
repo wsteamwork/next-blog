@@ -4,7 +4,7 @@ import withStyles, {WithStyles, StyleRules, CSSProperties, ClassNameMap} from '@
 import React, {ComponentType, Fragment, useMemo} from 'react';
 import {compose} from 'recompose';
 import MenuCard from '@/components/Cards/MenuCard';
-import Grid from '@material-ui/core/Grid/Grid';
+import Grid, {GridSize, GridSpacing, GridItemsAlignment} from '@material-ui/core/Grid/Grid';
 import Gray from '@material-ui/core/colors/grey';
 import Blue from '@material-ui/core/colors/blue';
 import classNames from 'classnames';
@@ -15,10 +15,14 @@ import moment, {MomentInput} from 'moment';
 import ChipCard from '@/components/Button/ChipCard';
 import InformationIndicate from '@/components/Bars/InformationIndicate';
 import Hidden from '@material-ui/core/Hidden/Hidden';
+import CardDescription from '@/components/Content/CardDescription';
+import {CustomClasses} from '@/types/Interfaces/CustomInterface';
+import {IIndexMainCard} from '@/types/Interfaces/Components/Card';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
-    maxHeight: 300,
+    maxHeight: '100%',
+    height: '100%',
     width: '100%',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -69,8 +73,8 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     opacity: .92,
     pointerEvents: 'none',
     position: 'absolute',
-    bottom: 28,
-    left: 28,
+    bottom: 32,
+    left: 32,
     maxWidth: '90%',
     '&:hover': {
       opacity: 1,
@@ -91,18 +95,8 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
 });
 
-type IndexMainCardClasses = 'image' | 'overlayContainer' | 'title' | 'chip'
+interface IProps extends Partial<WithStyles<typeof styles>>, IIndexMainCard {
 
-interface IProps extends Partial<WithStyles<typeof styles>> {
-  cardStyle?: 'inside' | 'outside'
-  author?: string
-  imgHeight?: number
-  maxHeight?: number
-  chipText?: string
-  description?: string
-  title?: string
-  time?: MomentInput
-  customClasses?: Partial<ClassNameMap<IndexMainCardClasses>>
 }
 
 // @ts-ignore
@@ -118,6 +112,11 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
           description,
           author,
           time,
+          horizontal,
+          descriptionLength,
+          ratio,
+          rootSpacing,
+          contentAlignItem,
         } = props;
 
   const [cardHover, titleHoverProps] = useElementHover();
@@ -127,11 +126,14 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
     height: imgHeight ? imgHeight : undefined,
   }), [imgHeight]);
 
+  const horizontalBreakpoint = useMemo(() => horizontal ? 6 : 12, [horizontal]);
+
   const InsideDescription = () => (
     <Fragment>
       <Grid item xs = {12}>
         <Typography
           variant = 'h4'
+          component = 'h4'
           color = 'primary'
           classes = {{
             root: classNames(
@@ -157,12 +159,12 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
-      <Grid container spacing = {8}>
-        <Grid item xs = {12} container className = {classes.imgContainer}>
+      <Grid container spacing = {rootSpacing}>
+        <Grid item xs = {ratio.image || horizontalBreakpoint} container className = {classes.imgContainer}>
           <div className = {classes.imgGradient}>
             <img
               src = '/static/room_demo.jpeg'
-              alt = ''
+              alt = 'my-room'
               className = {classNames(
                 classes.imgSize,
                 customClasses.image,
@@ -177,9 +179,11 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
             )}
             spacing = {8}
           >
-            <Grid item xs = {12}>
-              <ChipCard text = {chipText} />
-            </Grid>
+            <Hidden xsUp = {!chipText}>
+              <Grid item xs = {12}>
+                <ChipCard text = {chipText} />
+              </Grid>
+            </Hidden>
             {cardStyle === 'inside' ? (
               <Fragment>
                 <InsideDescription />
@@ -187,46 +191,44 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
             ) : ''}
           </Grid>
         </Grid>
-        {cardStyle === 'outside' ? (
-          <Fragment>
+        <Grid container item xs = {ratio.content || horizontalBreakpoint} alignItems = {contentAlignItem}>
+          {cardStyle === 'outside' ? (
             <Grid item xs = {12}>
-              <Typography
-                variant = 'h4'
-                className = {
-                  classNames({
-                      [classes.titleHover]: cardHover,
-                    },
-                    classes.transitionDuration,
-                    customClasses.title,
-                  )
-                }
-                classes = {{
-                  root: classes.title,
-                }}
-                {...titleHoverProps}
-              >
-                {title}
-              </Typography>
-            </Grid>
-            <Grid item xs = {12}>
-              <InformationIndicate
-                userName = {author}
-                time = {time}
-              />
-            </Grid>
-            <Hidden xsUp = {!description}>
-              <Grid item xs = {12}>
-                <Typography variant = 'body2' classes = {{
-                  root: classes.description,
-                }}>
-                  {_.truncate(description, {
-                    length: 200,
-                  })}
-                </Typography>
+              <Grid container spacing = {8}>
+                <Grid item xs = {12}>
+                  <Typography
+                    variant = 'h4'
+                    className = {
+                      classNames({
+                          [classes.titleHover]: cardHover,
+                        },
+                        classes.transitionDuration,
+                        customClasses.title,
+                      )
+                    }
+                    classes = {{
+                      root: classes.title,
+                    }}
+                    {...titleHoverProps}
+                  >
+                    {title}
+                  </Typography>
+                </Grid>
+                <Grid item xs = {12}>
+                  <InformationIndicate
+                    userName = {author}
+                    time = {time}
+                  />
+                </Grid>
+                <Hidden xsUp = {!description}>
+                  <Grid item xs = {12}>
+                    <CardDescription text = {description} length = {descriptionLength} />
+                  </Grid>
+                </Hidden>
               </Grid>
-            </Hidden>
-          </Fragment>
-        ) : ''}
+            </Grid>
+          ) : ''}
+        </Grid>
       </Grid>
     </Fragment>
   );
@@ -235,9 +237,14 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
 IndexMainCard.defaultProps = {
   cardStyle: 'outside',
   imgHeight: 0,
+  chipText: 'Mẹo vặt',
   author: 'Nanahira',
+  rootSpacing: 24,
+  contentAlignItem: 'stretch',
   customClasses: {},
+  ratio: {},
   time: '2019-02-16',
+  descriptionLength: 200,
   title: 'Một ngôi nhà cực đẹp vừa được lên sóng',
   description: 'Divided, sweet pudding is best rinsed with melted hollandaise sauce. Roast five white breads, tofu, and garlic in a large bucket over medium heat, roast for four minutes and blend with some pork butt. Sausages can be marinateed with warm quinoa, also try mash uping the tart with beer. To the springy rice add leek, chickpeas, mint sauce and cold onion?. Mash caviar roughly, then mix with white wine and serve carefully iced in bottle.',
 };

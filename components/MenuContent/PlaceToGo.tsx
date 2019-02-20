@@ -24,8 +24,8 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     paddingBottom: 8,
   },
   trickOverlay: {
-    bottom: 10,
-    left: 10,
+    bottom: 12,
+    left: 12,
   },
   smallTitle: {
     fontSize: '1.025rem',
@@ -49,6 +49,7 @@ const PlaceToGo: ComponentType<IProps> = (props: IProps) => {
           {_.map([0, 1, 2, 3], o => (
             <Grid item xs = {3} key = {o}>
               <IndexMainCard
+                rootSpacing = {8}
                 customClasses = {{
                   overlayContainer: classes.trickOverlay,
                   title: classes.smallTitle,

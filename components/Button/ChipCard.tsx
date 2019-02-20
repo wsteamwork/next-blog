@@ -9,6 +9,7 @@ import Gray from '@material-ui/core/colors/grey';
 import Blue from '@material-ui/core/colors/blue';
 import Hidden from '@material-ui/core/Hidden/Hidden';
 import {ClassNameMap} from '@material-ui/styles/withStyles';
+import {CustomClasses} from '@/types/Interfaces/CustomInterface';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   chipTitle: {
@@ -34,9 +35,8 @@ const styles: any = (theme: ThemeCustom) => createStyles({
 
 type ChipCardClasses = 'root'
 
-interface IProps extends Partial<WithStyles<typeof styles>> {
+interface IProps extends Partial<WithStyles<typeof styles>>, CustomClasses<ChipCardClasses> {
   text: string
-  customClasses?: Partial<ClassNameMap<ChipCardClasses>>
 }
 
 // @ts-ignore

@@ -53,6 +53,7 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
     infinite: true,
     swipeToSlide: true,
     arrows: true,
+    lazyLoad: 'ondemand',
     nextArrow: <SliderArrowButton arrow = 'next' />,
     prevArrow: <SliderArrowButton arrow = 'prev' />,
   };

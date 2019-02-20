@@ -907,6 +907,13 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.1.tgz#dc488842312a7f075149312905b5e3c0b054c79d"
   integrity sha512-FwI9gX75FgVBJ7ywgnq/P7tw+/o1GUbtP0KzbtusLigAOgIgNISRK0ZPl4qertvXSIE8YbsVJueQ90cDt9YYyw==
 
+"@types/next-seo@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@types/next-seo/-/next-seo-1.10.0.tgz#ac26f243e9b563f3d6776605458b9fa67ed2eb6b"
+  integrity sha512-G/Q2EDAyXwo/+c6EbUxmKBawLTFL1g3Y96lZRlKujhy+rX7uWPQFNRmwCOxhK7jitzqlteLEU5Nd3xbW13kVPQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/next-server@*":
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/@types/next-server/-/next-server-7.0.3.tgz#a86f49045bc00e00bad8f6754f540acef33ef08f"
@@ -2546,6 +2553,11 @@ dot-prop@^4.1.0:
   integrity sha512-tUMXrxlExSW6U2EXiiKGSBVdYgtV8qlHL+C10TsW4PURY/ic+eaysnSkwB4kA/mBlCyy/IKDJ+Lc3wbWeaXtuQ==
   dependencies:
     is-obj "^1.0.0"
+
+dotenv@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
+  integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
 
 double-ended-queue@2.1.0-0:
   version "2.1.0-0"

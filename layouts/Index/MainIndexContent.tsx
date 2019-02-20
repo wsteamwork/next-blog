@@ -40,13 +40,21 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
           <IndexMainCard />
         </Grid>
         <Grid item lg = {12}>
-          <IndexMainCard cardStyle = 'inside' />
+          <IndexMainCard cardStyle = 'inside' imgHeight = {300} />
         </Grid>
         <Grid item lg = {6}>
           <IndexMainCard cardStyle = 'inside' imgHeight = {600} />
         </Grid>
         <Grid item lg = {6}>
           <IndexMainCard cardStyle = 'inside' imgHeight = {600} />
+        </Grid>
+        <Grid item lg = {12}>
+          <IndexMainCard
+            cardStyle = 'outside'
+            descriptionLength = {400}
+            horizontal
+            contentAlignItem = 'center'
+          />
         </Grid>
         <Grid container item xs = {12} justify = 'center'>
           <Button

@@ -24,6 +24,7 @@ import SocialShareContainer from '@/components/Bars/SocialShareContainer';
 import {grey} from '@material-ui/core/colors';
 import ParallaxPostCard from '@/components/Cards/ParallaxPostCard';
 import ToTheTop from '@/components/Button/ToTheTop';
+import NextSeo from 'next-seo';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   boxContent: {

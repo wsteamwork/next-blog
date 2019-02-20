@@ -5,6 +5,7 @@ import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
 import classNames from 'classnames';
 import {grey} from '@material-ui/core/colors';
+import {CustomClasses} from '@/types/Interfaces/CustomInterface';
 
 const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   buttonSocial: {
@@ -29,8 +30,7 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
 
 type SocialShareClasses = 'icon'
 
-interface IProps extends Partial<WithStyles<typeof styles>> {
-  customClasses?: Partial<ClassNameMap<SocialShareClasses>>
+interface IProps extends Partial<WithStyles<typeof styles>>, CustomClasses<SocialShareClasses> {
 }
 
 // @ts-ignore

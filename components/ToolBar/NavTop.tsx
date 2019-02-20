@@ -1,9 +1,8 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import React, {Fragment, useRef, ComponentType, useState, useEffect, useMemo, MutableRefObject, createRef} from 'react';
+import React, {Fragment, useRef, ComponentType, useState} from 'react';
 import {compose} from 'recompose';
-import {NextComponentType, NextFunctionComponent} from 'next';
 import Link from 'next/link';
 import RootRef from '@material-ui/core/RootRef';
 import AppBar from '@material-ui/core/AppBar/AppBar';
@@ -12,7 +11,6 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography/Typography';
 import Button from '@material-ui/core/Button/Button';
-import MegaMenu from '@/components/ToolBar/MegaMenu';
 import MenuPopper from '@/components/MenuContent/MenuPopper';
 import PlaceToGo from '@/components/MenuContent/PlaceToGo';
 import CategoryMenu from '@/components/MenuContent/CategoryMenu';

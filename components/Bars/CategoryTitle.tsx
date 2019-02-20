@@ -60,7 +60,7 @@ const CategoryTitle: ComponentType<IProps> = (props: IProps) => {
   return (
     <Fragment>
       <Grid container item xs = {12} className = {classes.categoryTitleContainer}>
-        <Typography style = {titleStyles} variant = 'h4' classes = {{
+        <Typography style = {titleStyles} variant = 'h4' component = 'h3' classes = {{
           root: classes.categoryTitle,
         }}>
           {title}

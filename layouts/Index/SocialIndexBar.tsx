@@ -11,8 +11,8 @@ import _ from 'lodash';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   trickOverlay: {
-    bottom: 10,
-    left: 10,
+    bottom: 12,
+    left: 12,
   },
   smallTitle: {
     fontSize: '1.025rem',
@@ -50,6 +50,7 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
         {_.map([0, 1, 2, 3, 4, 5], o => (
           <Grid item lg = {6} key = {o}>
             <IndexMainCard
+              rootSpacing = {8}
               customClasses = {{
                 overlayContainer: classes.trickOverlay,
                 title: classes.smallTitle,

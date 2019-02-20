@@ -35,11 +35,14 @@ const InformationIndicate: ComponentType<IProps> = (props: IProps) => {
   const {classes, userName, customClasses, time} = props;
   return (
     <Fragment>
-      <Typography variant = 'subtitle2' classes = {{
-        root: classNames(
-          classes.root, customClasses.root,
-        ),
-      }}>
+      <Typography
+        component = 'div'
+        variant = 'subtitle2'
+        classes = {{
+          root: classNames(
+            classes.root, customClasses.root,
+          ),
+        }}>
         <Hidden xsUp = {!userName}>
         <span className = {classNames(
           classes.padR,
