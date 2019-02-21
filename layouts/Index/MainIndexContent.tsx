@@ -53,7 +53,7 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
             cardStyle = 'outside'
             descriptionLength = {400}
             horizontal
-            contentAlignItem = 'center'
+            contentAlign = 'center'
           />
         </Grid>
         <Grid container item xs = {12} justify = 'center'>

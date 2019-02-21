@@ -76,5 +76,5 @@ export interface IIndexMainCard extends CustomClasses<IndexMainCardClasses> {
    * Card content align-item
    * @default 'stretch'
    */
-  contentAlignItem?: GridItemsAlignment
+  contentAlign?: GridItemsAlignment
 }

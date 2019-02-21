@@ -116,7 +116,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
           descriptionLength,
           ratio,
           rootSpacing,
-          contentAlignItem,
+          contentAlign,
         } = props;
 
   const [cardHover, titleHoverProps] = useElementHover();
@@ -191,7 +191,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
             ) : ''}
           </Grid>
         </Grid>
-        <Grid container item xs = {ratio.content || horizontalBreakpoint} alignItems = {contentAlignItem}>
+        <Grid container item xs = {ratio.content || horizontalBreakpoint} alignItems = {contentAlign}>
           {cardStyle === 'outside' ? (
             <Grid item xs = {12}>
               <Grid container spacing = {8}>
@@ -240,7 +240,7 @@ IndexMainCard.defaultProps = {
   chipText: 'Mẹo vặt',
   author: 'Nanahira',
   rootSpacing: 24,
-  contentAlignItem: 'stretch',
+  contentAlign: 'stretch',
   customClasses: {},
   ratio: {},
   time: '2019-02-16',
