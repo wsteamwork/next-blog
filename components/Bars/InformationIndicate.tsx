@@ -7,6 +7,7 @@ import moment, {MomentInput} from 'moment';
 import Typography from '@material-ui/core/Typography/Typography';
 import classNames from 'classnames';
 import Hidden from '@material-ui/core/Hidden/Hidden';
+import {CustomClasses} from '@/types/Interfaces/CustomInterface';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   root: {
@@ -24,10 +25,9 @@ const styles: any = (theme: ThemeCustom) => createStyles({
 
 type InformationIndicateClasses = 'root'
 
-interface IProps extends Partial<WithStyles<typeof styles>> {
+interface IProps extends Partial<WithStyles<typeof styles>>, CustomClasses<InformationIndicateClasses> {
   userName?: string
   time?: MomentInput
-  customClasses?: Partial<ClassNameMap<InformationIndicateClasses>>
 }
 
 // @ts-ignore

@@ -22,6 +22,16 @@ export interface IIndexMainCard extends CustomClasses<IndexMainCardClasses> {
   imgHeight?: number
 
   /**
+   * Image alt
+   */
+  imgAlt?: string
+
+  /**
+   * Image source
+   */
+  imgSrc?: string
+
+  /**
    * Image max height
    */
   maxHeight?: number

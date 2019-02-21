@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper/Paper';
 import Typography from '@material-ui/core/Typography/Typography';
 import classNames from 'classnames';
 import {Facebook, Instagram, Youtube, Twitter} from 'mdi-material-ui';
+import Link from 'next/link';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   root: {
@@ -84,7 +85,12 @@ const SocialMediaButton: ComponentType<IProps> = (props: IProps) => {
         classes.root,
         classes[`${socialName}Color`],
       )}>
-        <Typography variant = 'subtitle2' color = 'primary' className = {classes.content}>
+        <Typography
+          variant = 'subtitle2'
+          component = 'span'
+          color = 'primary'
+          className = {classes.content}
+        >
           {icon}
           <span className = {classes.textMargin}>{text}</span>
         </Typography>

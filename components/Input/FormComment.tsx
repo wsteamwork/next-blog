@@ -15,7 +15,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
   textField: {
     backgroundColor: '#fff',
-    borderRadius: 4,
+    borderRadius: 8,
   },
   textForm: {
     border: 'none',

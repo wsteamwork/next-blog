@@ -117,6 +117,8 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
           ratio,
           rootSpacing,
           contentAlign,
+          imgSrc,
+          imgAlt,
         } = props;
 
   const [cardHover, titleHoverProps] = useElementHover();
@@ -163,8 +165,8 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
         <Grid item xs = {ratio.image || horizontalBreakpoint} container className = {classes.imgContainer}>
           <div className = {classes.imgGradient}>
             <img
-              src = '/static/room_demo.jpeg'
-              alt = 'my-room'
+              src = {imgSrc}
+              alt = {imgAlt}
               className = {classNames(
                 classes.imgSize,
                 customClasses.image,
@@ -237,6 +239,8 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
 IndexMainCard.defaultProps = {
   cardStyle: 'outside',
   imgHeight: 0,
+  imgAlt: 'nice decor',
+  imgSrc: '/static/room_demo.jpeg',
   chipText: 'Mẹo vặt',
   author: 'Nanahira',
   rootSpacing: 24,

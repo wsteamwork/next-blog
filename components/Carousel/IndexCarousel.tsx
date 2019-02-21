@@ -67,23 +67,13 @@ const IndexCarousel: ComponentType<IProps> = (props: IProps) => {
             className = {classes.parallaxContainer}
             contentClassName = {classes.contentParallax}
           >
-            <Typography variant = 'subtitle2' component = 'span' classes = {{
+            <Typography variant = 'subtitle2' component = 'a' classes = {{
               root: classes.infoOverlay,
             }}>
               Very simple but still keep the elegant style
             </Typography>
           </Parallax>
         </Grid>
-        {/*<Grid container item className = {classes.root}>*/}
-        {/*<img src = '/static/room_demo.jpeg' alt = '' className = {classes.img} />*/}
-        {/*<Grid item xs = {12} className = {classes.infoOverlayContainer}>*/}
-        {/*<Typography variant = 'subtitle2' component = 'span' classes = {{*/}
-        {/*root: classes.infoOverlay,*/}
-        {/*}}>*/}
-        {/*Very simple but still keep the elegant style*/}
-        {/*</Typography>*/}
-        {/*</Grid>*/}
-        {/*</Grid>*/}
       </Grid>
     </Fragment>
   );
