@@ -90,9 +90,13 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     color: 'rgba(0,0,0,0.46)',
   },
   titleInside: {
-    color: Gray[400],
-    fontSize: '0.775rem',
+    color: Gray[300],
   },
+  noneFocus:{
+    '&:focus':{
+      outline:'none',
+    }
+  }
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>>, IIndexMainCard {
@@ -159,7 +163,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
-      <Grid container spacing = {rootSpacing}>
+      <Grid container spacing = {rootSpacing} className={classes.noneFocus}>
         <Grid item xs = {ratio.image || horizontalBreakpoint} container className = {classes.imgContainer}>
           <div className = {classes.imgGradient}>
             <img
@@ -239,7 +243,7 @@ IndexMainCard.defaultProps = {
   imgHeight: 0,
   chipText: 'Mẹo vặt',
   author: 'Nanahira',
-  rootSpacing: 24,
+  rootSpacing: 16,
   contentAlign: 'stretch',
   customClasses: {},
   ratio: {},

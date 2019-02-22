@@ -4,7 +4,7 @@ import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
 import SocialShare from '@/components/Button/SocialShare';
-import {Facebook, Twitter, Google} from 'mdi-material-ui';
+import {Facebook, Twitter, Instagram,Youtube} from 'mdi-material-ui';
 import {Grid} from '@material-ui/core';
 
 const styles: any = (theme: Required<ThemeCustom>) => createStyles({
@@ -36,7 +36,12 @@ const SocialShareContainer: ComponentType<ISocialShareContainerProps> = (props: 
       <SocialShare customClasses = {{
         icon: classes.iconColor,
       }}>
-        <Google />
+        <Instagram />
+      </SocialShare>
+      <SocialShare customClasses = {{
+        icon: classes.iconColor,
+      }}>
+        <Youtube />
       </SocialShare>
     </Fragment>
   );

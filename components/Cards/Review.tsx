@@ -5,12 +5,13 @@ import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
 import {Typography} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import InformationIndicate from '@/components/Bars/InformationIndicate';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   avatar:{
-    width: 70,
-    height: 70,
-    borderRadius: 8,
+    width: 80,
+    height: 80,
+    borderRadius: '50%',
     display: 'block',
     overflow: 'hidden'
   },
@@ -42,17 +43,15 @@ const Review: ComponentType<IProps> = (props: IProps) => {
   return (
     <Fragment>
       <Grid container>
-        <Grid item xs={3}>
-          <span className={classes.avatar}>
-            <img src = '/static/room_demo.jpeg' alt = 'avatar' className={classes.imgAvatar}/>
-          </span>
-        </Grid>
-        <Grid item xs={9}>
+        <span className={classes.avatar}>
+          <img src = '/static/room_demo.jpeg' alt = 'avatar' className={classes.imgAvatar}/>
+        </span>
+        <Grid item xs={10}>
           <Typography variant='subtitle2' className={classes.content}>
-            Review Of Photoshop CC
+            Thong tin rat huu ich va vo bo
           </Typography>
           <div className={classes.time}>
-            ngay va gio hien thi o day
+            <InformationIndicate userName='nguyen van a' time='2011-01-21'/>
           </div>
         </Grid>
       </Grid>

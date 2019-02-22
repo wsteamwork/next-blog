@@ -18,7 +18,6 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   categoryTitleContainer: {
     borderBottom: `2px ${Gray[300]} solid`,
     marginBottom: 30,
-    marginTop: 30,
   },
 });
 

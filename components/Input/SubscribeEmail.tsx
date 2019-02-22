@@ -22,6 +22,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   note: {
     padding: 10,
     color: '#707070',
+    fontSize:'0.775rem'
   },
   input: {
     paddingLeft: 24,
