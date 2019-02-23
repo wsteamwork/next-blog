@@ -4,9 +4,12 @@ import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
 import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
 import {Typography, Grid, TextField, Fab} from '@material-ui/core';
-import {grey} from '@material-ui/core/colors';
+import {grey, red} from '@material-ui/core/colors';
+import ReactPaginate from 'react-paginate';
+import classNames from 'classnames';
+import PaginateBar from '@/components/Bars/PaginateBar';
 
-const styles: any = (theme: ThemeCustom) => createStyles({
+const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   boxComment: {
     marginTop: 50,
     padding: 30,
@@ -114,6 +117,9 @@ const FormComment: ComponentType<IProps> = (props: IProps) => {
             <Typography variant = 'subtitle2' className = {classes.note}>
               * Là trường bắt buộc
             </Typography>
+          </Grid>
+          <Grid item xs = {12}>
+            <PaginateBar />
           </Grid>
         </Grid>
       </div>

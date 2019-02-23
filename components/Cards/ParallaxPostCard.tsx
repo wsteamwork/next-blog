@@ -10,6 +10,7 @@ import {Parallax} from 'react-parallax';
 import PersonRounded from '@material-ui/icons/PersonRounded';
 import {grey, red} from '@material-ui/core/colors';
 import moment, {MomentInput} from 'moment';
+import {useSpring, animated, config} from 'react-spring';
 
 const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   insideParallax: {
@@ -20,7 +21,6 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
     height: 450,
     width: '100%',
     background: 'linear-gradient(to bottom,rgba(50,50,50,0) 0%,rgba(16,15,15,.93) 89%,rgba(16,15,15,.95) 93%)',
-    transition: '.2s all ease-in-out',
     opacity: 0.9,
     content: '""',
     position: 'absolute',
@@ -86,26 +86,38 @@ const ParallaxPostCard: ComponentType<IParallaxPostCardProps> = (props) => {
           time,
         } = props;
 
+  const aniProps = useSpring({
+    opacity: 1,
+    transform: 'translate3d(0px,0,0)',
+    from: {
+      opacity: 0,
+      transform: 'translate3d(0px,200px,0)',
+    },
+    config: config.slow,
+  });
+
   return (
     <Fragment>
       <Parallax bgImage = {imageSrc} strength = {600} bgImageStyle = {{top: '-30%'}}>
         <div style = {{height: 450}}>
           <div className = {classes.insideParallax}>
             <div className = {classes.Title}>
-              <ChipCard text = {category} customClasses = {{
-                root: classes.customChip,
-              }} />
-              <Typography variant = 'h3' className = {classes.postTitle}>
-                {title}
-              </Typography>
-              <Typography variant = 'subtitle2'>
+              <animated.div style = {aniProps}>
+                <ChipCard text = {category} customClasses = {{
+                  root: classes.customChip,
+                }} />
+                <Typography variant = 'h3' className = {classes.postTitle}>
+                  {title}
+                </Typography>
+                <Typography variant = 'subtitle2'>
                 <span className = {classes.postTime}>
                     <AccessTimeOutlined className = {classes.iconTitle} /> {moment(time).calendar()}
                 </span>
-                <span className = {classes.postAuthor}>
+                  <span className = {classes.postAuthor}>
                     <PersonRounded className = {classes.iconTitle} /> {author}
                 </span>
-              </Typography>
+                </Typography>
+              </animated.div>
             </div>
           </div>
         </div>
