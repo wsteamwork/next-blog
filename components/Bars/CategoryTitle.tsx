@@ -41,7 +41,7 @@ const CategoryTitle: ComponentType<IProps> = (props: IProps) => {
     let customSize = size;
     switch (scale) {
       case 'small':
-        customSize = 1.275;
+        customSize = 1.175;
         break;
       case 'medium':
         customSize = 1.725;

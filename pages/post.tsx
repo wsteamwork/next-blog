@@ -9,13 +9,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import {Typography, Grid} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import GridContainer from '@/layouts/Grid/Container';
 import SubscribeEmail from '@/components/Input/SubscribeEmail';
 import CategoryTitle from '@/components/Bars/CategoryTitle';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import FormComment from '@/components/Input/FormComment';
 import SocialShareContainer from '@/components/Bars/SocialShareContainer';
 import ParallaxPostCard from '@/components/Cards/ParallaxPostCard';
 import ToTheTop from '@/components/Button/ToTheTop';
@@ -35,7 +32,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   boxPopular: {
     marginTop: 30,
     position: 'sticky',
-    top: '10%',
+    top: '8%',
   },
   slidePopular:{
     padding:'0 8px',
@@ -174,8 +171,6 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
             </div>
           </Grid>
         </Grid>
-
-
       </GridContainer>
     </Fragment>
   );

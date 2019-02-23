@@ -5,11 +5,19 @@ import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
 import SocialShare from '@/components/Button/SocialShare';
 import {Facebook, Twitter, Instagram,Youtube} from 'mdi-material-ui';
-import {Grid} from '@material-ui/core';
 
 const styles: any = (theme: Required<ThemeCustom>) => createStyles({
-  iconColor: {
-    color: '#505050',
+  iconFB: {
+    color: '#3B579D',
+  },
+  iconTW: {
+    color: '#56D6FE',
+  },
+  iconIS: {
+    color: '#D02E94',
+  },
+  iconYT: {
+    color: '#ED1B24',
   },
 });
 
@@ -24,22 +32,22 @@ const SocialShareContainer: ComponentType<ISocialShareContainerProps> = (props: 
   return (
     <Fragment>
       <SocialShare customClasses = {{
-        icon: classes.iconColor,
+        icon: classes.iconFB,
       }}>
         <Facebook />
       </SocialShare>
       <SocialShare customClasses = {{
-        icon: classes.iconColor,
+        icon: classes.iconTW,
       }}>
         <Twitter />
       </SocialShare>
       <SocialShare customClasses = {{
-        icon: classes.iconColor,
+        icon: classes.iconIS,
       }}>
         <Instagram />
       </SocialShare>
       <SocialShare customClasses = {{
-        icon: classes.iconColor,
+        icon: classes.iconYT,
       }}>
         <Youtube />
       </SocialShare>

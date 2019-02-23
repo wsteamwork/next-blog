@@ -8,16 +8,14 @@ import Typography from '@material-ui/core/Typography/Typography';
 import classNames from 'classnames';
 import Hidden from '@material-ui/core/Hidden/Hidden';
 import AccessTimeOutlined from '@material-ui/icons/AccessTimeRounded';
-import PersonRounded from '@material-ui/icons/PersonRounded';
+import AccountCircleRounded from '@material-ui/icons/AccountCircleRounded';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   root: {
     color: 'rgba(0,0,0,0.46)',
   },
   textElement: {
-    borderLeft: '1px solid #fff',
     paddingLeft: 8,
-    borderLeftStyle: 'inset',
   },
   padR: {
     paddingRight: 12,
@@ -62,16 +60,18 @@ const InformationIndicate: ComponentType<IProps> = (props: IProps) => {
           classes.padR,
         )}>
           <span className = {classes.spanIcon}>
-            <PersonRounded className = {classes.icon} />
+            <AccountCircleRounded className = {classes.icon} />
           </span>
           <span className={classes.fontAuthor}>{userName}</span>
         </span>
         </Hidden>
+        &#8739;
         <Hidden xsUp = {!time}>
           <span className = {classNames({
             [classes.textElement]: true,
             [classes.padR]: true,
           })}>
+
             <span className = {classes.spanIcon}>
               <AccessTimeOutlined className = {classes.icon} />
             </span>
