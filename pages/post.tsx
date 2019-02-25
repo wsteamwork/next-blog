@@ -20,6 +20,7 @@ import IndexMainCard from '@/components/Cards/IndexMainCard';
 import Divider from '@material-ui/core/Divider';
 import SliderArrowButton from '@/components/Button/SliderArrowButton';
 import Review from '@/components/Cards/Review';
+import {useSpring, config} from 'react-spring';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   boxContent: {
@@ -34,16 +35,16 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     position: 'sticky',
     top: '13%',
   },
-  slidePopular:{
-    padding:'0 8px',
-    '&:focus':{
-      outline:'none',
-    }
+  slidePopular: {
+    padding: '0 8px',
+    '&:focus': {
+      outline: 'none',
+    },
   },
-  dividerPost:{
-    margin:'30px 0',
-    backgroundColor:'transparent'
-  }
+  dividerPost: {
+    margin: '30px 0',
+    backgroundColor: 'transparent',
+  },
 });
 
 interface IPostPage extends WithRouterProps, Partial<WithStyles<typeof styles>> {
@@ -51,7 +52,7 @@ interface IPostPage extends WithRouterProps, Partial<WithStyles<typeof styles>> 
 }
 
 const PostPage: NextComponentType<IPostPage> = (props) => {
-  const {classes} = props;
+  const {classes}              = props;
   const slidePopular: Settings = {
     speed: 500,
     swipeToSlide: true,
@@ -89,7 +90,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
       <ParallaxPostCard />
       <GridContainer xs = {11} className = {classes.boxContent}>
         <Grid container spacing = {32}>
-          <Grid item container xs={9}>
+          <Grid item container xs = {9}>
             <Grid item xs = {1}>
               <div className = {classes.socialSticky}>
                 <SocialShareContainer />
@@ -104,7 +105,8 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                    into
                    the country".</p>
 
-                <p> Mr Pompeo had earlier stated that the 24-year-old was not a US citizen and would not be admitted.</p>
+                <p> Mr Pompeo had earlier stated that the 24-year-old was not a US citizen and would not be
+                    admitted.</p>
 
                 <p>However, her family and her lawyer maintain that she has US citizenship.</p>
 
@@ -117,7 +119,8 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                    into
                    the country".</p>
 
-                <p> Mr Pompeo had earlier stated that the 24-year-old was not a US citizen and would not be admitted.</p>
+                <p> Mr Pompeo had earlier stated that the 24-year-old was not a US citizen and would not be
+                    admitted.</p>
 
                 <p>However, her family and her lawyer maintain that she has US citizenship.</p>
 
@@ -130,35 +133,36 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                    into
                    the country".</p>
 
-                <p> Mr Pompeo had earlier stated that the 24-year-old was not a US citizen and would not be admitted.</p>
+                <p> Mr Pompeo had earlier stated that the 24-year-old was not a US citizen and would not be
+                    admitted.</p>
 
                 <p>However, her family and her lawyer maintain that she has US citizenship.</p>
 
                 <p>Ms Muthana, who grew up in Alabama, travelled to Syria to join IS when she was 20. She had told her
                    family she was going to a university event in Turkey.</p>
               </article>
-              <Divider style={{margin:'60px 0 20px'}}/>
-              <Review/>
+              <Divider style = {{margin: '60px 0 20px'}} />
+              <Review />
               {/*<FormComment />*/}
             </Grid>
-            <Grid item xs={12}>
-              <Divider className={classes.dividerPost}/>
+            <Grid item xs = {12}>
+              <Divider className = {classes.dividerPost} />
               <div>
                 <CategoryTitle title = 'Bài viết liên quan' scale = 'medium' />
               </div>
               <div>
                 <Slider {...slideRelated}>
-                  <div className={classes.slidePopular}>
-                    <IndexMainCard cardStyle='outside' description=''/>
+                  <div className = {classes.slidePopular}>
+                    <IndexMainCard cardStyle = 'outside' description = '' />
                   </div>
-                  <div className={classes.slidePopular}>
-                    <IndexMainCard cardStyle='outside' description=''/>
+                  <div className = {classes.slidePopular}>
+                    <IndexMainCard cardStyle = 'outside' description = '' />
                   </div>
-                  <div className={classes.slidePopular}>
-                    <IndexMainCard cardStyle='outside' description=''/>
+                  <div className = {classes.slidePopular}>
+                    <IndexMainCard cardStyle = 'outside' description = '' />
                   </div>
-                  <div className={classes.slidePopular}>
-                    <IndexMainCard cardStyle='outside' description=''/>
+                  <div className = {classes.slidePopular}>
+                    <IndexMainCard cardStyle = 'outside' description = '' />
                   </div>
                 </Slider>
               </div>
@@ -172,11 +176,11 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
             <div className = {classes.boxPopular}>
               <CategoryTitle title = 'Bài viết nổi bật' scale = 'small' />
               <Slider {...slidePopular}>
-                <div className={classes.slidePopular}>
-                  <IndexMainCard cardStyle='outside' description=''/>
+                <div className = {classes.slidePopular}>
+                  <IndexMainCard cardStyle = 'outside' description = '' />
                 </div>
-                <div className={classes.slidePopular}>
-                  <IndexMainCard cardStyle='outside' description=''/>
+                <div className = {classes.slidePopular}>
+                  <IndexMainCard cardStyle = 'outside' description = '' />
                 </div>
               </Slider>
             </div>

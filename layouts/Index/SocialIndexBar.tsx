@@ -19,6 +19,9 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     fontSize: '1.025rem',
     fontWeight: 600,
   },
+  marginLayout: {
+    marginBottom: 20,
+  },
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
@@ -32,7 +35,7 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
   return (
     <Fragment>
       <CategoryTitle title = 'Mạng xã hội' scale = 'small' />
-      <Grid container spacing = {16}>
+      <Grid container spacing = {16} className = {classes.marginLayout}>
         <Grid container item xs = {12}>
           <SocialMediaButton socialName = 'facebook' text = 'Thích' href = {FACEBOOK_WESTAY_URL} />
         </Grid>

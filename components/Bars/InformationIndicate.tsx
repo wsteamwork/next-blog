@@ -24,14 +24,14 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
   icon: {
     verticalAlign: 'middle',
-    fontSize:'1rem',
+    fontSize: '1rem',
   },
   spanIcon: {
     paddingRight: 4,
   },
-  fontAuthor:{
-    fontSize:'0.6875rem',
-  }
+  fontAuthor: {
+    fontSize: '0.6875rem',
+  },
 });
 
 type InformationIndicateClasses = 'root'
@@ -62,11 +62,11 @@ const InformationIndicate: ComponentType<IProps> = (props: IProps) => {
           <span className = {classes.spanIcon}>
             <AccountCircleRounded className = {classes.icon} />
           </span>
-          <span className={classes.fontAuthor}>{userName}</span>
+          <span className = {classes.fontAuthor}>{userName}</span>
         </span>
         </Hidden>
-        &#8739;
         <Hidden xsUp = {!time}>
+          &#8739;
           <span className = {classNames({
             [classes.textElement]: true,
             [classes.padR]: true,
@@ -75,7 +75,7 @@ const InformationIndicate: ComponentType<IProps> = (props: IProps) => {
             <span className = {classes.spanIcon}>
               <AccessTimeOutlined className = {classes.icon} />
             </span>
-            <span className={classes.fontAuthor}>{moment(time).calendar()}</span>
+            <span className = {classes.fontAuthor}>{moment(time).calendar()}</span>
 
           </span>
         </Hidden>
