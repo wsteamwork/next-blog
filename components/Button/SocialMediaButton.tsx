@@ -58,13 +58,14 @@ const styles: any = (theme: ThemeCustom) => createStyles({
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
+  href?: string
   socialName: 'facebook' | 'instagram' | 'youtube' | 'twitter'
   text: string
 }
 
 // @ts-ignore
 const SocialMediaButton: ComponentType<IProps> = (props: IProps) => {
-  const {classes, socialName, text} = props;
+  const {classes, socialName, text, href} = props;
 
   const icon = useMemo(() => {
     switch (socialName) {
@@ -79,12 +80,22 @@ const SocialMediaButton: ComponentType<IProps> = (props: IProps) => {
     }
   }, []);
 
+  const openUrl = () => {
+    if (href) {
+      const win = window.open(href, '_blank');
+      win.focus();
+    }
+  };
+
   return (
     <Fragment>
-      <Paper className = {classNames(
-        classes.root,
-        classes[`${socialName}Color`],
-      )}>
+      <Paper
+        className = {classNames(
+          classes.root,
+          classes[`${socialName}Color`],
+        )}
+        onClick = {openUrl}
+      >
         <Typography
           variant = 'subtitle2'
           component = 'span'
@@ -97,6 +108,10 @@ const SocialMediaButton: ComponentType<IProps> = (props: IProps) => {
       </Paper>
     </Fragment>
   );
+};
+
+SocialMediaButton.defaultProps = {
+  href: '',
 };
 
 export default compose<IProps, any>(

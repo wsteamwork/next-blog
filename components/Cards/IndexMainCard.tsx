@@ -1,7 +1,7 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles, StyleRules, CSSProperties, ClassNameMap} from '@material-ui/core/styles/withStyles';
-import React, {ComponentType, Fragment, useMemo} from 'react';
+import React, {ComponentType, Fragment, useMemo, InvalidEvent} from 'react';
 import {compose} from 'recompose';
 import MenuCard from '@/components/Cards/MenuCard';
 import Grid, {GridSize, GridSpacing, GridItemsAlignment} from '@material-ui/core/Grid/Grid';
@@ -18,6 +18,7 @@ import Hidden from '@material-ui/core/Hidden/Hidden';
 import CardDescription from '@/components/Content/CardDescription';
 import {CustomClasses} from '@/types/Interfaces/CustomInterface';
 import {IIndexMainCard} from '@/types/Interfaces/Components/Card';
+import {imgPlaceholder} from '@/store/utils/imgPlaceholder';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
@@ -130,6 +131,10 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
 
   const horizontalBreakpoint = useMemo(() => horizontal ? 6 : 12, [horizontal]);
 
+  const imageFail = (e: InvalidEvent<HTMLImageElement>) => {
+    e.target.src = imgPlaceholder();
+  };
+
   const InsideDescription = () => (
     <Fragment>
       <Grid item xs = {12}>
@@ -167,6 +172,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
             <img
               src = {imgSrc}
               alt = {imgAlt}
+              onError = {imageFail}
               className = {classNames(
                 classes.imgSize,
                 customClasses.image,

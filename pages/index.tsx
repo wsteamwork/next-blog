@@ -1,6 +1,6 @@
-import React, {Fragment, useLayoutEffect, useEffect} from 'react';
+import React, {Fragment, useLayoutEffect, useEffect, useReducer} from 'react';
 import {createStyles, WithStyles, withStyles} from '@material-ui/core/styles';
-import {NextComponentType} from 'next';
+import {NextComponentType, NextFunctionComponent} from 'next';
 import {compose} from 'recompose';
 import NavTop from '@/components/ToolBar/NavTop';
 import IndexCarousel from '@/components/Carousel/IndexCarousel';
@@ -13,6 +13,15 @@ import moment from 'moment';
 import SocialIndexBar from '@/layouts/Index/SocialIndexBar';
 import {ThemeCustom} from '@/components/Theme/Theme';
 import ToTheTop from '@/components/Button/ToTheTop';
+import NextSeo from 'next-seo';
+import {
+  BlogIndexReducer,
+  IBlogIndexContext,
+  BlogIndexInit,
+  BlogIndexState,
+  BlogIndexAction,
+  BlogIndexContext, getBlog,
+} from '@/store/context/BlogIndexContext';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   mainContent: {
@@ -21,11 +30,13 @@ const styles: any = (theme: ThemeCustom) => createStyles({
 });
 
 interface IProps extends WithStyles<typeof styles> {
-
+  initState: BlogIndexState
 }
 
-const Index: NextComponentType<IProps> = (props) => {
-  const {classes} = props;
+// @ts-ignore
+const Index: NextFunctionComponent<IProps> = (props) => {
+  const {classes, initState} = props;
+  const [state, dispatch]    = useReducer(BlogIndexReducer, initState);
 
   useEffect(() => {
     moment.locale('vi');
@@ -33,22 +44,37 @@ const Index: NextComponentType<IProps> = (props) => {
 
   return (
     <Fragment>
-      <ToTheTop />
-      <NavTop />
-      <IndexCarousel />
-      <GridContainer xs = {11}>
-        <IndexCategoryCarousel />
-        <Grid container className = {classes.mainContent} spacing = {32}>
-          <Grid item lg = {8}>
-            <MainIndexContent />
+      <NextSeo config = {{
+        title: 'Kênh thông tin tổng hợp về homestay - Westay.vn',
+      }} />
+      <BlogIndexContext.Provider value = {{state, dispatch}}>
+        <ToTheTop />
+        <NavTop />
+        <IndexCarousel />
+        <GridContainer xs = {11}>
+          <IndexCategoryCarousel />
+          <Grid container className = {classes.mainContent} spacing = {32}>
+            <Grid item lg = {8}>
+              <MainIndexContent />
+            </Grid>
+            <Grid item lg = {4}>
+              <SocialIndexBar />
+            </Grid>
           </Grid>
-          <Grid item lg = {4}>
-            <SocialIndexBar />
-          </Grid>
-        </Grid>
-      </GridContainer>
+        </GridContainer>
+      </BlogIndexContext.Provider>
     </Fragment>
   );
+};
+
+// @ts-ignore
+Index.getInitialProps = async (ctx) => {
+  const res = await getBlog();
+  return {
+    initState: {
+      hotBlogs: res.data,
+    },
+  };
 };
 
 export default compose<IProps, any>(

@@ -1,7 +1,7 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import React, {ComponentType, Fragment} from 'react';
+import React, {ComponentType, Fragment, useContext} from 'react';
 import {compose} from 'recompose';
 import Grid from '@material-ui/core/Grid/Grid';
 import Slider, {Settings} from 'react-slick';
@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import _ from 'lodash';
 import IndexMainCard from '@/components/Cards/IndexMainCard';
 import SliderArrowButton from '@/components/Button/SliderArrowButton';
+import {BlogIndexContext, IBlogIndexContext} from '@/store/context/BlogIndexContext';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
@@ -45,6 +46,9 @@ interface IProps extends Partial<WithStyles<typeof styles>> {
 // @ts-ignore
 const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
   const {classes} = props;
+  const {state}   = useContext<IBlogIndexContext>(BlogIndexContext);
+
+  const {hotBlogs} = state;
 
   const settings: Settings = {
     speed: 300,
@@ -62,9 +66,12 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
     <Fragment>
       <Grid item xs = {12} className = {classes.slideContainer}>
         <Slider {...settings}>
-          {_.map([0, 1, 2, 3, 4, 5, 6], (o, i) => (
-            <div className = {classes.slide} key = {o}>
-              <IndexMainCard />
+          {_.map(hotBlogs, (o, i) => (
+            <div className = {classes.slide} key = {o.id}>
+              <IndexMainCard
+                title = {o.title}
+                description = ''
+              />
             </div>
           ))}
         </Slider>

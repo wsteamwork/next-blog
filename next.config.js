@@ -1,7 +1,10 @@
 // @ts-check
-const compose     = require('recompose').compose;
-const withPlugins = require('next-compose-plugins');
+require('dotenv').config();
 
+const path   = require('path');
+const Dotenv = require('dotenv-webpack');
+
+const withPlugins    = require('next-compose-plugins');
 const withTypescript = require('@zeit/next-typescript');
 const withSass       = require('@zeit/next-sass');
 const withCss        = require('@zeit/next-css');
@@ -27,6 +30,17 @@ module.exports = withPlugins([
         },
       },
     });
+
+    // Webpack environment variable config
+    // console.log(config.plugins);
+    config.plugins = config.plugins || [];
+    config.plugins.push(
+      new Dotenv({
+        path: path.join(__dirname, '.env'),
+        systemvars: true
+      })
+    );
+
     return config;
   },
 });
