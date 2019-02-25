@@ -19,6 +19,12 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   root: {
     flexGrow: 1,
   },
+  navTop:{
+    backgroundColor: '#ffffff',
+    boxShadow: '0 6px 20px rgba(0, 0, 0, 0.06)',
+    position: 'sticky',
+    top: 0,
+  },
   categories: {
     flexGrow: 1,
     textAlign: 'center',
@@ -50,7 +56,7 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
   return (
     <Fragment>
       <RootRef rootRef = {megaRef}>
-        <AppBar position = 'static'>
+        <AppBar position = 'static' elevation={1} className={classes.navTop}>
           <Toolbar onMouseLeave = {() => menuIndexChange(0)}>
             <Link href = '/'>
               <Typography variant = 'h6' color = 'inherit' className = {classes.pointer}>

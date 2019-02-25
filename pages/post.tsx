@@ -27,12 +27,12 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
   socialSticky: {
     position: 'sticky',
-    top: '10%',
+    top: '20%',
   },
   boxPopular: {
     marginTop: 30,
     position: 'sticky',
-    top: '8%',
+    top: '13%',
   },
   slidePopular:{
     padding:'0 8px',
