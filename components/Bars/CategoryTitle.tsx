@@ -18,7 +18,6 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   categoryTitleContainer: {
     borderBottom: `2px ${Gray[300]} solid`,
     marginBottom: 30,
-    marginTop: 30,
   },
 });
 
@@ -42,7 +41,7 @@ const CategoryTitle: ComponentType<IProps> = (props: IProps) => {
     let customSize = size;
     switch (scale) {
       case 'small':
-        customSize = 1.275;
+        customSize = 1.175;
         break;
       case 'medium':
         customSize = 1.725;

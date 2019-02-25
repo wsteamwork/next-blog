@@ -13,6 +13,9 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   paperRoot: {
     maxWidth: '80vw',
   },
+  menuZIndex:{
+    zIndex:10000,
+  }
 });
 
 interface IMenuPopperProps extends Partial<WithStyles<typeof styles>> {
@@ -34,7 +37,7 @@ const MenuPopper: ComponentType<IMenuPopperProps> = (props) => {
 
   return (
     <Fragment>
-      <Popper open = {isOpen || hover} placement = 'bottom' anchorEl = {bindRef.current} transition>
+      <Popper open = {isOpen || hover} placement = 'bottom' anchorEl = {bindRef.current} transition className={classes.menuZIndex}>
         {({TransitionProps}) => (
           <Fade {...TransitionProps} timeout = {300}>
             <div {...hoverProps}>

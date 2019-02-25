@@ -33,6 +33,9 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
   slide: {
     padding: 12,
+    '&:focus':{
+      outline:'none',
+    }
   },
   slideContainer: {
     marginTop: 20,

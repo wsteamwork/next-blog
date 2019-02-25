@@ -91,8 +91,12 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     color: 'rgba(0,0,0,0.46)',
   },
   titleInside: {
-    color: Gray[400],
-    fontSize: '0.775rem',
+    color: Gray[300],
+  },
+  noneFocus: {
+    '&:focus': {
+      outline: 'none',
+    },
   },
 });
 
@@ -166,7 +170,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
-      <Grid container spacing = {rootSpacing}>
+      <Grid container spacing = {rootSpacing} className = {classes.noneFocus}>
         <Grid item xs = {ratio.image || horizontalBreakpoint} container className = {classes.imgContainer}>
           <div className = {classes.imgGradient}>
             <img
@@ -199,44 +203,46 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
             ) : ''}
           </Grid>
         </Grid>
-        <Grid container item xs = {ratio.content || horizontalBreakpoint} alignItems = {contentAlign}>
-          {cardStyle === 'outside' ? (
-            <Grid item xs = {12}>
-              <Grid container spacing = {8}>
-                <Grid item xs = {12}>
-                  <Typography
-                    variant = 'h4'
-                    className = {
-                      classNames({
-                          [classes.titleHover]: cardHover,
-                        },
-                        classes.transitionDuration,
-                        customClasses.title,
-                      )
-                    }
-                    classes = {{
-                      root: classes.title,
-                    }}
-                    {...titleHoverProps}
-                  >
-                    {title}
-                  </Typography>
-                </Grid>
-                <Grid item xs = {12}>
-                  <InformationIndicate
-                    userName = {author}
-                    time = {time}
-                  />
-                </Grid>
-                <Hidden xsUp = {!description}>
+        <Hidden xsUp = {cardStyle !== 'outside'}>
+          <Grid container item xs = {ratio.content || horizontalBreakpoint} alignItems = {contentAlign}>
+            {cardStyle === 'outside' ? (
+              <Grid item xs = {12}>
+                <Grid container spacing = {8}>
                   <Grid item xs = {12}>
-                    <CardDescription text = {description} length = {descriptionLength} />
+                    <Typography
+                      variant = 'h4'
+                      className = {
+                        classNames({
+                            [classes.titleHover]: cardHover,
+                          },
+                          classes.transitionDuration,
+                          customClasses.title,
+                        )
+                      }
+                      classes = {{
+                        root: classes.title,
+                      }}
+                      {...titleHoverProps}
+                    >
+                      {title}
+                    </Typography>
                   </Grid>
-                </Hidden>
+                  <Grid item xs = {12}>
+                    <InformationIndicate
+                      userName = {author}
+                      time = {time}
+                    />
+                  </Grid>
+                  <Hidden xsUp = {!description}>
+                    <Grid item xs = {12}>
+                      <CardDescription text = {description} length = {descriptionLength} />
+                    </Grid>
+                  </Hidden>
+                </Grid>
               </Grid>
-            </Grid>
-          ) : ''}
-        </Grid>
+            ) : ''}
+          </Grid>
+        </Hidden>
       </Grid>
     </Fragment>
   );
@@ -249,7 +255,7 @@ IndexMainCard.defaultProps = {
   imgSrc: '/static/room_demo.jpeg',
   chipText: 'Mẹo vặt',
   author: 'Nanahira',
-  rootSpacing: 24,
+  rootSpacing: 16,
   contentAlign: 'stretch',
   customClasses: {},
   ratio: {},

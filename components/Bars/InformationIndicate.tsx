@@ -7,6 +7,8 @@ import moment, {MomentInput} from 'moment';
 import Typography from '@material-ui/core/Typography/Typography';
 import classNames from 'classnames';
 import Hidden from '@material-ui/core/Hidden/Hidden';
+import AccessTimeOutlined from '@material-ui/icons/AccessTimeRounded';
+import AccountCircleRounded from '@material-ui/icons/AccountCircleRounded';
 import {CustomClasses} from '@/types/Interfaces/CustomInterface';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
@@ -14,13 +16,22 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     color: 'rgba(0,0,0,0.46)',
   },
   textElement: {
-    borderLeft: '1px solid',
     paddingLeft: 8,
-    borderLeftStyle: 'inset',
   },
   padR: {
-    paddingRight: 8,
+    paddingRight: 12,
+    alignItems: 'center',
   },
+  icon: {
+    verticalAlign: 'middle',
+    fontSize:'1rem',
+  },
+  spanIcon: {
+    paddingRight: 4,
+  },
+  fontAuthor:{
+    fontSize:'0.6875rem',
+  }
 });
 
 type InformationIndicateClasses = 'root'
@@ -33,6 +44,7 @@ interface IProps extends Partial<WithStyles<typeof styles>>, CustomClasses<Infor
 // @ts-ignore
 const InformationIndicate: ComponentType<IProps> = (props: IProps) => {
   const {classes, userName, customClasses, time} = props;
+
   return (
     <Fragment>
       <Typography
@@ -47,15 +59,24 @@ const InformationIndicate: ComponentType<IProps> = (props: IProps) => {
         <span className = {classNames(
           classes.padR,
         )}>
-          {userName}
+          <span className = {classes.spanIcon}>
+            <AccountCircleRounded className = {classes.icon} />
+          </span>
+          <span className={classes.fontAuthor}>{userName}</span>
         </span>
         </Hidden>
+        &#8739;
         <Hidden xsUp = {!time}>
           <span className = {classNames({
             [classes.textElement]: true,
             [classes.padR]: true,
           })}>
-          {moment(time).calendar()}
+
+            <span className = {classes.spanIcon}>
+              <AccessTimeOutlined className = {classes.icon} />
+            </span>
+            <span className={classes.fontAuthor}>{moment(time).calendar()}</span>
+
           </span>
         </Hidden>
       </Typography>

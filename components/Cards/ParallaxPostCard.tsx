@@ -5,12 +5,10 @@ import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
 import ChipCard from '@/components/Button/ChipCard';
 import {Typography} from '@material-ui/core';
-import AccessTimeOutlined from '@material-ui/icons/AccessTimeRounded';
 import {Parallax} from 'react-parallax';
-import PersonRounded from '@material-ui/icons/PersonRounded';
 import {grey, red} from '@material-ui/core/colors';
 import moment, {MomentInput} from 'moment';
-import {useSpring, animated, config} from 'react-spring';
+import InformationIndicate from '@/components/Bars/InformationIndicate';
 
 const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   insideParallax: {
@@ -55,7 +53,6 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   },
   postAuthor: {
     color: '#ffffff',
-    padding: '0 8px',
   },
   iconTitle: {
     verticalAlign: 'bottom',
@@ -102,22 +99,19 @@ const ParallaxPostCard: ComponentType<IParallaxPostCardProps> = (props) => {
         <div style = {{height: 450}}>
           <div className = {classes.insideParallax}>
             <div className = {classes.Title}>
-              <animated.div style = {aniProps}>
-                <ChipCard text = {category} customClasses = {{
-                  root: classes.customChip,
-                }} />
-                <Typography variant = 'h3' className = {classes.postTitle}>
-                  {title}
-                </Typography>
-                <Typography variant = 'subtitle2'>
-                <span className = {classes.postTime}>
-                    <AccessTimeOutlined className = {classes.iconTitle} /> {moment(time).calendar()}
-                </span>
-                  <span className = {classes.postAuthor}>
-                    <PersonRounded className = {classes.iconTitle} /> {author}
-                </span>
-                </Typography>
-              </animated.div>
+              <ChipCard text = {category} customClasses = {{
+                root: classes.customChip,
+              }} />
+              <Typography variant = 'h3' className = {classes.postTitle}>
+                {title}
+              </Typography>
+              <InformationIndicate
+                userName = 'ronaldo beckham'
+                time = '2019-12-24'
+                customClasses = {{
+                  root: classes.postAuthor,
+                }}
+              />
             </div>
           </div>
         </div>

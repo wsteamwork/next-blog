@@ -12,7 +12,7 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
     width: 45,
     height: 45,
     cursor: 'pointer',
-    border: `1px solid ${grey[300]}`,
+    boxShadow: '0px 3px 6px 1px rgba(0,0,0,.04)',
     transition: theme.transitions.create(['all'], {
       easing: 'ease-in-out',
       duration: 300,
@@ -23,7 +23,7 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     '&:hover': {
-      boxShadow: '0px 3px 6px 1px rgba(0,0,0,.09)',
+      boxShadow: '0px 3px 6px 1px rgba(0,0,0,0.2)',
     },
   },
 });

@@ -49,6 +49,9 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
           <IndexMainCard cardStyle = 'inside' imgHeight = {600} />
         </Grid>
         <Grid item lg = {12}>
+          <IndexMainCard cardStyle = 'inside' imgHeight = {800} />
+        </Grid>
+        <Grid item lg = {12}>
           <IndexMainCard
             cardStyle = 'outside'
             descriptionLength = {400}
