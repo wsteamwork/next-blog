@@ -43,6 +43,7 @@ const Index: NextFunctionComponent<IProps> = (props) => {
     moment.locale('vi');
   }, []);
 
+
   return (
     <Fragment>
       <NextSeo config = {{

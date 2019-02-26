@@ -2,6 +2,7 @@ import * as next from 'next';
 import * as express from 'express';
 import {Request, Response} from 'express';
 import * as compression from 'compression';
+import * as helmet from 'helmet';
 
 const port   = parseInt(process.env.PORT, 10) || 3000;
 const dev    = process.env.NODE_ENV !== 'production';
@@ -10,7 +11,9 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
+
   server.disable('x-powered-by');
+  server.use(helmet());
   server.use(compression());
 
   server.get('/p/:id', (req: Request, res: Response) => {

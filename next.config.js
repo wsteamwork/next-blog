@@ -18,6 +18,7 @@ module.exports = withPlugins([
   },
   ],
 ], {
+  xPoweredBy: false,
   // target: 'serverless',
   webpack: (config, {}) => {
     config.module.rules.push({
@@ -37,8 +38,8 @@ module.exports = withPlugins([
     config.plugins.push(
       new Dotenv({
         path: path.join(__dirname, '.env'),
-        systemvars: true
-      })
+        systemvars: true,
+      }),
     );
 
     return config;
