@@ -191,7 +191,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
             )}
             spacing = {8}
           >
-            <Hidden xsUp = {!chipText}>
+            <Hidden xsUp = {!chipText} initialWidth = 'xs'>
               <Grid item xs = {12}>
                 <ChipCard text = {chipText} />
               </Grid>
@@ -203,7 +203,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
             ) : ''}
           </Grid>
         </Grid>
-        <Hidden xsUp = {cardStyle !== 'outside'}>
+        <Hidden xsUp = {cardStyle !== 'outside'} initialWidth = 'xs'>
           <Grid container item xs = {ratio.content || horizontalBreakpoint} alignItems = {contentAlign}>
             {cardStyle === 'outside' ? (
               <Grid item xs = {12}>
@@ -233,7 +233,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
                       time = {time}
                     />
                   </Grid>
-                  <Hidden xsUp = {!description}>
+                  <Hidden xsUp = {!description} initialWidth = 'xs'>
                     <Grid item xs = {12}>
                       <CardDescription text = {description} length = {descriptionLength} />
                     </Grid>

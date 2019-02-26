@@ -22,6 +22,7 @@ import {
   BlogIndexAction,
   BlogIndexContext, getBlog,
 } from '@/store/context/BlogIndexContext';
+import {BlogIndexGetParams} from '@/types/Requests/Blog/BlogRequests';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   mainContent: {
@@ -69,10 +70,17 @@ const Index: NextFunctionComponent<IProps> = (props) => {
 
 // @ts-ignore
 Index.getInitialProps = async (ctx) => {
-  const res = await getBlog();
+  const hotBlogParams: BlogIndexGetParams = {
+    limit: 10,
+  };
+
+  const [hotBlog] = await Promise.all([
+    getBlog(hotBlogParams),
+  ]);
+
   return {
     initState: {
-      hotBlogs: res.data,
+      hotBlogs: hotBlog.data,
     },
   };
 };

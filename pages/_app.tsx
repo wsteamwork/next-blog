@@ -10,6 +10,7 @@ import AppWrapper from '@/store/container/AppWrapper';
 import {GlobalContext} from '@/store/context/GlobalContext';
 import {ThemeProvider, useTheme} from '@material-ui/styles';
 import {Breakpoint} from '@material-ui/core/styles/createBreakpoints';
+import NextSeo from 'next-seo';
 
 interface MainAppProps {
   width: Breakpoint
@@ -52,6 +53,12 @@ class CustomApp extends App<MainAppProps, MainAppState> {
           <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500' />
           <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/icon?family=Material+Icons' />
         </Head>
+        <NextSeo config = {{
+          openGraph: {
+            locale: 'vi_VN',
+            site_name: 'Blog Du Lịch Westay - Homestay cho người Việt',
+          },
+        }} />
         <JssProvider
           registry = {pageContext.sheetsRegistry}
           generateClassName = {pageContext.generateClassName}

@@ -33,9 +33,9 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
   slide: {
     padding: 12,
-    '&:focus':{
-      outline:'none',
-    }
+    '&:focus': {
+      outline: 'none',
+    },
   },
   slideContainer: {
     marginTop: 20,
@@ -60,7 +60,7 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
     infinite: true,
     swipeToSlide: true,
     arrows: true,
-    lazyLoad: 'ondemand',
+    // lazyLoad: 'ondemand',
     nextArrow: <SliderArrowButton arrow = 'next' />,
     prevArrow: <SliderArrowButton arrow = 'prev' />,
   };
@@ -74,6 +74,7 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
               <IndexMainCard
                 title = {o.title}
                 description = ''
+                imgAlt = {o.title}
               />
             </div>
           ))}

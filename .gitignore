@@ -7,4 +7,7 @@ node_modules/
 # typescript build output
 dist
 
+# environment variable
+.env
+
 \.idea/

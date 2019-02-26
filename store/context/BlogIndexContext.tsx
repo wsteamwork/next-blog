@@ -4,6 +4,7 @@ import {updateObject} from '@/store/utils/utility';
 import qs from 'querystring';
 import {AxiosRes} from '@/types/Requests/ResponseTemplate';
 import {axios} from '@/store/utils/axiosBase';
+import {BlogIndexGetParams} from '@/types/Requests/Blog/BlogRequests';
 
 export const BlogIndexContext = createContext<IBlogIndexContext | any>(null);
 
@@ -35,8 +36,10 @@ export const BlogIndexReducer = (state: BlogIndexState, action: BlogIndexAction)
   }
 };
 
-export const getBlog = async () => {
-  const res: AxiosRes<BlogIndexRes[]> = await axios.get('blogs');
+export const getBlog = async (params?: BlogIndexGetParams) => {
+  const url = `blogs/?${qs.stringify(params)}`;
+
+  const res: AxiosRes<BlogIndexRes[]> = await axios.get(url);
   return res.data;
 };
 
