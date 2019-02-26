@@ -9,6 +9,7 @@ import {Parallax} from 'react-parallax';
 import {grey, red} from '@material-ui/core/colors';
 import moment, {MomentInput} from 'moment';
 import InformationIndicate from '@/components/Bars/InformationIndicate';
+import {useSpring, config} from 'react-spring';
 
 const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   insideParallax: {
