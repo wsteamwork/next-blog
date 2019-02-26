@@ -4,6 +4,7 @@ import {Request, Response} from 'express';
 import * as compression from 'compression';
 import * as helmet from 'helmet';
 
+require('dotenv').config();
 const port   = parseInt(process.env.PORT, 10) || 3000;
 const dev    = process.env.NODE_ENV !== 'production';
 const app    = next({dev});
