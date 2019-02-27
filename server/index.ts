@@ -16,9 +16,13 @@ app.prepare().then(() => {
   server.use(helmet());
   server.use(compression());
 
-  server.get('/p/:id', (req: Request, res: Response) => {
+  server.get('/:category/:slug-:id(\\d+)', (req: Request, res: Response) => {
     const actualPage  = '/post';
-    const queryParams = {title: req.params.id};
+    const queryParams = {
+      slug: req.params.slug,
+      category: req.params.category,
+      id: req.params.id,
+    };
     app.render(req, res, actualPage, queryParams);
   });
 

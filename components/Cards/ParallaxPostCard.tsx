@@ -1,7 +1,7 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import React, {ComponentType, Fragment} from 'react';
+import React, {ComponentType, Fragment, useContext} from 'react';
 import {compose} from 'recompose';
 import ChipCard from '@/components/Button/ChipCard';
 import {Typography} from '@material-ui/core';
@@ -10,6 +10,7 @@ import {grey, red} from '@material-ui/core/colors';
 import moment, {MomentInput} from 'moment';
 import InformationIndicate from '@/components/Bars/InformationIndicate';
 import {useSpring, config} from 'react-spring';
+import {PostDetailsContext,IPostDetailsContext} from '@/store/context/PostDetailsContext';
 
 const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   insideParallax: {
@@ -83,6 +84,7 @@ const ParallaxPostCard: ComponentType<IParallaxPostCardProps> = (props) => {
           imageSrc,
           time,
         } = props;
+  const {state}   = useContext<IPostDetailsContext>(PostDetailsContext);
 
   const aniProps = useSpring({
     opacity: 1,
@@ -107,8 +109,8 @@ const ParallaxPostCard: ComponentType<IParallaxPostCardProps> = (props) => {
                 {title}
               </Typography>
               <InformationIndicate
-                userName = 'ronaldo beckham'
-                time = '2019-12-24'
+                userName = {author}
+                time = {time}
                 customClasses = {{
                   root: classes.postAuthor,
                 }}
@@ -122,10 +124,10 @@ const ParallaxPostCard: ComponentType<IParallaxPostCardProps> = (props) => {
 };
 
 ParallaxPostCard.defaultProps = {
-  title: 'Cách trang trí phòng theo phong cách Vintage',
-  author: 'Cristiano Messi',
-  category: 'Gái đẹp',
-  time: '2019-02-02',
+  title: '',
+  author: 'Westay',
+  category: '',
+  time: '',
   imageSrc: '/static/room_demo.jpeg',
 };
 

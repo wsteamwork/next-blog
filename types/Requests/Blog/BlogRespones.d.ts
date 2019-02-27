@@ -1,3 +1,5 @@
+import {TransformerInclude} from '@/types/Requests/ResponseTemplate';
+
 export interface BlogIndexRes {
   id: number
   image: string
@@ -11,4 +13,13 @@ export interface BlogIndexRes {
   description: string
   type: number
   category_id: number
+  created_at:string
+  categories:TransformerInclude<CategoryBlog>
+}
+export interface CategoryBlog {
+  id: number
+  hot: number,
+  status: number,
+  new: number,
+  image: string,
 }
