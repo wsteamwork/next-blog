@@ -102,7 +102,7 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
         isOpen = {menuIndex === 1}
         bindRef = {megaRef}
       >
-        <PlaceToGo />
+        {/*<PlaceToGo />*/}
       </MenuPopper>
       <MenuPopper
         setIndex = {setMenuIndex}

@@ -12,6 +12,7 @@ import ReactParallax from 'react-parallax';
 import Button from '@material-ui/core/Button/Button';
 import {BlogIndexContext, IBlogIndexContext} from '@/store/context/BlogIndexContext';
 import _ from 'lodash';
+import PostWrapper from '@/components/Wrapper/PostWrapper';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   showMoreLabel: {
@@ -40,11 +41,13 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
       <Grid container item xs = {12} spacing = {16}>
         {_.map(hotBlogs, (o, i) => (
           <Grid item lg = {6} key = {o.id}>
-            <IndexMainCard
-              title = {o.title}
-              imgAlt = {o.title}
-              description = {o.description}
-            />
+            <PostWrapper post = {o}>
+              <IndexMainCard
+                title = {o.title}
+                imgAlt = {o.title}
+                description = {o.description}
+              />
+            </PostWrapper>
           </Grid>
         ))}
         <Grid container item xs = {12} justify = 'center'>

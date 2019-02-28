@@ -30,15 +30,15 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   article: {
     marginBottom: 30,
   },
-  boxNew:{
+  boxNew: {
     paddingBottom: 50,
   },
-  titleCategory:{
-    textAlign:'center',
-    padding:'30px 0',
-    textTransform:'capitalize',
-    color:'#343434',
-  }
+  titleCategory: {
+    textAlign: 'center',
+    padding: '30px 0',
+    textTransform: 'capitalize',
+    color: '#343434',
+  },
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
@@ -63,22 +63,21 @@ const Category: ComponentType<IProps> = (props: IProps) => {
       <ToTheTop />
       <GridContainer xs = {12} sm = {12} md = {12} lg = {11}>
         <div>
-          <Typography variant='h3' className={classes.titleCategory}>Bài viết nổi bật</Typography>
+          <Typography variant = 'h3' className = {classes.titleCategory}>Bài viết nổi bật</Typography>
         </div>
-        <Grid container spacing = {16} className={classes.boxNew}>
-
+        <Grid container spacing = {16} className = {classes.boxNew}>
           <Grid item xs = {8}>
             <IndexMainCard
               cardStyle = 'inside' description = '' imgHeight = {500} contentAlign = 'center'
             />
           </Grid>
-          <Grid item container spacing={8} xs = {4}>
-            <Grid item xs={12}>
+          <Grid item container spacing = {8} xs = {4}>
+            <Grid item xs = {12}>
               <IndexMainCard
                 cardStyle = 'inside' description = '' imgHeight = {240} contentAlign = 'center'
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs = {12}>
               <IndexMainCard
                 cardStyle = 'inside' description = '' imgHeight = {240} contentAlign = 'center'
               />

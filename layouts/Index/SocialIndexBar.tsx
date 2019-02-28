@@ -10,6 +10,7 @@ import IndexMainCard from '@/components/Cards/IndexMainCard';
 import _ from 'lodash';
 import {FACEBOOK_WESTAY_URL, INSTAGRAM_WESTAY_URL} from '@/store/constant/general';
 import {IBlogIndexContext, BlogIndexContext} from '@/store/context/BlogIndexContext';
+import PostWrapper from '@/components/Wrapper/PostWrapper';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   trickOverlay: {
@@ -58,19 +59,21 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
       <Grid container spacing = {16}>
         {_.map(hotBlogs, o => (
           <Grid item lg = {6} key = {o.id}>
-            <IndexMainCard
-              rootSpacing = {8}
-              customClasses = {{
-                overlayContainer: classes.trickOverlay,
-                title: classes.smallTitle,
-              }}
-              title = {o.title}
-              imgAlt = {o.title}
-              chipText = 'Nghỉ'
-              description = ''
-              time = ''
-              author = ''
-            />
+            <PostWrapper post = {o}>
+              <IndexMainCard
+                rootSpacing = {8}
+                customClasses = {{
+                  overlayContainer: classes.trickOverlay,
+                  title: classes.smallTitle,
+                }}
+                title = {o.title}
+                imgAlt = {o.title}
+                chipText = 'Nghỉ'
+                description = ''
+                time = ''
+                author = ''
+              />
+            </PostWrapper>
           </Grid>
         ))}
       </Grid>

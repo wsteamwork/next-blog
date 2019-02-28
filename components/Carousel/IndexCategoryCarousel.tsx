@@ -13,6 +13,7 @@ import IndexMainCard from '@/components/Cards/IndexMainCard';
 import SliderArrowButton from '@/components/Button/SliderArrowButton';
 import {BlogIndexContext, IBlogIndexContext} from '@/store/context/BlogIndexContext';
 import Link from 'next/link';
+import PostWrapper from '@/components/Wrapper/PostWrapper';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
@@ -70,17 +71,17 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
     <Fragment>
       <Grid item xs = {12} className = {classes.slideContainer}>
         <Slider {...settings}>
-          {_.map(hotBlogs, (o, i) => (
-            <Fragment key = {o.id}>
-              <Link as = {`/${o.category_id}/${o.slug}-${o.id}`} href = {`/post?id=${o.id}`}>
-                <div className = {classes.slide}>
+          {_.map(hotBlogs, (post) => (
+            <Fragment key = {post.id}>
+              <div className = {classes.slide}>
+                <PostWrapper post = {post}>
                   <IndexMainCard
-                    title = {o.title}
+                    title = {post.title}
                     description = ''
-                    imgAlt = {o.title}
+                    imgAlt = {post.title}
                   />
-                </div>
-              </Link>
+                </PostWrapper>
+              </div>
             </Fragment>
           ))}
         </Slider>

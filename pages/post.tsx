@@ -36,6 +36,8 @@ import _ from 'lodash';
 // @ts-ignore
 import ReactHtmlParser, {processNodes, convertNodeToElement, htmlparser2} from 'react-html-parser';
 import {BlogIndexGetParams} from '@/types/Requests/Blog/BlogRequests';
+import PostWrapper from '@/components/Wrapper/PostWrapper';
+import NextSeo from 'next-seo';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   boxContent: {
@@ -67,13 +69,13 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     width: '100% !important',
     objectFit: 'cover',
   },
-  titleSlider:{
+  titleSlider: {
     overflow: 'hidden',
     display: '-webkit-box',
     WebkitLineClamp: 2,
     WebkitBoxOrient: 'vertical',
     fontSize: '1.375rem',
-  }
+  },
 });
 
 interface IPostPage extends WithRouterProps, Partial<WithStyles<typeof styles>> {
@@ -83,10 +85,10 @@ interface IPostPage extends WithRouterProps, Partial<WithStyles<typeof styles>> 
 
 // @ts-ignore
 const PostPage: NextComponentType<IPostPage> = (props) => {
-  const {classes, initState,} = props;
-  const [state, dispatch]                     = useReducer(PostDetailsReducer, initState);
+  const {classes, initState} = props;
+  const [state, dispatch]    = useReducer(PostDetailsReducer, initState);
 
-  const {postDetails,sliderHot,sliderNew} = state;
+  const {postDetails, sliderHot, sliderNew} = state;
 
   const slidePopular: Settings = {
     speed: 500,
@@ -127,10 +129,14 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
 
   return (
     <Fragment>
+      <NextSeo config = {{
+        title: postDetails.title,
+        description: postDetails.description,
+      }} />
       <PostDetailsContext.Provider value = {{state, dispatch}}>
         <NavTop />
         <ToTheTop />
-        <ParallaxPostCard title={postDetails.title} time={moment(postDetails.created_at).format('DD/MM/YYYY')}/>
+        <ParallaxPostCard title = {postDetails.title} time = {postDetails.created_at} />
         <GridContainer xs = {11} className = {classes.boxContent}>
           <Grid container spacing = {40}>
             <Grid item container xs = {9}>
@@ -159,7 +165,9 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                     {_.map(sliderNew, (o) => (
                       <Fragment key = {o.id}>
                         <div className = {classes.slidePopular}>
-                          <IndexMainCard cardStyle = 'outside' description = '' />
+                          <PostWrapper post = {o}>
+                            <IndexMainCard cardStyle = 'outside' description = '' />
+                          </PostWrapper>
                         </div>
                       </Fragment>
                     ))}
@@ -178,9 +186,12 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                   {_.map(sliderHot, (o) => (
                     <Fragment key = {o.id}>
                       <div className = {classes.slidePopular}>
-                        <IndexMainCard
-                          customClasses={{title:classes.titleSlider}}
-                          cardStyle = 'outside' description = '' title = {o.title} />
+                        <PostWrapper post = {o}>
+                          <IndexMainCard
+                            customClasses = {{title: classes.titleSlider}}
+                            cardStyle = 'outside' description = '' title = {o.title}
+                          />
+                        </PostWrapper>
                       </div>
                     </Fragment>
                   ))}
@@ -195,38 +206,28 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
 };
 
 // @ts-ignore
-PostPage.getInitialProps = async (context:any) => {
-  const {id}                                = context.query;
-  // const res: AxiosRes<BlogIndexRes>         = await axios.get(`blogs/${id}?include=categories.details,user`);
-  // const resSliderHot: AxiosRes<BlogIndexRes[]> = await axios.get(`blogs?limit=6&hot=1`);
-  // const resSliderNew: AxiosRes<BlogIndexRes[]> = await axios.get(`blogs?limit=8&new=1`);
-  // const post                                = res.data.data;
-  // const sliderHot                           = resSliderHot.data.data;
-  // const sliderNew                           = resSliderNew.data.data;
-  const sliderHotParams:BlogIndexGetParams ={
-    limit:6,
-    hot:1,
+PostPage.getInitialProps = async (context: any) => {
+  const {id} = context.query;
+
+  const sliderHotParams: BlogIndexGetParams = {
+    limit: 6,
+    hot: 1,
   };
-  const sliderNewParams:BlogIndexGetParams ={
-    limit:8,
-    new:1,
+  const sliderNewParams: BlogIndexGetParams = {
+    limit: 8,
+    new: 1,
   };
-  let pDetails,sHot,sNew;
-  const getData = await Promise.all([
+
+  const [pDetails, sHot, sNew] = await Promise.all([
     getDetails(parseInt(id)),
     getSlider(sliderHotParams),
     getSlider(sliderNewParams),
-  ]).then(value => {
-    pDetails = value[0];
-    sHot = value[1];
-    sNew = value[2];
-    console.log(value[2]);
-  });
+  ]);
   return {
-    initState:{
-      postDetails:pDetails.data,
-      sliderHot:sHot.data,
-      sliderNew:sNew.data,
+    initState: {
+      postDetails: pDetails.data,
+      sliderHot: sHot.data,
+      sliderNew: sNew.data,
     },
   };
 };
