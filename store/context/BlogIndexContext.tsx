@@ -37,7 +37,7 @@ export const BlogIndexReducer = (state: BlogIndexState, action: BlogIndexAction)
 };
 
 export const getBlog = async (params?: BlogIndexGetParams) => {
-  const url = `blogs/?${qs.stringify(params)}`;
+  const url = `blogs?include=categories.details,user&${qs.stringify(params)}`;
 
   const res: AxiosRes<BlogIndexRes[]> = await axios.get(url);
   return res.data;

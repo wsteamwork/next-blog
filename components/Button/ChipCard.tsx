@@ -66,7 +66,7 @@ const ChipCard: ComponentType<IProps> = (props: IProps) => {
 };
 
 ChipCard.defaultProps = {
-  text: 'Mẹo vặt',
+  text: 'chưa có nội dung',
   customClasses: {},
 };
 

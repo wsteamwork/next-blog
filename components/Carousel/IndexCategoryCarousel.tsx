@@ -53,6 +53,7 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
   const {state}   = useContext<IBlogIndexContext>(BlogIndexContext);
 
   const {hotBlogs} = state;
+  console.log(hotBlogs);
 
   const settings: Settings = {
     speed: 300,
@@ -72,12 +73,13 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
         <Slider {...settings}>
           {_.map(hotBlogs, (o, i) => (
             <Fragment key = {o.id}>
-              <Link as = {`/${o.category_id}/${o.slug}-${o.id}`} href = {`/post?id=${o.id}`}>
+              <Link as = {`/${o.categories.data[0].details.data[0].slug}/${o.slug}-${o.id}`} href = {`/post?id=${o.id}`}>
                 <div className = {classes.slide}>
                   <IndexMainCard
                     title = {o.title}
                     description = ''
                     imgAlt = {o.title}
+                    imgSrc={o.image}
                   />
                 </div>
               </Link>

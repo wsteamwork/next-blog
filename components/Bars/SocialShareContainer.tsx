@@ -5,6 +5,7 @@ import React, {ComponentType, Fragment} from 'react';
 import {compose} from 'recompose';
 import SocialShare from '@/components/Button/SocialShare';
 import {Facebook, Twitter, Instagram,Youtube} from 'mdi-material-ui';
+import {FACEBOOK_WESTAY_URL,INSTAGRAM_WESTAY_URL} from '@/store/constant/general';
 
 const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   iconFB: {
@@ -31,26 +32,22 @@ const SocialShareContainer: ComponentType<ISocialShareContainerProps> = (props: 
 
   return (
     <Fragment>
-      <SocialShare customClasses = {{
-        icon: classes.iconFB,
-      }}>
+      <SocialShare customClasses = {{icon: classes.iconFB}} href={FACEBOOK_WESTAY_URL}>
         <Facebook />
       </SocialShare>
-      <SocialShare customClasses = {{
-        icon: classes.iconTW,
-      }}>
-        <Twitter />
-      </SocialShare>
-      <SocialShare customClasses = {{
-        icon: classes.iconIS,
-      }}>
+      {/*<SocialShare customClasses = {{*/}
+        {/*icon: classes.iconTW,*/}
+      {/*}}>*/}
+        {/*<Twitter />*/}
+      {/*</SocialShare>*/}
+      <SocialShare customClasses = {{icon: classes.iconIS}} href={INSTAGRAM_WESTAY_URL}>
         <Instagram />
       </SocialShare>
-      <SocialShare customClasses = {{
-        icon: classes.iconYT,
-      }}>
-        <Youtube />
-      </SocialShare>
+      {/*<SocialShare customClasses = {{*/}
+        {/*icon: classes.iconYT,*/}
+      {/*}}>*/}
+        {/*<Youtube />*/}
+      {/*</SocialShare>*/}
     </Fragment>
   );
 };

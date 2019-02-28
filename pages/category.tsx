@@ -14,6 +14,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import SubscribeEmail from '@/components/Input/SubscribeEmail';
 import Typography from '@material-ui/core/Typography';
+import {NextComponentType} from 'next';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   slidePopular: {
@@ -46,7 +47,7 @@ interface IProps extends Partial<WithStyles<typeof styles>> {
 }
 
 // @ts-ignore
-const Category: ComponentType<IProps> = (props: IProps) => {
+const Category: NextComponentType<IProps> = (props: IProps) => {
   const {classes}              = props;
   const slidePopular: Settings = {
     speed: 500,
@@ -128,6 +129,12 @@ const Category: ComponentType<IProps> = (props: IProps) => {
     </Fragment>
   );
 };
+
+// @ts-ignore
+Category.getInitialProps = async (context:any) => {
+
+};
+
 
 export default compose<IProps, any>(
   withStyles(styles),
