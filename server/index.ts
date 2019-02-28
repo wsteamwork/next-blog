@@ -17,12 +17,19 @@ app.prepare().then(() => {
   server.use(helmet());
   server.use(compression());
 
-  server.get('/:category/:slug-:id(\\d+)', (req: Request, res: Response) => {
-    const actualPage  = '/post';
+  // server.get('/:category/:slug-:id(\\d+)', (req: Request, res: Response) => {
+  //   const actualPage  = '/post';
+  //   const queryParams = {
+  //     slug: req.params.slug,
+  //     category: req.params.category,
+  //     id: req.params.id,
+  //   };
+  //   app.render(req, res, actualPage, queryParams);
+  // });
+  server.get('/:slugCategory', (req: Request, res: Response) => {
+    const actualPage  = '/category';
     const queryParams = {
-      slug: req.params.slug,
-      category: req.params.category,
-      id: req.params.id,
+      slugCategory: req.params.slugCategory,
     };
     app.render(req, res, actualPage, queryParams);
   });

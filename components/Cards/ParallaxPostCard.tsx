@@ -72,6 +72,7 @@ interface IParallaxPostCardProps extends Partial<WithStyles<typeof styles>> {
   author?: string
   imageSrc?: string
   category?: string
+  slugCategory: string
 }
 
 // @ts-ignore
@@ -79,6 +80,7 @@ const ParallaxPostCard: ComponentType<IParallaxPostCardProps> = (props) => {
   const {
           classes,
           category,
+          slugCategory,
           author,
           title,
           imageSrc,
@@ -104,7 +106,7 @@ const ParallaxPostCard: ComponentType<IParallaxPostCardProps> = (props) => {
         <div style = {{height: 450}}>
           <div className = {classes.insideParallax}>
             <div className = {classes.Title}>
-              <ChipCard text = {category} customClasses = {{
+              <ChipCard text = {category} slug = {slugCategory} customClasses = {{
                 root: classes.customChip,
               }} />
               <Typography variant = 'h3' className = {classes.postTitle}>
@@ -131,6 +133,7 @@ ParallaxPostCard.defaultProps = {
   category: '',
   time: '',
   imageSrc: '',
+  slugCategory: 'Tổng hợp',
 };
 
 export default compose<IParallaxPostCardProps, any>(
