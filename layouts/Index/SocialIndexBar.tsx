@@ -36,7 +36,7 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
 
   const {state} = useContext<IBlogIndexContext>(BlogIndexContext);
 
-  const {hotBlogs} = state;
+  const {blogAll} = state;
 
   return (
     <Fragment>
@@ -48,16 +48,16 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
         <Grid container item xs = {12}>
           <SocialMediaButton socialName = 'instagram' text = 'Theo dõi' href = {INSTAGRAM_WESTAY_URL} />
         </Grid>
-        <Grid container item xs = {12}>
+        {/* <Grid container item xs = {12}>
           <SocialMediaButton socialName = 'youtube' text = 'Đăng ký kênh' />
         </Grid>
         <Grid container item xs = {12}>
           <SocialMediaButton socialName = 'twitter' text = 'Theo dõi' />
-        </Grid>
+        </Grid> */}
       </Grid>
-      <CategoryTitle title = 'Mẹo du lịch hay' scale = 'small' />
+      <CategoryTitle title = 'Cẩm nang du lịch' scale = 'small' subTitle = 'Xem thêm'  category_url = '/cam-nang-du-lich' />
       <Grid container spacing = {16}>
-        {_.map(hotBlogs, o => (
+        {_.map(blogAll, o => (
           <Grid item lg = {6} key = {o.id}>
             <PostWrapper post = {o}>
               <IndexMainCard
@@ -66,9 +66,10 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
                   overlayContainer: classes.trickOverlay,
                   title: classes.smallTitle,
                 }}
+                imgSrc = {`https://s3-ap-southeast-1.amazonaws.com/westay-img/lg/${o.image}`}
+                chipText = {o.tags.data[0].name}
                 title = {o.title}
                 imgAlt = {o.title}
-                chipText = 'Nghỉ'
                 description = ''
                 time = ''
                 author = ''

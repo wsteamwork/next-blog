@@ -254,7 +254,7 @@ IndexMainCard.defaultProps = {
   imgAlt: 'nice decor',
   imgSrc: '/static/room_demo.jpeg',
   chipText: 'Mẹo vặt',
-  author: 'Nanahira',
+  author: 'Westay',
   rootSpacing: 16,
   contentAlign: 'stretch',
   customClasses: {},

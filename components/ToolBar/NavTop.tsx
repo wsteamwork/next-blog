@@ -64,32 +64,36 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
               </Typography>
             </Link>
             <div className = {classes.categories}>
-              <Button
-                color = 'inherit'
-                name = 'home-page'
-                onMouseOver = {() => menuIndexChange(1)}>Trang chủ
-              </Button>
-              <Button
+              <Link href='https://blog.westay.vn/'>
+                <Button
+                  color = 'inherit'
+                  name = 'home-page'
+                  onMouseOver = {() => menuIndexChange(1)}>Trang chủ
+                </Button>
+              </Link>
+              {/* <Button
                 color = 'inherit'
                 name = 'hot-deal'
                 onMouseOver = {() => menuIndexChange(2)}>Khuyến mãi
-              </Button>
-              <Button
-                color = 'inherit'
-                name = 'place'
-                onMouseOver = {() => menuIndexChange(3)}>Điểm đến
-              </Button>
+              </Button> */}
+              <Link href = 'https://westay.vn/'>
+                <Button
+                  color = 'inherit'
+                  name = 'place'
+                  onMouseOver = {() => menuIndexChange(3)}>Đặt phòng
+                </Button>
+              </Link>
               <Button
                 color = 'inherit'
                 name = 'categories'
                 buttonRef = {categoryRef}
-                onMouseOver = {() => menuIndexChange(4)}>Danh mục
+                onMouseOver = {() => menuIndexChange(4)}>Khám phá
               </Button>
-              <Button
+              {/* <Button
                 color = 'inherit'
                 name = 'reviews'
                 onMouseOver = {() => menuIndexChange(5)}>Review
-              </Button>
+              </Button> */}
             </div>
             <IconButton>
               <SearchIcon />
