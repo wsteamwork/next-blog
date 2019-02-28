@@ -53,7 +53,7 @@ const Index: NextFunctionComponent<IProps> = (props) => {
         <ToTheTop />
         <NavTop />
         <IndexCarousel />
-        <GridContainer xs = {11}>
+        <GridContainer xs = {11} xl={10}>
           <IndexCategoryCarousel />
           <Grid container className = {classes.mainContent} spacing = {32}>
             <Grid item lg = {8}>

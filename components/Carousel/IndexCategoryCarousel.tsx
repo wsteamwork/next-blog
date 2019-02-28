@@ -12,6 +12,7 @@ import _ from 'lodash';
 import IndexMainCard from '@/components/Cards/IndexMainCard';
 import SliderArrowButton from '@/components/Button/SliderArrowButton';
 import {BlogIndexContext, IBlogIndexContext} from '@/store/context/BlogIndexContext';
+import Link from 'next/link';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   imgSize: {
@@ -70,13 +71,17 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
       <Grid item xs = {12} className = {classes.slideContainer}>
         <Slider {...settings}>
           {_.map(hotBlogs, (o, i) => (
-            <div className = {classes.slide} key = {o.id}>
-              <IndexMainCard
-                title = {o.title}
-                description = ''
-                imgAlt = {o.title}
-              />
-            </div>
+            <Fragment key = {o.id}>
+              <Link as = {`/${o.category_id}/${o.slug}-${o.id}`} href = {`/post?id=${o.id}`}>
+                <div className = {classes.slide}>
+                  <IndexMainCard
+                    title = {o.title}
+                    description = ''
+                    imgAlt = {o.title}
+                  />
+                </div>
+              </Link>
+            </Fragment>
           ))}
         </Slider>
       </Grid>
