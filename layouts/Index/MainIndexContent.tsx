@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button/Button';
 import {BlogIndexContext, IBlogIndexContext} from '@/store/context/BlogIndexContext';
 import _ from 'lodash';
 import PostWrapper from '@/components/Wrapper/PostWrapper';
+import Link from 'next/link';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   showMoreLabel: {
@@ -33,16 +34,107 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
   const {classes} = props;
   const {state}   = useContext<IBlogIndexContext>(BlogIndexContext);
 
-  const {hotBlogs} = state;
+  const {hotBlogs, blogEat, blogPlay, blogStay, blogAll} = state;
 
   return (
     <Fragment>
-      <CategoryTitle title = 'Tin họa mi hót' />
+      <CategoryTitle style = {{marginTop: 10}} subTitle = 'Xem thêm' title = 'Ở đâu'  category_url = '/o-dau' />
       <Grid container item xs = {12} spacing = {16}>
-        {_.map(hotBlogs, (o, i) => (
+        {_.map(blogStay, (o, i) => (
           <Grid item lg = {6} key = {o.id}>
             <PostWrapper post = {o}>
               <IndexMainCard
+                imgHeight = {260}
+                chipText='Ở đâu'
+                imgSrc = {`${o.image}`}
+                title = {o.title}
+                imgAlt = {o.title}
+                time = {o.created_at}
+                description = {o.description}
+              />
+            </PostWrapper>
+          </Grid>
+        ))}
+        <Grid container item xs = {12} justify = 'center'>
+          {/* <Button
+            classes = {{
+              label: classes.showMoreLabel,
+              root: classes.showMoreButton,
+            }}
+            fullWidth
+          >
+            <Link href = '/category'><a style = {{textDecoration: 'none'}}>Xem thêm</a></Link>
+          </Button> */}
+        </Grid>
+      </Grid>
+
+      <CategoryTitle style = {{marginTop: 10}} subTitle = 'Xem thêm' title = 'Chơi gì'  category_url = '/choi-gi' />
+      <Grid container item xs = {12} spacing = {16}>
+        {_.map(blogPlay, (o, i) => (
+          <Grid item lg = {6} key = {o.id}>
+            <PostWrapper post = {o}>
+              <IndexMainCard
+                imgHeight = {260}
+                chipText = 'Chơi gì'
+                imgSrc = {`${o.image}`}
+                title = {o.title}
+                imgAlt = {o.title}
+                time = {o.created_at}
+                description = {o.description}
+              />
+            </PostWrapper>
+          </Grid>
+        ))}
+        <Grid container item xs = {12} justify = 'center'>
+          {/* <Button
+            classes = {{
+              label: classes.showMoreLabel,
+              root: classes.showMoreButton,
+            }}
+            fullWidth
+          >
+            <Link href = '/category'><a style = {{textDecoration: 'none'}}>Xem thêm</a></Link>
+          </Button> */}
+        </Grid>
+      </Grid>
+      <CategoryTitle style = {{marginTop: 10}} subTitle = 'Xem thêm' title = 'Ăn gì' category_url = '/an-gi'/>
+      <Grid container item xs = {12} spacing = {16}>
+        {_.map(blogEat, (o, i) => (
+          <Grid item lg = {6} key = {o.id}>
+            <PostWrapper post = {o}>
+              <IndexMainCard
+                imgHeight = {260}
+                chipText = 'Ăn gì'
+                imgSrc = {`${o.image}`}
+                title = {o.title}
+                imgAlt = {o.title}
+                time = {o.created_at}
+                description = {o.description}
+              />
+            </PostWrapper>
+          </Grid>
+        ))}
+        <Grid container item xs = {12} justify = 'center'>
+          {/* <Button
+            classes = {{
+              label: classes.showMoreLabel,
+              root: classes.showMoreButton,
+            }}
+            fullWidth
+          >
+            <Link href = '/category'><a style = {{textDecoration: 'none'}}>Xem thêm</a></Link>
+          </Button> */}
+        </Grid>
+      </Grid>
+      {/* <CategoryTitle style = {{marginTop: 10}} subTitle = 'Xem thêm' title = 'Cẩm nang du lịch' />
+      <Grid container item xs = {12} spacing = {16}>
+        {_.map(blogAll, (o, i) => (
+          <Grid item lg = {6} key = {o.id}>
+            <PostWrapper post = {o}>
+              <IndexMainCard
+                imgHeight = {260}
+                chipText = {o.tags.data.length !== 0 ? o.tags.data[0].name : 'Westay'}
+                imgSrc = {`${o.image}`}
                 title = {o.title}
                 imgAlt = {o.title}
                 description = {o.description}
@@ -58,10 +150,10 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
             }}
             fullWidth
           >
-            Xem thêm
+            <Link href = '/category'><a style = {{textDecoration: 'none'}}>Xem thêm</a></Link>
           </Button>
         </Grid>
-      </Grid>
+      </Grid> */}
     </Fragment>
   );
 };

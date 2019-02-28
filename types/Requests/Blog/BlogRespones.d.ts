@@ -1,4 +1,5 @@
 import {TransformerInclude} from '@/types/Requests/ResponseTemplate';
+import {TagIndexResponse} from '@/types/Requests/Tag/TagResponses';
 
 export interface BlogIndexRes {
   id: number
@@ -15,6 +16,7 @@ export interface BlogIndexRes {
   category_id: number
   created_at:string
   categories:TransformerInclude<CategoryBlog>
+  tags:TransformerInclude<TagIndexResponse[]>
 }
 export interface CategoryBlog {
   id: number
@@ -30,4 +32,5 @@ export interface CategoryDetails{
   name: string,
   slug: string,
   lang:string
+  image: string
 }

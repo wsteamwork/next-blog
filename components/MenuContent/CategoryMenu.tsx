@@ -6,6 +6,7 @@ import {compose} from 'recompose';
 import Typography from '@material-ui/core/Typography/Typography';
 import Gray from '@material-ui/core/colors/grey';
 import CategoryListItem from '@/components/MenuContent/CategoryListItem';
+import Link from 'next/link';
 
 const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   root: {
@@ -26,12 +27,12 @@ const CategoryMenu: ComponentType<ICategoryMenuProps> = (props: ICategoryMenuPro
   return (
     <Fragment>
       <div className = {classes.root}>
-        <CategoryListItem label = 'Life style' />
-        <CategoryListItem label = 'Wild life' />
-        <CategoryListItem label = 'Funny' />
-        <CategoryListItem label = 'Geek on track' />
-        <CategoryListItem label = 'Good to go' />
-        <CategoryListItem label = 'Really long title for category' />
+        <Link href = '/o-dau'><CategoryListItem label = 'Ở đâu' /></Link>
+        <Link href = '/choi-gi'><CategoryListItem label = 'Chơi gì' /></Link>
+        <Link href = '/an-gi'><CategoryListItem label = 'Ăn gì' /></Link>
+        <Link href = '/cam-nang-du-lich'><CategoryListItem label = 'Cẩm nang du lịch' /></Link>
+        {/* <CategoryListItem label = 'Good to go' />
+        <CategoryListItem label = 'Really long title for category' /> */}
       </div>
     </Fragment>
   );

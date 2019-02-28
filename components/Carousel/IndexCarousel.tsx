@@ -67,11 +67,11 @@ const IndexCarousel: ComponentType<IProps> = (props: IProps) => {
             className = {classes.parallaxContainer}
             contentClassName = {classes.contentParallax}
           >
-            <Typography variant = 'subtitle2' component = 'a' classes = {{
+            {/* <Typography variant = 'subtitle2' component = 'a' classes = {{
               root: classes.infoOverlay,
             }}>
               Very simple but still keep the elegant style
-            </Typography>
+            </Typography> */}
           </Parallax>
         </Grid>
       </Grid>

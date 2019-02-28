@@ -71,7 +71,7 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
   return (
     <Fragment>
       <Grid item xs = {12} className = {classes.slideContainer}>
-        <Slider {...settings}>
+        {/* <Slider {...settings}>
           {_.map(hotBlogs, (post) => (
             <Fragment key = {post.id}>
               <div className = {classes.slide}>
@@ -86,7 +86,7 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
               </div>
             </Fragment>
           ))}
-        </Slider>
+        </Slider> */}
       </Grid>
     </Fragment>
   );

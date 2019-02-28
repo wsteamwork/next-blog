@@ -251,9 +251,9 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
 IndexMainCard.defaultProps = {
   cardStyle: 'outside',
   imgHeight: 0,
-  imgAlt: 'chưa có nội dung',
-  imgSrc: '',
-  chipText: 'chưa có nội dung',
+  imgAlt: 'nice decor',
+  imgSrc: '/static/room_demo.jpeg',
+  chipText: 'Mẹo vặt',
   author: 'Westay',
   rootSpacing: 16,
   contentAlign: 'stretch',

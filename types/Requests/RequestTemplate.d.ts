@@ -5,4 +5,5 @@ export interface BaseGetRequestParams {
   hot?:number
   new?:number
   status?:number
+  category?:number
 }
