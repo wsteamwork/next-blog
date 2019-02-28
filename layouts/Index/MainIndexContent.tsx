@@ -46,6 +46,7 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
               <IndexMainCard
                 imgHeight = {260}
                 chipText='Ở đâu'
+                chipSlug = {o.categories.data[0].details.data[0].slug}
                 imgSrc = {`${o.image}`}
                 title = {o.title}
                 imgAlt = {o.title}
@@ -76,6 +77,7 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
               <IndexMainCard
                 imgHeight = {260}
                 chipText = 'Chơi gì'
+                chipSlug = {o.categories.data[0].details.data[0].slug}
                 imgSrc = {`${o.image}`}
                 title = {o.title}
                 imgAlt = {o.title}
@@ -105,6 +107,7 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
               <IndexMainCard
                 imgHeight = {260}
                 chipText = 'Ăn gì'
+                chipSlug = {o.categories.data[0].details.data[0].slug}
                 imgSrc = {`${o.image}`}
                 title = {o.title}
                 imgAlt = {o.title}
@@ -134,6 +137,7 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
               <IndexMainCard
                 imgHeight = {260}
                 chipText = {o.tags.data.length !== 0 ? o.tags.data[0].name : 'Westay'}
+                chipSlug={o.categories.data[0].details.data[0].slug}
                 imgSrc = {`${o.image}`}
                 title = {o.title}
                 imgAlt = {o.title}

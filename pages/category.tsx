@@ -15,6 +15,12 @@ import 'slick-carousel/slick/slick-theme.css';
 import SubscribeEmail from '@/components/Input/SubscribeEmail';
 import Typography from '@material-ui/core/Typography';
 import {NextComponentType} from 'next';
+import {axios} from '@/store/utils/axiosBase';
+import {BlogIndexRes} from '@/types/Requests/Blog/BlogRespones';
+import moment from 'moment';
+import _ from 'lodash';
+import PostWrapper from '@/components/Wrapper/PostWrapper';
+import NextSeo from 'next-seo';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   slidePopular: {
@@ -26,7 +32,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   boxPopular: {
     marginTop: 30,
     position: 'sticky',
-    top: '8%',
+    top: '15%',
   },
   article: {
     marginBottom: 30,
@@ -40,16 +46,24 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     textTransform: 'capitalize',
     color: '#343434',
   },
+  titleSlider: {
+    overflow: 'hidden',
+    display: '-webkit-box',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
+    fontSize: '1.375rem',
+  },
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
-
+  show: BlogIndexRes[],
+  slider: BlogIndexRes[],
 }
 
 // @ts-ignore
 const Category: NextComponentType<IProps> = (props: IProps) => {
-  const {classes}              = props;
-  const slidePopular: Settings = {
+  const {classes, show, slider} = props;
+  const slidePopular: Settings  = {
     speed: 500,
     swipeToSlide: true,
     dots: true,
@@ -57,54 +71,90 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
     slidesToScroll: 1,
     arrows: false,
   };
-
+  console.log(show);
   return (
     <Fragment>
+      <NextSeo config = {{
+        title: show[0].categories.data[0].details.data[0].name,
+        canonical: `https://blog.westay.org/${show[0].categories.data[0].details.data[0].name}`,
+      }} />
       <NavTop />
       <ToTheTop />
       <GridContainer xs = {12} sm = {12} md = {12} lg = {11}>
         <div>
-          <Typography variant = 'h3' className = {classes.titleCategory}>Bài viết nổi bật</Typography>
+          <Typography variant = 'h3' className = {classes.titleCategory}>
+            {show[0].categories.data[0].details.data[0].name}
+          </Typography>
         </div>
         <Grid container spacing = {16} className = {classes.boxNew}>
           <Grid item xs = {8}>
-            <IndexMainCard
-              cardStyle = 'inside' description = '' imgHeight = {500} contentAlign = 'center'
-            />
+            <PostWrapper post = {show[0]}>
+              <IndexMainCard
+                cardStyle = 'inside' description = '' imgHeight = {500} contentAlign = 'center'
+                title = {show[0].title}
+                imgSrc = {show[0].image} imgAlt = {show[0].title}
+                chipText = {show[0].categories.data[0].details.data[0].name}
+                chipSlug = {show[0].categories.data[0].details.data[0].slug}
+                time = {moment(show[0].created_at).format('DD/MM/YYYY')}
+              />
+            </PostWrapper>
           </Grid>
           <Grid item container spacing = {8} xs = {4}>
             <Grid item xs = {12}>
-              <IndexMainCard
-                cardStyle = 'inside' description = '' imgHeight = {240} contentAlign = 'center'
-              />
+              <PostWrapper post = {show[1]}>
+                <IndexMainCard
+                  cardStyle = 'inside' description = '' imgHeight = {240} contentAlign = 'center'
+                  title = {show[1].title}
+                  imgSrc = {show[1].image} imgAlt = {show[1].title}
+                  chipText = {show[1].categories.data[0].details.data[0].name}
+                  chipSlug = {show[1].categories.data[0].details.data[0].slug}
+                  time = {moment(show[1].created_at).format('DD/MM/YYYY')}
+                />
+              </PostWrapper>
             </Grid>
             <Grid item xs = {12}>
-              <IndexMainCard
-                cardStyle = 'inside' description = '' imgHeight = {240} contentAlign = 'center'
-              />
+              <PostWrapper post = {show[2]}>
+                <IndexMainCard
+                  cardStyle = 'inside' description = '' imgHeight = {240} contentAlign = 'center'
+                  title = {show[2].title}
+                  imgSrc = {show[2].image} imgAlt = {show[2].title}
+                  chipText = {show[2].categories.data[0].details.data[0].name}
+                  chipSlug = {show[2].categories.data[0].details.data[0].slug}
+                  time = {moment(show[2].created_at).format('DD/MM/YYYY')}
+                />
+              </PostWrapper>
             </Grid>
           </Grid>
         </Grid>
         <Grid container spacing = {32}>
           <Grid item xs = {12} lg = {9}>
-            <CategoryTitle scale = 'medium' title = 'Hot Girl' />
-            {[0, 1, 2, 3, 4, 5].map(e => (
-              <article className = {classes.article} key = {e}>
-                <IndexMainCard
-                  cardStyle = 'outside'
-                  descriptionLength = {500}
-                  horizontal
-                  contentAlign = 'center'
-                  imgHeight = {250}
-                  rootSpacing = {32}
-                  ratio = {{
-                    image: 5,
-                    content: 7,
-                  }}
-                />
+            <CategoryTitle scale = 'medium'
+                           title = {`Chuyên mục - ${show[0].categories.data[0].details.data[0].name}`} />
+            {_.map(show, (o, i) => i >= 3 ?
+              (
+                <article className = {classes.article} key = {o.id}>
+                  <PostWrapper post = {o}>
+                    <IndexMainCard
+                      cardStyle = 'outside'
+                      descriptionLength = {500}
+                      horizontal
+                      contentAlign = 'center'
+                      imgHeight = {250}
+                      rootSpacing = {32}
+                      ratio = {{
+                        image: 5,
+                        content: 7,
+                      }}
+                      title = {o.title}
+                      imgSrc = {o.image} imgAlt = {o.title}
+                      description = {o.description}
+                      chipText = {o.categories.data[0].details.data[0].name}
+                      chipSlug = {o.categories.data[0].details.data[0].slug}
+                      time = {moment(o.created_at).format('DD/MM/YYYY')}
+                    />
+                  </PostWrapper>
               </article>
-            ))}
-
+              ) : '')}
           </Grid>
           <Grid item lg = {3}>
             <div>
@@ -112,14 +162,22 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
               <SubscribeEmail />
             </div>
             <div className = {classes.boxPopular}>
-              <CategoryTitle scale = 'small' title = 'Hot Girl' />
+              <CategoryTitle scale = 'small' title = 'Bài viết nổi bật' />
               <Slider {...slidePopular}>
-                <div className = {classes.slidePopular}>
-                  <IndexMainCard cardStyle = 'outside' description = '' />
-                </div>
-                <div className = {classes.slidePopular}>
-                  <IndexMainCard cardStyle = 'outside' description = '' />
-                </div>
+                {_.map(slider, (o) => (
+                  <Fragment key = {o.id}>
+                    <div className = {classes.slidePopular}>
+                      <IndexMainCard cardStyle = 'outside' description = ''
+                                     customClasses = {{title: classes.titleSlider}}
+                                     title = {o.title} imgHeight = {190}
+                                     imgSrc = {o.image} imgAlt = {o.title}
+                                     chipText = {o.categories.data[0].details.data[0].name}
+                                     chipSlug = {o.categories.data[0].details.data[0].slug}
+                                     time = {moment(o.created_at).format('DD/MM/YYYY')}
+                      />
+                    </div>
+                  </Fragment>
+                ))}
               </Slider>
             </div>
           </Grid>
@@ -130,8 +188,33 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
 };
 
 // @ts-ignore
-Category.getInitialProps = async (context:any) => {
+Category.getInitialProps = async (context) => {
+  const {slugCategory} = context.query;
+  let show;
+  const resSlider      = await axios.get('blogs?include=categories.details,user&limit=6&hot=1');
+  const slider         = resSlider.data.data;
+  switch (slugCategory) {
+    case 'o-dau' :
+      const res1 = await axios.get(`blogs?include=categories.details,user&limit=30&category=1`);
+      show       = res1.data.data;
+      break;
+    case 'choi-gi' :
+      const res2 = await axios.get(`blogs?include=categories.details,user&limit=30&category=2`);
+      show       = res2.data.data;
+      break;
+    case 'an-gi' :
+      const res3 = await axios.get(`blogs?include=categories.details,user&limit=30&category=3`);
+      show       = res3.data.data;
+      break;
+    case 'cam-nang-du-lich' :
+      const res4 = await axios.get(`blogs?include=categories.details,user&limit=30&category=4`);
+      show       = res4.data.data;
+      break;
+    default:
+      return '';
+  }
 
+  return {show, slider};
 };
 
 

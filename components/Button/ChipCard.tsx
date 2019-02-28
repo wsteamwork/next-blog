@@ -10,6 +10,8 @@ import Blue from '@material-ui/core/colors/blue';
 import Hidden from '@material-ui/core/Hidden/Hidden';
 import {ClassNameMap} from '@material-ui/styles/withStyles';
 import {CustomClasses} from '@/types/Interfaces/CustomInterface';
+import Link from 'next/link';
+
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   chipTitle: {
@@ -36,30 +38,33 @@ const styles: any = (theme: ThemeCustom) => createStyles({
 type ChipCardClasses = 'root'
 
 interface IProps extends Partial<WithStyles<typeof styles>>, CustomClasses<ChipCardClasses> {
-  text: string
+  text: string,
+  slug: string,
 }
 
 // @ts-ignore
 const ChipCard: ComponentType<IProps> = (props: IProps) => {
-  const {classes, text, customClasses} = props;
+  const {classes, text, customClasses, slug} = props;
 
   return (
     <Fragment>
       <Hidden xsUp = {!text}>
-        <div className = {classNames(
-          classes.chipTitle,
-          classes.transitionDuration,
-          customClasses.root,
-        )}>
-          <span>
-            <Typography
-              variant = 'subtitle2'
-              color = 'primary'
-            >
-              {text}
-          </Typography>
-          </span>
-        </div>
+        <Link as = {`/${slug}`} href = {`/category?slugCategory=${slug}`}>
+          <div className = {classNames(
+            classes.chipTitle,
+            classes.transitionDuration,
+            customClasses.root,
+          )}>
+            <span>
+              <Typography
+                variant = 'subtitle2'
+                color = 'primary'
+              >
+                {text}
+            </Typography>
+            </span>
+          </div>
+        </Link>
       </Hidden>
     </Fragment>
   );
@@ -67,6 +72,7 @@ const ChipCard: ComponentType<IProps> = (props: IProps) => {
 
 ChipCard.defaultProps = {
   text: 'chưa có nội dung',
+  slug: '',
   customClasses: {},
 };
 

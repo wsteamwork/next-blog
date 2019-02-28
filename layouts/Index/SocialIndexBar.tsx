@@ -67,7 +67,8 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
                   title: classes.smallTitle,
                 }}
                 imgSrc = {`${o.image}`}
-                chipText = {o.tags.data[0].name}
+                chipText = {o.categories.data[0].details.data[0].name}
+                chipSlug = {o.categories.data[0].details.data[0].slug}
                 title = {o.title}
                 imgAlt = {o.title}
                 description = ''

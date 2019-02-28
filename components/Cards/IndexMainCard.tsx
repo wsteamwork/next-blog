@@ -34,6 +34,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     position: 'relative',
     overflow: 'hidden',
     maxHeight: '99%',
+    width: '100%',
     '&:after': {
       transition: theme!.transitions!.create!(['all'], {
         duration: 200,
@@ -101,7 +102,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>>, IIndexMainCard {
-
+  chipSlug: string,
 }
 
 // @ts-ignore
@@ -113,6 +114,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
           maxHeight,
           customClasses,
           chipText,
+          chipSlug,
           title,
           description,
           author,
@@ -193,7 +195,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
           >
             <Hidden xsUp = {!chipText} initialWidth = 'xs'>
               <Grid item xs = {12}>
-                <ChipCard text = {chipText} />
+                <ChipCard text = {chipText} slug = {chipSlug} />
               </Grid>
             </Hidden>
             {cardStyle === 'inside' ? (
@@ -252,8 +254,9 @@ IndexMainCard.defaultProps = {
   cardStyle: 'outside',
   imgHeight: 0,
   imgAlt: 'nice decor',
-  imgSrc: '/static/room_demo.jpeg',
+  imgSrc: '',
   chipText: 'Mẹo vặt',
+  chipSlug: '',
   author: 'Westay',
   rootSpacing: 16,
   contentAlign: 'stretch',

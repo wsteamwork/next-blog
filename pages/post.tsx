@@ -149,6 +149,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
         <ToTheTop />
         <ParallaxPostCard imageSrc={postDetails.image} title={postDetails.title}
                           category={postDetails.categories.data[0].details.data[0].name}
+                          slugCategory = {postDetails.categories.data[0].details.data[0].slug}
                           time={moment(postDetails.created_at).format('DD/MM/YYYY')}/>
         <GridContainer xs = {11} className = {classes.boxContent}>
           <Grid container spacing = {40}>
@@ -183,10 +184,11 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                         <div className = {classes.slidePopular}>
                           <PostWrapper post = {o}>
                             <IndexMainCard customClasses={{ title: classes.titleSlider }}
-                              cardStyle='outside' description='' title={o.title} imgAlt={o.title}
-                              imgSrc={o.image} imgHeight={190}
-                              chipText={o.categories.data[0].details.data[0].name}
-                              time={moment(o.created_at).format('DD/MM/YYYY')}
+                                           cardStyle='outside' description='' title={o.title} imgAlt={o.title}
+                                           imgSrc={o.image} imgHeight={190}
+                                           chipText={o.categories.data[0].details.data[0].name}
+                                           chipSlug = {o.categories.data[0].details.data[0].slug}
+                                           time={moment(o.created_at).format('DD/MM/YYYY')}
                             />
                           </PostWrapper>
                         </div>
@@ -212,6 +214,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                             customClasses={{ title: classes.titleSlider }}
                             cardStyle='outside' description='' title={o.title} imgAlt={o.title} imgSrc={o.image}
                             chipText={o.categories.data[0].details.data[0].name}
+                            chipSlug = {o.categories.data[0].details.data[0].slug}
                             time={moment(o.created_at).format('DD/MM/YYYY')} />
                         </PostWrapper>
                       </div>
