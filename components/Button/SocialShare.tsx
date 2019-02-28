@@ -31,15 +31,23 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
 type SocialShareClasses = 'icon'
 
 interface IProps extends Partial<WithStyles<typeof styles>>, CustomClasses<SocialShareClasses> {
+  href?: string
 }
 
 // @ts-ignore
 const SocialShare: ComponentType<IProps> = (props) => {
-  const {classes, customClasses} = props;
+  const {classes, customClasses,href} = props;
+
+  const openUrl = () => {
+    if (href) {
+      const win = window.open(href, '_blank');
+      win.focus();
+    }
+  };
 
   return (
     <Fragment>
-      <div className = {classes.buttonSocial}>
+      <div className = {classes.buttonSocial} onClick={openUrl}>
         <span className = {classNames(
           customClasses.icon,
         )}>
@@ -52,6 +60,7 @@ const SocialShare: ComponentType<IProps> = (props) => {
 
 SocialShare.defaultProps = {
   customClasses: {},
+  href:'',
 };
 
 export default compose<IProps, any>(

@@ -22,4 +22,12 @@ export interface CategoryBlog {
   status: number,
   new: number,
   image: string,
+  details:TransformerInclude<CategoryDetails>
+}
+export interface CategoryDetails{
+  id: number,
+  category_id: number,
+  name: string,
+  slug: string,
+  lang:string
 }

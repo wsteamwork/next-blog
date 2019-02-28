@@ -17,7 +17,7 @@ const PostWrapper: ComponentType<IPostWrapperProps> = (props) => {
   const {classes, post, children} = props;
 
   return (
-    <Link prefetch as = {`/${post.category_id}/${post.slug}-${post.id}`} href = {`/post?id=${post.id}`}>
+    <Link prefetch as = {`/${post.categories.data[0].details.data[0].slug}/${post.slug}-${post.id}`} href = {`/post?id=${post.id}`}>
       <div>
         {children}
       </div>

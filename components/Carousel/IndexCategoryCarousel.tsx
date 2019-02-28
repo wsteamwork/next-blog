@@ -54,6 +54,7 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
   const {state}   = useContext<IBlogIndexContext>(BlogIndexContext);
 
   const {hotBlogs} = state;
+  // console.log(hotBlogs);
 
   const settings: Settings = {
     speed: 300,
@@ -79,6 +80,7 @@ const IndexCategoryCarousel: ComponentType<IProps> = (props: IProps) => {
                     title = {post.title}
                     description = ''
                     imgAlt = {post.title}
+                    imgSrc={post.image}
                   />
                 </PostWrapper>
               </div>

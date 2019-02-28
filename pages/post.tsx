@@ -1,7 +1,7 @@
 import React, {Fragment, useReducer} from 'react';
 import {compose} from 'recompose';
 import {withRouter, WithRouterProps} from 'next/router';
-import {NextComponentType, NextContext} from 'next';
+import {NextComponentType} from 'next';
 import NavTop from '@/components/ToolBar/NavTop';
 import Slider, {Settings} from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -21,9 +21,6 @@ import Divider from '@material-ui/core/Divider';
 import SliderArrowButton from '@/components/Button/SliderArrowButton';
 import Review from '@/components/Cards/Review';
 import {useSpring, config} from 'react-spring';
-import {axios} from '@/store/utils/axiosBase';
-import {AxiosRes} from '@/types/Requests/ResponseTemplate';
-import {BlogIndexRes} from '@/types/Requests/Blog/BlogRespones';
 import moment from 'moment';
 import {
   PostDetailsState,
@@ -38,7 +35,8 @@ import ReactHtmlParser, {processNodes, convertNodeToElement, htmlparser2} from '
 import {BlogIndexGetParams} from '@/types/Requests/Blog/BlogRequests';
 import PostWrapper from '@/components/Wrapper/PostWrapper';
 import NextSeo from 'next-seo';
-
+import Typography from '@material-ui/core/Typography';
+// import 'moment/locale/vi'
 const styles: any = (theme: ThemeCustom) => createStyles({
   boxContent: {
     paddingTop: 40,
@@ -63,7 +61,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     backgroundColor: 'transparent',
   },
   boxContentDetail: {
-    marginTop: -30,
+
   },
   tagIMG_inHtmlPare: {
     width: '100% !important',
@@ -75,6 +73,10 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     WebkitLineClamp: 2,
     WebkitBoxOrient: 'vertical',
     fontSize: '1.375rem',
+  },
+  postTitle: {
+    color: '#343434',
+    lineHeight: 1.08,
   },
 });
 
@@ -132,11 +134,22 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
       <NextSeo config = {{
         title: postDetails.title,
         description: postDetails.description,
+        canonical: `https://blog.westay.org/${postDetails.categories.data[0].details.data[0].slug}/${postDetails.slug}-${postDetails.id}`,
+        article: {
+          publishedTime: postDetails.created_at,
+          authors: [
+            'https://facebook.com/westay.org'
+          ],
+          tags: ['Homestay','Hà nội','Sapa','Đà lạt', 'kinh nghiệm du lịch','du lịch tự túc'],
+          site_name: 'Westay.vn'
+        },
       }} />
       <PostDetailsContext.Provider value = {{state, dispatch}}>
         <NavTop />
         <ToTheTop />
-        <ParallaxPostCard title = {postDetails.title} time = {postDetails.created_at} />
+        <ParallaxPostCard imageSrc={postDetails.image} title={postDetails.title}
+                          category={postDetails.categories.data[0].details.data[0].name}
+                          time={moment(postDetails.created_at).format('DD/MM/YYYY')}/>
         <GridContainer xs = {11} className = {classes.boxContent}>
           <Grid container spacing = {40}>
             <Grid item container xs = {9}>
@@ -147,6 +160,9 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
               </Grid>
               <Grid item xs = {11} className = {classes.boxContentDetail}>
                 <article>
+                  <Typography variant='h4' className = {classes.postTitle}>
+                    {postDetails.title}
+                  </Typography>
                   {ReactHtmlParser(postDetails.content, {
                     transform: transformHtmlContent,
                   })}
@@ -166,7 +182,12 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                       <Fragment key = {o.id}>
                         <div className = {classes.slidePopular}>
                           <PostWrapper post = {o}>
-                            <IndexMainCard cardStyle = 'outside' description = '' />
+                            <IndexMainCard customClasses={{ title: classes.titleSlider }}
+                              cardStyle='outside' description='' title={o.title} imgAlt={o.title}
+                              imgSrc={o.image} imgHeight={190}
+                              chipText={o.categories.data[0].details.data[0].name}
+                              time={moment(o.created_at).format('DD/MM/YYYY')}
+                            />
                           </PostWrapper>
                         </div>
                       </Fragment>
@@ -188,9 +209,10 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                       <div className = {classes.slidePopular}>
                         <PostWrapper post = {o}>
                           <IndexMainCard
-                            customClasses = {{title: classes.titleSlider}}
-                            cardStyle = 'outside' description = '' title = {o.title}
-                          />
+                            customClasses={{ title: classes.titleSlider }}
+                            cardStyle='outside' description='' title={o.title} imgAlt={o.title} imgSrc={o.image}
+                            chipText={o.categories.data[0].details.data[0].name}
+                            time={moment(o.created_at).format('DD/MM/YYYY')} />
                         </PostWrapper>
                       </div>
                     </Fragment>
@@ -206,12 +228,11 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
 };
 
 // @ts-ignore
-PostPage.getInitialProps = async (context: any) => {
-  const {id} = context.query;
-
-  const sliderHotParams: BlogIndexGetParams = {
-    limit: 6,
-    hot: 1,
+PostPage.getInitialProps = async (context:any) => {
+  const {id}                               = context.query;
+  const sliderHotParams:BlogIndexGetParams = {
+    limit:6,
+    hot:1,
   };
   const sliderNewParams: BlogIndexGetParams = {
     limit: 8,

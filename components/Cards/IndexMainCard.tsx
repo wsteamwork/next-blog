@@ -174,7 +174,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
         <Grid item xs = {ratio.image || horizontalBreakpoint} container className = {classes.imgContainer}>
           <div className = {classes.imgGradient}>
             <img
-              src = {imgSrc}
+              src = {`https://s3-ap-southeast-1.amazonaws.com/westay-img/lg/${imgSrc}`}
               alt = {imgAlt}
               onError = {imageFail}
               className = {classNames(
@@ -251,18 +251,18 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
 IndexMainCard.defaultProps = {
   cardStyle: 'outside',
   imgHeight: 0,
-  imgAlt: 'nice decor',
-  imgSrc: '/static/room_demo.jpeg',
-  chipText: 'Mẹo vặt',
-  author: 'Nanahira',
+  imgAlt: 'chưa có nội dung',
+  imgSrc: '',
+  chipText: 'chưa có nội dung',
+  author: 'Westay',
   rootSpacing: 16,
   contentAlign: 'stretch',
   customClasses: {},
   ratio: {},
   time: '2019-02-16',
   descriptionLength: 200,
-  title: 'Một ngôi nhà cực đẹp vừa được lên sóng',
-  description: 'Divided, sweet pudding is best rinsed with melted hollandaise sauce. Roast five white breads, tofu, and garlic in a large bucket over medium heat, roast for four minutes and blend with some pork butt. Sausages can be marinateed with warm quinoa, also try mash uping the tart with beer. To the springy rice add leek, chickpeas, mint sauce and cold onion?. Mash caviar roughly, then mix with white wine and serve carefully iced in bottle.',
+  title: 'chưa có nội dung',
+  description: 'chưa có nội dung',
 };
 
 export default compose<IProps, any>(

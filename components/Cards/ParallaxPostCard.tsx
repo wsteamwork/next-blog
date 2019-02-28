@@ -98,7 +98,9 @@ const ParallaxPostCard: ComponentType<IParallaxPostCardProps> = (props) => {
 
   return (
     <Fragment>
-      <Parallax bgImage = {imageSrc} strength = {600} bgImageStyle = {{top: '-30%'}}>
+      <Parallax
+        bgImage = {`https://s3-ap-southeast-1.amazonaws.com/westay-img/lg/${imageSrc}`}
+        strength = {600} bgImageStyle = {{top: '-30%'}}>
         <div style = {{height: 450}}>
           <div className = {classes.insideParallax}>
             <div className = {classes.Title}>
@@ -128,7 +130,7 @@ ParallaxPostCard.defaultProps = {
   author: 'Westay',
   category: '',
   time: '',
-  imageSrc: '/static/room_demo.jpeg',
+  imageSrc: '',
 };
 
 export default compose<IParallaxPostCardProps, any>(

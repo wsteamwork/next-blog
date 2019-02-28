@@ -19,7 +19,9 @@ export type PostDetailsState = {
   readonly sliderNew :BlogIndexRes[],
 }
 
-export type PostDetailsAction = { type: 'setPostDetails', details: BlogIndexRes }
+export type PostDetailsAction = { type: 'setPostDetails', details: BlogIndexRes } |
+  { type: 'setSliderHot', sHot: BlogIndexRes[] }|
+  { type: 'setSliderNew', sNew: BlogIndexRes[] }
 
 export const PostDetailsInit: PostDetailsState = {
   postDetails: null,
@@ -33,6 +35,14 @@ export const PostDetailsReducer = (state: PostDetailsState, action: PostDetailsA
       return updateObject(state, {
         postDetails: action.details,
       });
+    case 'setSliderHot':
+      return updateObject(state, {
+        sliderHot: action.sHot,
+      });
+    case 'setSliderNew':
+      return updateObject(state, {
+        sliderNew: action.sNew,
+      });
     default:
       return state;
   }
@@ -45,7 +55,7 @@ export const getDetails = async (id:number)=>{
   return res.data;
 };
 export const getSlider = async (params:BlogIndexGetParams)=>{
-  const url = `blogs/?${qs.stringify(params)}`;
+  const url = `blogs?include=categories.details,user&${qs.stringify(params)}`;
 
   const res: AxiosRes<BlogIndexRes[]> = await axios.get(url);
 
