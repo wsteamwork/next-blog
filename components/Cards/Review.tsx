@@ -44,7 +44,7 @@ const Review: ComponentType<IProps> = (props: IProps) => {
     <Fragment>
       <Grid container>
         <span className={classes.avatar}>
-          <img src = '/static/room_demo.jpeg' alt = 'avatar' className={classes.imgAvatar}/>
+          <img src= '/static/background_blog.jfif' alt = 'avatar' className={classes.imgAvatar}/>
         </span>
         <Grid item xs={10}>
           <Typography variant='subtitle2' className={classes.content}>

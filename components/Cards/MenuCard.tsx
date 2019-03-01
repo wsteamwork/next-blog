@@ -68,7 +68,7 @@ const MenuCard: ComponentType<IProps> = (props: IProps) => {
         {...cardHoverProps}
       >
         <Grid item container className = {classes.imgContainer}>
-          <img src = '/static/room_demo.jpeg' alt = '' className = {classes.imgSize} />
+          <img src= '/static/background_blog.jfif' alt = '' className = {classes.imgSize} />
           <Grid item xs = {12} className = {classes.overLayChip}>
             <div className = {classNames(
               classes.chipTitle,

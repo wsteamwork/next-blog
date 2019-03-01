@@ -36,6 +36,14 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   pointer: {
     cursor: 'pointer',
   },
+  img: {
+    [theme!.breakpoints!.up!('md')]: {
+      height: 35,
+    },
+    [theme!.breakpoints!.down!('sm')]: {
+      height: 30,
+    },
+  },
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
@@ -58,31 +66,28 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
       <RootRef rootRef = {megaRef}>
         <AppBar position = 'static' elevation={1} className={classes.navTop}>
           <Toolbar onMouseLeave = {() => menuIndexChange(0)}>
-            <Link href = '/'>
-              <Typography variant = 'h6' color = 'inherit' className = {classes.pointer}>
+            <a href = '/'>
+                  <img src = {'/static/Logo-westay.png'} className = {classes.img} alt = 'Logo' />
+              {/* <Typography variant = 'h6' color = 'inherit' className = {classes.pointer}>
                 Blog
-              </Typography>
-            </Link>
+              </Typography> */}
+            </a>
             <div className = {classes.categories}>
-              <Link href='https://blog.westay.vn/'>
-                <Button
-                  color = 'inherit'
-                  name = 'home-page'
-                  onMouseOver = {() => menuIndexChange(1)}>Trang chủ
-                </Button>
-              </Link>
+              <Button
+                color = 'inherit'
+                name = 'home-page'
+                onMouseOver = {() => menuIndexChange(1)}><a style = {{textDecoration: 'none'}} target = '_blank' href = 'https://blog.westay.vn'>Trang chủ</a>
+              </Button>
               {/* <Button
                 color = 'inherit'
                 name = 'hot-deal'
                 onMouseOver = {() => menuIndexChange(2)}>Khuyến mãi
               </Button> */}
-              <Link href = 'https://westay.vn/'>
-                <Button
-                  color = 'inherit'
-                  name = 'place'
-                  onMouseOver = {() => menuIndexChange(3)}>Đặt phòng
-                </Button>
-              </Link>
+              <Button
+                color = 'inherit'
+                name = 'place'
+                onMouseOver = {() => menuIndexChange(3)}><a style = {{textDecoration: 'none'}} target = '_blank' href = 'https://westay.vn'>Đặt phòng</a>
+              </Button>
               <Button
                 color = 'inherit'
                 name = 'categories'

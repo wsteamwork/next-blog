@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid/Grid';
 import Typography from '@material-ui/core/Typography/Typography';
 import Gray from '@material-ui/core/colors/grey';
 import {Parallax} from 'react-parallax';
+import '@/styles/indexCarousel.scss'
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   img: {
@@ -44,7 +45,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   contentParallax: {
     display: 'flex',
     justifyContent: 'center',
-    height: '85vh',
+    height: '68vh',
   },
 });
 
@@ -61,7 +62,7 @@ const IndexCarousel: ComponentType<IProps> = (props: IProps) => {
       <Grid container>
         <Grid container item xs = {12}>
           <Parallax
-            bgImage = '/static/room_demo.jpeg'
+            bgImage= '/static/background_blog.jfif'
             strength = {-200}
             bgClassName = {classes.img}
             className = {classes.parallaxContainer}

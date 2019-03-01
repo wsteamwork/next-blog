@@ -76,7 +76,8 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
     <Fragment>
       <NextSeo config = {{
         title: show[0].categories.data[0].details.data[0].name,
-        canonical: `https://blog.westay.org/${show[0].categories.data[0].details.data[0].name}`,
+        description: 'Thông tin du lịch ở trong và ngoài nước cập nhật mới nhất 2019, nơi bạn có thể tìm kiếm thông tin hữu ích, nhanh chóng và thuận tiện',
+        canonical: `https://blog.westay.vn/${show[0].categories.data[0].details.data[0].slug}`,
       }} />
       <NavTop />
       <ToTheTop />

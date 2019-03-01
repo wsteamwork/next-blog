@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography/Typography';
 import Gray from '@material-ui/core/colors/grey';
 import CategoryListItem from '@/components/MenuContent/CategoryListItem';
 import Link from 'next/link';
+import Router from 'next/router'
 
 const styles: any = (theme: Required<ThemeCustom>) => createStyles({
   root: {
@@ -27,10 +28,10 @@ const CategoryMenu: ComponentType<ICategoryMenuProps> = (props: ICategoryMenuPro
   return (
     <Fragment>
       <div className = {classes.root}>
-        <Link href = '/o-dau'><CategoryListItem label = 'Ở đâu' /></Link>
-        <Link href = '/choi-gi'><CategoryListItem label = 'Chơi gì' /></Link>
-        <Link href = '/an-gi'><CategoryListItem label = 'Ăn gì' /></Link>
-        <Link href = '/cam-nang-du-lich'><CategoryListItem label = 'Cẩm nang du lịch' /></Link>
+        <CategoryListItem categoryUrl = {`https://blog.westay.vn/o-dau`} label = 'Ở đâu' />
+        <CategoryListItem categoryUrl = {`https://blog.westay.vn/choi-gi`} label = 'Chơi gì' />
+        <CategoryListItem categoryUrl = {`https://blog.westay.vn/an-gi`} label = 'Ăn gì' />
+        <CategoryListItem categoryUrl = {`https://blog.westay.vn/cam-nang-du-lich`} label = 'Cẩm nang du lịch' />
         {/* <CategoryListItem label = 'Good to go' />
         <CategoryListItem label = 'Really long title for category' /> */}
       </div>

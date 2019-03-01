@@ -40,18 +40,19 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
 
 interface ICategoryListItemProps extends Partial<WithStyles<typeof styles>> {
   label: React.ReactNode
+  categoryUrl: string
 }
 
 // @ts-ignore
 const CategoryListItem: ComponentType<ICategoryListItemProps> = (props: ICategoryListItemProps) => {
-  const {classes, label} = props;
+  const {classes, label, categoryUrl} = props;
 
   return (
     <Fragment>
       <Typography variant = 'subtitle2' classes = {{
         root: classes.typo,
       }} component = 'a'>
-        {label}
+        <a style ={{textDecoration: 'none', color: 'black'}} href = {categoryUrl}>{label}</a>
       </Typography>
     </Fragment>
   );
