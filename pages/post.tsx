@@ -140,7 +140,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
       <NextSeo config = {{
         title: postDetails.title,
         description: postDetails.description,
-        canonical: `https://blog.westay.org/${postDetails.categories.data[0].details.data[0].slug}/${postDetails.slug}-${postDetails.id}`,
+        canonical: `https://blog.westay.vn/${postDetails.categories.data[0].details.data[0].slug}/${postDetails.slug}-${postDetails.id}`,
         article: {
           publishedTime: postDetails.created_at,
           authors: [
