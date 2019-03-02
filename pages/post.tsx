@@ -65,9 +65,13 @@ const styles: any = (theme: ThemeCustom) => createStyles({
 
   },
   tagIMG_inHtmlPare: {
-    width: '100% !important',
-    objectFit: 'cover',
+    // width: '100% !important',
+    // objectFit: 'cover',
+    maxWidth: '100%',
+    display: 'block',
+    margin: '0 auto'
   },
+
   titleSlider: {
     overflow: 'hidden',
     display: '-webkit-box',
@@ -172,8 +176,8 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                   </Typography>
                   {ReactHtmlParser(postDetails.content, {
                     transform: transformHtmlContent,
-                  })}
-                </article>
+                  })}                
+                  </article>
                 <Divider style = {{marginTop: '50px'}} />
                 {/*<Review />*/}
                 {/*<FormComment />*/}
