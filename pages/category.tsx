@@ -71,17 +71,18 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
     slidesToScroll: 1,
     arrows: false,
   };
-  console.log(show);
+
   return (
     <Fragment>
       <NextSeo config = {{
-        title: show[0].categories.data[0].details.data[0].name,
+        title: show ? (show[0].categories.data[0].details.data[0].name) : 'Westay - Blog du lịch',
         description: 'Thông tin du lịch ở trong và ngoài nước cập nhật mới nhất 2019, nơi bạn có thể tìm kiếm thông tin hữu ích, nhanh chóng và thuận tiện',
-        canonical: `https://blog.westay.vn/${show[0].categories.data[0].details.data[0].slug}`,
+        canonical: show ? (`https://blog.westay.vn/${show[0].categories.data[0].details.data[0].slug}`) : '',
       }} />
       <NavTop />
       <ToTheTop />
-      <GridContainer xs = {12} sm = {12} md = {12} lg = {11}>
+      {show ? (
+        <GridContainer xs = {12} sm = {12} md = {12} lg = {11} xl = {10}>
         <div>
           <Typography variant = 'h3' className = {classes.titleCategory}>
             {show[0].categories.data[0].details.data[0].name}
@@ -152,6 +153,7 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
                       chipText = {o.categories.data[0].details.data[0].name}
                       chipSlug = {o.categories.data[0].details.data[0].slug}
                       time = {moment(o.created_at).format('DD/MM/YYYY')}
+                      link = {o}
                     />
                   </PostWrapper>
               </article>
@@ -168,14 +170,16 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
                 {_.map(slider, (o) => (
                   <Fragment key = {o.id}>
                     <div className = {classes.slidePopular}>
-                      <IndexMainCard cardStyle = 'outside' description = ''
-                                     customClasses = {{title: classes.titleSlider}}
-                                     title = {o.title} imgHeight = {190}
-                                     imgSrc = {o.image} imgAlt = {o.title}
-                                     chipText = {o.categories.data[0].details.data[0].name}
-                                     chipSlug = {o.categories.data[0].details.data[0].slug}
-                                     time = {moment(o.created_at).format('DD/MM/YYYY')}
-                      />
+                      <PostWrapper post = {o}>
+                        <IndexMainCard cardStyle = 'outside' description = ''
+                                       customClasses = {{title: classes.titleSlider}}
+                                       title = {o.title} imgHeight = {190}
+                                       imgSrc = {o.image} imgAlt = {o.title}
+                                       chipText = {o.categories.data[0].details.data[0].name}
+                                       chipSlug = {o.categories.data[0].details.data[0].slug}
+                                       time = {moment(o.created_at).format('DD/MM/YYYY')}
+                        />
+                      </PostWrapper>
                     </div>
                   </Fragment>
                 ))}
@@ -184,6 +188,7 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
           </Grid>
         </Grid>
       </GridContainer>
+      ) : ''}
     </Fragment>
   );
 };
