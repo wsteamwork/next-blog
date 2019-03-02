@@ -49,7 +49,7 @@ export const PostDetailsReducer = (state: PostDetailsState, action: PostDetailsA
 };
 
 export const getDetails = async (id:number)=>{
-  const url = `blogs/${id}?include=categories.details`;
+  const url                         = `blogs/${id}?include=categories.details,user`;
   const res: AxiosRes<BlogIndexRes> = await axios.get(url);
 
   return res.data;

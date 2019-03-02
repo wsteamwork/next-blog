@@ -1,4 +1,4 @@
-import React, {Fragment, useReducer} from 'react';
+import React, {Fragment, useReducer, useEffect} from 'react';
 import {compose} from 'recompose';
 import {withRouter, WithRouterProps} from 'next/router';
 import {NextComponentType} from 'next';
@@ -22,6 +22,7 @@ import SliderArrowButton from '@/components/Button/SliderArrowButton';
 import Review from '@/components/Cards/Review';
 import {useSpring, config} from 'react-spring';
 import moment from 'moment';
+import Router from 'next/router';
 import {
   PostDetailsState,
   PostDetailsReducer,
@@ -89,8 +90,14 @@ interface IPostPage extends WithRouterProps, Partial<WithStyles<typeof styles>> 
 const PostPage: NextComponentType<IPostPage> = (props) => {
   const {classes, initState} = props;
   const [state, dispatch]    = useReducer(PostDetailsReducer, initState);
-
   const {postDetails, sliderHot, sliderNew} = state;
+
+  useEffect(() => {
+    dispatch({
+      type: 'setPostDetails',
+      details: initState.postDetails,
+    });
+  }, [initState.postDetails]);
 
   const slidePopular: Settings = {
     speed: 500,
@@ -128,13 +135,12 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
       return convertNodeToElement(node, index, transformHtmlContent);
     }
   };
-
   return (
     <Fragment>
       <NextSeo config = {{
         title: postDetails.title,
         description: postDetails.description,
-        canonical: `https://blog.westay.org/${postDetails.categories.data[0].details.data[0].slug}/${postDetails.slug}-${postDetails.id}`,
+        canonical: `https://blog.westay.vn/${postDetails.categories.data[0].details.data[0].slug}/${postDetails.slug}-${postDetails.id}`,
         article: {
           publishedTime: postDetails.created_at,
           authors: [
