@@ -197,23 +197,23 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
 Category.getInitialProps = async (context) => {
   const {slugCategory} = context.query;
   let show;
-  const resSlider      = await axios.get('blogs?include=categories.details,user&limit=6&hot=1');
+  const resSlider      = await axios.get('blogs?include=categories.details,user&limit=6&hot=1&status=1');
   const slider         = resSlider.data.data;
   switch (slugCategory) {
     case 'o-dau' :
-      const res1 = await axios.get(`blogs?include=categories.details,user&limit=30&category=1`);
+      const res1 = await axios.get(`blogs?include=categories.details,user&limit=30&category=1&status=1`);
       show       = res1.data.data;
       break;
     case 'choi-gi' :
-      const res2 = await axios.get(`blogs?include=categories.details,user&limit=30&category=2`);
+      const res2 = await axios.get(`blogs?include=categories.details,user&limit=30&category=2&status=1`);
       show       = res2.data.data;
       break;
     case 'an-gi' :
-      const res3 = await axios.get(`blogs?include=categories.details,user&limit=30&category=3`);
+      const res3 = await axios.get(`blogs?include=categories.details,user&limit=30&category=3&status=1`);
       show       = res3.data.data;
       break;
     case 'cam-nang-du-lich' :
-      const res4 = await axios.get(`blogs?include=categories.details,user&limit=30&category=4`);
+      const res4 = await axios.get(`blogs?include=categories.details,user&limit=30&category=4&status=1`);
       show       = res4.data.data;
       break;
     default:
