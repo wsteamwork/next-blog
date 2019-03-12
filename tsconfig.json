@@ -15,8 +15,23 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "*"
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/assets/*": [
+        "assets/*"
+      ],
+      "@/layouts/*": [
+        "layouts/*"
+      ],
+      "@/store/*": [
+        "store/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "@/types/*": [
+        "types/*"
       ]
     },
     "typeRoots": [
