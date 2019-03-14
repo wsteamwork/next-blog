@@ -73,21 +73,26 @@ const Index: NextFunctionComponent<IProps> = (props) => {
 Index.getInitialProps = async (ctx) => {
   const hotBlogParams: BlogIndexGetParams = {
     limit: 4,
+    status: 1,
   };
   const blogEatParams: BlogIndexGetParams = {
     category: 3,
+    status: 1,
     limit: 4,
   };
   const blogPlayParams: BlogIndexGetParams = {
     category: 2,
+    status: 1,
     limit: 4,
   };
   const blogStayParams: BlogIndexGetParams = {
     category: 1,
+    status: 1,
     limit: 4,
   };
   const blogAllParams: BlogIndexGetParams = {
     category: 4,
+    status: 1,
     limit: 4,
   };
 

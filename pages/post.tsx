@@ -245,10 +245,12 @@ PostPage.getInitialProps = async (context:any) => {
   const {id}                               = context.query;
   const sliderHotParams:BlogIndexGetParams = {
     limit:6,
+    status: 1,
     hot:1,
   };
   const sliderNewParams: BlogIndexGetParams = {
     limit: 8,
+    status: 1,
     new: 1,
   };
 
