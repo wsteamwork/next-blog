@@ -31,7 +31,7 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
     height: 40,
     margin: '0px 4px 0 4px',
     fontWeight: 500,
-    fontFamily: 'Roboto',
+    fontFamily: 'Open Sans, sans-serif';
     '&:hover': {
       color: red[600],
     },
