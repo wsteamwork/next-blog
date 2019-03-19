@@ -72,7 +72,7 @@ const ToTheTop: ComponentType<IProps> = (props: IProps) => {
           onClick = {scrollTop}
           size = {width === 'xs' ? 'small' : 'large'}
         >
-          <UpIcon />
+          <img src = '/static/up-arrow.svg' alt = 'To Top' width = '30px' height = '30px' />
         </Fab>
       </Zoom>
     </Fragment>

@@ -33,7 +33,7 @@ const SocialShareContainer: ComponentType<ISocialShareContainerProps> = (props: 
   return (
     <Fragment>
       <SocialShare customClasses = {{icon: classes.iconFB}} href={FACEBOOK_WESTAY_URL}>
-        <Facebook />
+        <img src = '/static/facebook.svg' alt = 'facebook' width = {30} height = {30} />
       </SocialShare>
       {/*<SocialShare customClasses = {{*/}
         {/*icon: classes.iconTW,*/}
@@ -41,7 +41,7 @@ const SocialShareContainer: ComponentType<ISocialShareContainerProps> = (props: 
         {/*<Twitter />*/}
       {/*</SocialShare>*/}
       <SocialShare customClasses = {{icon: classes.iconIS}} href={INSTAGRAM_WESTAY_URL}>
-        <Instagram />
+        <img src = '/static/instagram.svg' alt = 'instagram' width = {35} height = {35} />
       </SocialShare>
       {/*<SocialShare customClasses = {{*/}
         {/*icon: classes.iconYT,*/}

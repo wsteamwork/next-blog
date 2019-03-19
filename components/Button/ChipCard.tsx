@@ -22,6 +22,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     borderRadius: 24,
     backgroundColor: Gray[900],
     padding: '6px 12px 4px 9px',
+    fontFamily: '"Mali", cursive',
     '&:hover': {
       textShadow: '1px 1px 6px rgba(0,0,0,0.66)',
       backgroundColor: Blue[900],

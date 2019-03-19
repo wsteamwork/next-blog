@@ -13,19 +13,21 @@ import Grey from '@material-ui/core/colors/grey';
 const styles: any = (theme: ThemeCustom) => createStyles({
   textField: {
     backgroundColor: '#fff',
-    borderRadius: 50,
+    borderRadius: 8,
   },
   textForm: {
     borderColor: `${Grey[300]} !important`,
-    borderRadius: 50,
+    borderRadius: 8,
   },
   note: {
     padding: 10,
     color: '#707070',
-    fontSize:'0.775rem'
+    fontSize: '0.775rem',
+    fontFamily: '"Mali",cursive',
   },
   input: {
     paddingLeft: 24,
+    fontFamily: '"Mali",cursive',
   },
 });
 
@@ -53,7 +55,7 @@ const SubscribeEmail: ComponentType<IProps> = (props: IProps) => {
           endAdornment: (
             <InputAdornment position = 'end'>
               <IconButton aria-label = 'send'>
-                <SendRounded />
+                <img src = '/static/mail.svg' alt = 'Register email' />
               </IconButton>
             </InputAdornment>
           ),

@@ -45,6 +45,17 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     padding: '30px 0',
     textTransform: 'capitalize',
     color: '#343434',
+    fontFamily: '"Amatic SC",cursive',
+    fontWeight: 700,
+    '&::before,&::after': {
+      backgroundImage: 'url("/static/line.png")',
+      content: '""',
+      display: 'inline-block',
+      width: 140,
+      height: 3,
+      margin: '0px 10px',
+      verticalAlign: 'middle',
+    },
   },
   titleSlider: {
     overflow: 'hidden',
@@ -105,7 +116,7 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
             <Grid item xs = {12}>
               <PostWrapper post = {show[1]}>
                 <IndexMainCard
-                  cardStyle = 'inside' description = '' imgHeight = {240} contentAlign = 'center'
+                  cardStyle = 'inside' description = '' imgHeight = {243} contentAlign = 'center'
                   title = {show[1].title}
                   imgSrc = {show[1].image} imgAlt = {show[1].title}
                   chipText = {show[1].categories.data[0].details.data[0].name}
@@ -117,7 +128,7 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
             <Grid item xs = {12}>
               <PostWrapper post = {show[2]}>
                 <IndexMainCard
-                  cardStyle = 'inside' description = '' imgHeight = {240} contentAlign = 'center'
+                  cardStyle = 'inside' description = '' imgHeight = {243} contentAlign = 'center'
                   title = {show[2].title}
                   imgSrc = {show[2].image} imgAlt = {show[2].title}
                   chipText = {show[2].categories.data[0].details.data[0].name}
@@ -161,11 +172,11 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
           </Grid>
           <Grid item lg = {3}>
             <div>
-              <CategoryTitle title = 'Đăng ký nhận tin' scale = 'small' />
+              <CategoryTitle title = 'Đăng ký nhận tin' scale = 'medium' />
               <SubscribeEmail />
             </div>
             <div className = {classes.boxPopular}>
-              <CategoryTitle scale = 'small' title = 'Bài viết nổi bật' />
+              <CategoryTitle scale = 'medium' title = 'Bài viết nổi bật' />
               <Slider {...slidePopular}>
                 {_.map(slider, (o) => (
                   <Fragment key = {o.id}>

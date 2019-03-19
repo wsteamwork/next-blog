@@ -176,7 +176,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                   </Typography>
                   {ReactHtmlParser(postDetails.content, {
                     transform: transformHtmlContent,
-                  })}                
+                  })}
                   </article>
                 <Divider style = {{marginTop: '50px'}} />
                 {/*<Review />*/}
@@ -210,11 +210,11 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
             </Grid>
             <Grid item xs = {3}>
               <div>
-                <CategoryTitle title = 'Đăng ký nhận tin' scale = 'small' />
+                <CategoryTitle title = 'Đăng ký nhận tin' scale = 'medium' />
                 <SubscribeEmail />
               </div>
               <div className = {classes.boxPopular}>
-                <CategoryTitle title = 'Bài viết nổi bật' scale = 'small' />
+                <CategoryTitle title = 'Bài viết nổi bật' scale = 'medium' />
                 <Slider {...slidePopular}>
                   {_.map(sliderHot, (o) => (
                     <Fragment key = {o.id}>
