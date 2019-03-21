@@ -82,6 +82,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   postTitle: {
     color: '#343434',
     lineHeight: 1.08,
+    paddingBottom: 20,
   },
 });
 
@@ -97,6 +98,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
   const {postDetails, sliderHot, sliderNew} = state;
 
   useEffect(() => {
+    moment.locale('vi');
     dispatch({
       type: 'setPostDetails',
       details: initState.postDetails,
@@ -110,6 +112,8 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    autoplay: true,
+    autoplaySpeed: 5000,
   };
   const slideRelated: Settings = {
     speed: 500,
@@ -160,7 +164,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
         <ParallaxPostCard imageSrc={postDetails.image} title={postDetails.title}
                           category={postDetails.categories.data[0].details.data[0].name}
                           slugCategory = {postDetails.categories.data[0].details.data[0].slug}
-                          time={moment(postDetails.created_at).format('DD/MM/YYYY')}/>
+                          time = {postDetails.created_at} />
         <GridContainer xs = {11} className = {classes.boxContent}>
           <Grid container spacing = {40}>
             <Grid item container xs = {9}>
@@ -198,7 +202,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                                            imgSrc={o.image} imgHeight={190}
                                            chipText={o.categories.data[0].details.data[0].name}
                                            chipSlug = {o.categories.data[0].details.data[0].slug}
-                                           time={moment(o.created_at).format('DD/MM/YYYY')}
+                                           time = {o.created_at}
                             />
                           </PostWrapper>
                         </div>
@@ -211,7 +215,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
             <Grid item xs = {3}>
               <div>
                 <CategoryTitle title = 'Đăng ký nhận tin' scale = 'medium' />
-                <SubscribeEmail />
+                <SubscribeEmail note = {true} />
               </div>
               <div className = {classes.boxPopular}>
                 <CategoryTitle title = 'Bài viết nổi bật' scale = 'medium' />
@@ -225,7 +229,7 @@ const PostPage: NextComponentType<IPostPage> = (props) => {
                             cardStyle='outside' description='' title={o.title} imgAlt={o.title} imgSrc={o.image}
                             chipText={o.categories.data[0].details.data[0].name}
                             chipSlug = {o.categories.data[0].details.data[0].slug}
-                            time={moment(o.created_at).format('DD/MM/YYYY')} />
+                            time = {o.created_at} />
                         </PostWrapper>
                       </div>
                     </Fragment>
@@ -249,7 +253,7 @@ PostPage.getInitialProps = async (context:any) => {
     hot:1,
   };
   const sliderNewParams: BlogIndexGetParams = {
-    limit: 8,
+    limit: 10,
     status: 1,
     new: 1,
   };

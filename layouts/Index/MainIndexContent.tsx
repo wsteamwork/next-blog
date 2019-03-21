@@ -65,17 +65,21 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     marginBottom: 50,
   },
   ImgAnGi: {
-    background: 'url("/static/burger.svg") no-repeat center top',
+    background: 'url("/static/coffee.svg") no-repeat center top',
     backgroundSize: 40,
   },
   ImgODau: {
-    background: 'url("/static/place.svg") no-repeat center top',
+    background: 'url("/static/building.svg") no-repeat center top',
     backgroundSize: 40,
   },
   ImgChoiGi: {
-    background: 'url("/static/puzzle.svg") no-repeat center top',
+    background: 'url("/static/toy.svg") no-repeat center top',
     backgroundSize: 40,
   },
+  ImgCamNang: {
+    background: 'url("/static/suitcase.svg") no-repeat center top',
+    backgroundSize: 40,
+  }
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
@@ -91,7 +95,6 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
-      {/*<CategoryTitle style = {{marginTop: 10}} scale='large' subTitle = 'Xem thêm' title = 'Ở đâu'  category_url = '/o-dau' />*/}
       <Grid container item xs = {12} spacing = {16} className = {classes.boxCategory}>
         <Grid item xs = {12}>
           <h4 className = {classNames(classes.ImgTitle, classes.ImgODau)}>
@@ -125,7 +128,6 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
         ))}
       </Grid>
 
-      {/*<CategoryTitle style = {{marginTop: 10}} scale='large' subTitle = 'Xem thêm' title = 'Chơi gì'  category_url = '/choi-gi' />*/}
       <Grid container item xs = {12} spacing = {16} className = {classes.boxCategory}>
         <Grid item xs = {12}>
           <h4 className = {classNames(classes.ImgTitle, classes.ImgChoiGi)}>
@@ -158,7 +160,6 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
           </Grid>
         ))}
       </Grid>
-      {/*<CategoryTitle style = {{marginTop: 10}} scale='large' subTitle = 'Xem thêm' title = 'Ăn gì' category_url = '/an-gi'/>*/}
       <Grid container item xs = {12} spacing = {16} className = {classes.boxCategory}>
         <Grid item xs = {12}>
           <h4 className = {classNames(classes.ImgTitle, classes.ImgAnGi)}>
@@ -191,35 +192,38 @@ const MainIndexContent: ComponentType<IProps> = (props: IProps) => {
           </Grid>
         ))}
       </Grid>
-      {/* <CategoryTitle style = {{marginTop: 10}} subTitle = 'Xem thêm' title = 'Cẩm nang du lịch' />
-      <Grid container item xs = {12} spacing = {16}>
+      <Grid container item xs = {12} spacing = {16} className = {classes.boxCategory}>
+        <Grid item xs = {12}>
+          <h4 className = {classNames(classes.ImgTitle, classes.ImgCamNang)}>
+            <Link href = '/cam-nang-du-lich'><span className = {classes.lineTitle}>Cẩm nang</span></Link>
+          </h4>
+        </Grid>
         {_.map(blogAll, (o, i) => (
           <Grid item lg = {6} key = {o.id}>
             <PostWrapper post = {o}>
               <IndexMainCard
-                imgHeight = {260}
-                chipText = {o.tags.data.length !== 0 ? o.tags.data[0].name : 'Westay'}
-                chipSlug={o.categories.data[0].details.data[0].slug}
+                customClasses = {{title: classes.titlePost, maskImage: classes.imgPost}}
+                cardStyle = 'outside'
+                horizontal
+                contentAlign = 'center'
+                imgHeight = {155}
+                rootSpacing = {32}
+                ratio = {{
+                  image: 5,
+                  content: 7,
+                }}
+                chipText = 'Cẩm nang'
+                chipSlug = {o.categories.data[0].details.data[0].slug}
                 imgSrc = {`${o.image}`}
                 title = {o.title}
                 imgAlt = {o.title}
-                description = {o.description}
+                time = {o.created_at}
+                description = ''
               />
             </PostWrapper>
           </Grid>
         ))}
-        <Grid container item xs = {12} justify = 'center'>
-          <Button
-            classes = {{
-              label: classes.showMoreLabel,
-              root: classes.showMoreButton,
-            }}
-            fullWidth
-          >
-            <Link href = '/category'><a style = {{textDecoration: 'none'}}>Xem thêm</a></Link>
-          </Button>
-        </Grid>
-      </Grid> */}
+      </Grid>
     </Fragment>
   );
 };

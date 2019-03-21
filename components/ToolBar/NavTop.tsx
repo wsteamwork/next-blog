@@ -95,8 +95,7 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
               <Button
                 color = 'inherit'
                 name = 'home-page'
-                onMouseOver = {() => menuIndexChange(1)}><a className = {classes.btHome} target = '_blank'
-                                                            href = 'https://blog.westay.vn'>Trang chủ</a>
+                onMouseOver = {() => menuIndexChange(1)}><a className = {classes.btHome} href = '/'>Trang chủ</a>
               </Button>
               {/* <Button
                 color = 'inherit'

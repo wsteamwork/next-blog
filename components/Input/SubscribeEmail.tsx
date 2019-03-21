@@ -6,7 +6,6 @@ import {compose} from 'recompose';
 import {TextField} from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
-import SendRounded from '@material-ui/icons/SendRounded';
 import Typography from '@material-ui/core/Typography';
 import Grey from '@material-ui/core/colors/grey';
 
@@ -26,13 +25,13 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     fontFamily: '"Mali",cursive',
   },
   input: {
-    paddingLeft: 24,
+    padding: '13.5px 12px',
     fontFamily: '"Mali",cursive',
   },
 });
 
 interface IProps extends Partial<WithStyles<typeof styles>> {
-
+  note: boolean,
 }
 
 // @ts-ignore
@@ -62,9 +61,11 @@ const SubscribeEmail: ComponentType<IProps> = (props: IProps) => {
         }}
 
       />
-      <Typography variant = 'subtitle2' className = {classes.note}>
-        * Bạn sẽ nhận được email về tin tức và những bài viết mới từ chúng tôi.
-      </Typography>
+      {props.note ?
+        <Typography variant = 'subtitle2' className = {classes.note}>
+          * Bạn sẽ nhận được email về tin tức và những bài viết mới từ chúng tôi.
+        </Typography>
+        : ''}
     </Fragment>
   );
 };

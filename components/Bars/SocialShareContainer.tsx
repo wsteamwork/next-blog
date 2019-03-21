@@ -35,19 +35,9 @@ const SocialShareContainer: ComponentType<ISocialShareContainerProps> = (props: 
       <SocialShare customClasses = {{icon: classes.iconFB}} href={FACEBOOK_WESTAY_URL}>
         <img src = '/static/facebook.svg' alt = 'facebook' width = {30} height = {30} />
       </SocialShare>
-      {/*<SocialShare customClasses = {{*/}
-        {/*icon: classes.iconTW,*/}
-      {/*}}>*/}
-        {/*<Twitter />*/}
-      {/*</SocialShare>*/}
       <SocialShare customClasses = {{icon: classes.iconIS}} href={INSTAGRAM_WESTAY_URL}>
         <img src = '/static/instagram.svg' alt = 'instagram' width = {35} height = {35} />
       </SocialShare>
-      {/*<SocialShare customClasses = {{*/}
-        {/*icon: classes.iconYT,*/}
-      {/*}}>*/}
-        {/*<Youtube />*/}
-      {/*</SocialShare>*/}
     </Fragment>
   );
 };
