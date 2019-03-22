@@ -1,7 +1,7 @@
 import {ThemeCustom} from '@/components/Theme/Theme';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles} from '@material-ui/core/styles/withStyles';
-import React, {ComponentType, Fragment} from 'react';
+import React, {ComponentType, Fragment, useEffect} from 'react';
 import {compose} from 'recompose';
 import GridContainer from '@/layouts/Grid/Container';
 import {Grid} from '@material-ui/core';
@@ -17,10 +17,10 @@ import Typography from '@material-ui/core/Typography';
 import {NextComponentType} from 'next';
 import {axios} from '@/store/utils/axiosBase';
 import {BlogIndexRes} from '@/types/Requests/Blog/BlogRespones';
-import moment from 'moment';
 import _ from 'lodash';
 import PostWrapper from '@/components/Wrapper/PostWrapper';
 import NextSeo from 'next-seo';
+import moment from 'moment';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
   slidePopular: {
@@ -45,6 +45,17 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     padding: '30px 0',
     textTransform: 'capitalize',
     color: '#343434',
+    fontFamily: '"Amatic SC",cursive',
+    fontWeight: 700,
+    '&::before,&::after': {
+      backgroundImage: 'url("/static/line.png")',
+      content: '""',
+      display: 'inline-block',
+      width: 140,
+      height: 3,
+      margin: '0px 10px',
+      verticalAlign: 'middle',
+    },
   },
   titleSlider: {
     overflow: 'hidden',
@@ -63,6 +74,11 @@ interface IProps extends Partial<WithStyles<typeof styles>> {
 // @ts-ignore
 const Category: NextComponentType<IProps> = (props: IProps) => {
   const {classes, show, slider} = props;
+
+  useEffect(() => {
+    moment.locale('vi');
+  }, []);
+
   const slidePopular: Settings  = {
     speed: 500,
     swipeToSlide: true,
@@ -70,6 +86,8 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    autoplay: true,
+    autoplaySpeed: 5000,
   };
 
   return (
@@ -97,7 +115,7 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
                 imgSrc = {show[0].image} imgAlt = {show[0].title}
                 chipText = {show[0].categories.data[0].details.data[0].name}
                 chipSlug = {show[0].categories.data[0].details.data[0].slug}
-                time = {moment(show[0].created_at).format('DD/MM/YYYY')}
+                time = {show[0].created_at}
               />
             </PostWrapper>
           </Grid>
@@ -105,24 +123,24 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
             <Grid item xs = {12}>
               <PostWrapper post = {show[1]}>
                 <IndexMainCard
-                  cardStyle = 'inside' description = '' imgHeight = {240} contentAlign = 'center'
+                  cardStyle = 'inside' description = '' imgHeight = {243} contentAlign = 'center'
                   title = {show[1].title}
                   imgSrc = {show[1].image} imgAlt = {show[1].title}
                   chipText = {show[1].categories.data[0].details.data[0].name}
                   chipSlug = {show[1].categories.data[0].details.data[0].slug}
-                  time = {moment(show[1].created_at).format('DD/MM/YYYY')}
+                  time = {show[1].created_at}
                 />
               </PostWrapper>
             </Grid>
             <Grid item xs = {12}>
               <PostWrapper post = {show[2]}>
                 <IndexMainCard
-                  cardStyle = 'inside' description = '' imgHeight = {240} contentAlign = 'center'
+                  cardStyle = 'inside' description = '' imgHeight = {243} contentAlign = 'center'
                   title = {show[2].title}
                   imgSrc = {show[2].image} imgAlt = {show[2].title}
                   chipText = {show[2].categories.data[0].details.data[0].name}
                   chipSlug = {show[2].categories.data[0].details.data[0].slug}
-                  time = {moment(show[2].created_at).format('DD/MM/YYYY')}
+                  time = {show[2].created_at}
                 />
               </PostWrapper>
             </Grid>
@@ -152,7 +170,7 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
                       description = {o.description}
                       chipText = {o.categories.data[0].details.data[0].name}
                       chipSlug = {o.categories.data[0].details.data[0].slug}
-                      time = {moment(o.created_at).format('DD/MM/YYYY')}
+                      time = {o.created_at}
                       link = {o}
                     />
                   </PostWrapper>
@@ -161,11 +179,11 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
           </Grid>
           <Grid item lg = {3}>
             <div>
-              <CategoryTitle title = 'Đăng ký nhận tin' scale = 'small' />
-              <SubscribeEmail />
+              <CategoryTitle title = 'Đăng ký nhận tin' scale = 'medium' />
+              <SubscribeEmail note = {true} />
             </div>
             <div className = {classes.boxPopular}>
-              <CategoryTitle scale = 'small' title = 'Bài viết nổi bật' />
+              <CategoryTitle scale = 'medium' title = 'Bài viết nổi bật' />
               <Slider {...slidePopular}>
                 {_.map(slider, (o) => (
                   <Fragment key = {o.id}>
@@ -177,7 +195,7 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
                                        imgSrc = {o.image} imgAlt = {o.title}
                                        chipText = {o.categories.data[0].details.data[0].name}
                                        chipSlug = {o.categories.data[0].details.data[0].slug}
-                                       time = {moment(o.created_at).format('DD/MM/YYYY')}
+                                       time = {o.created_at}
                         />
                       </PostWrapper>
                     </div>
@@ -196,9 +214,9 @@ const Category: NextComponentType<IProps> = (props: IProps) => {
 // @ts-ignore
 Category.getInitialProps = async (context) => {
   const {slugCategory} = context.query;
-  let show;
   const resSlider      = await axios.get('blogs?include=categories.details,user&limit=6&hot=1&status=1');
   const slider         = resSlider.data.data;
+  let show;
   switch (slugCategory) {
     case 'o-dau' :
       const res1 = await axios.get(`blogs?include=categories.details,user&limit=30&category=1&status=1`);

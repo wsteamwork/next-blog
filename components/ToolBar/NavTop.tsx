@@ -9,10 +9,8 @@ import AppBar from '@material-ui/core/AppBar/AppBar';
 import Toolbar from '@material-ui/core/Toolbar/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import Typography from '@material-ui/core/Typography/Typography';
 import Button from '@material-ui/core/Button/Button';
 import MenuPopper from '@/components/MenuContent/MenuPopper';
-import PlaceToGo from '@/components/MenuContent/PlaceToGo';
 import CategoryMenu from '@/components/MenuContent/CategoryMenu';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
@@ -21,7 +19,7 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
   navTop:{
     backgroundColor: '#ffffff',
-    boxShadow: '0 6px 20px rgba(0, 0, 0, 0.06)',
+    boxShadow: '0 3px 10px rgba(0, 0, 0, 0.05)',
     position: 'sticky',
     top: 0,
   },
@@ -42,6 +40,27 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     },
     [theme!.breakpoints!.down!('sm')]: {
       height: 30,
+    },
+  },
+  btHome: {
+    textDecoration: 'none',
+    fontFamily: '"Amatic SC", cursive',
+    fontSize: '1.475rem',
+    fontWeight: 700,
+  },
+  btCategory: {
+    textDecoration: 'none',
+    fontFamily: '"Amatic SC", cursive',
+    fontSize: '1.475rem',
+    fontWeight: 700,
+    '&::before,&::after': {
+      backgroundImage: 'url("/static/line.png")',
+      content: '""',
+      display: 'inline-block',
+      width: 16,
+      height: 3,
+      margin: '0px 10px',
+      verticalAlign: 'middle',
     },
   },
 });
@@ -76,7 +95,7 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
               <Button
                 color = 'inherit'
                 name = 'home-page'
-                onMouseOver = {() => menuIndexChange(1)}><a style = {{textDecoration: 'none'}} target = '_blank' href = 'https://blog.westay.vn'>Trang chủ</a>
+                onMouseOver = {() => menuIndexChange(1)}><a className = {classes.btHome} href = '/'>Trang chủ</a>
               </Button>
               {/* <Button
                 color = 'inherit'
@@ -85,14 +104,15 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
               </Button> */}
               <Button
                 color = 'inherit'
-                name = 'place'
-                onMouseOver = {() => menuIndexChange(3)}><a style = {{textDecoration: 'none'}} target = '_blank' href = 'https://westay.vn'>Đặt phòng</a>
+                name = 'categories'
+                buttonRef = {categoryRef}
+                onMouseOver = {() => menuIndexChange(4)}><span className = {classes.btCategory}>Khám phá</span>
               </Button>
               <Button
                 color = 'inherit'
-                name = 'categories'
-                buttonRef = {categoryRef}
-                onMouseOver = {() => menuIndexChange(4)}>Khám phá
+                name = 'place'
+                onMouseOver = {() => menuIndexChange(3)}><a className = {classes.btHome} target = '_blank'
+                                                            href = 'https://westay.vn'>Đặt phòng</a>
               </Button>
               {/* <Button
                 color = 'inherit'
@@ -101,7 +121,7 @@ const NavTop: ComponentType<IProps> = (props: IProps) => {
               </Button> */}
             </div>
             <IconButton>
-              <SearchIcon />
+              <img src = '/static/search.svg' alt = 'search' width = {30} height = {30} />
             </IconButton>
           </Toolbar>
         </AppBar>

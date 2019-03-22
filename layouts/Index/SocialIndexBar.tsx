@@ -40,7 +40,7 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
 
   return (
     <Fragment>
-      <CategoryTitle title = 'Mạng xã hội' scale = 'small' />
+      <CategoryTitle title = 'Mạng xã hội' scale = 'medium' />
       <Grid container spacing = {16} className = {classes.marginLayout}>
         <Grid container item xs = {12}>
           <SocialMediaButton socialName = 'facebook' text = 'Thích' href = {FACEBOOK_WESTAY_URL} />
@@ -55,30 +55,30 @@ const SocialIndexBar: ComponentType<IProps> = (props: IProps) => {
           <SocialMediaButton socialName = 'twitter' text = 'Theo dõi' />
         </Grid> */}
       </Grid>
-      <CategoryTitle title = 'Cẩm nang du lịch' scale = 'small' subTitle = 'Xem thêm'  category_url = '/cam-nang-du-lich' />
-      <Grid container spacing = {16}>
-        {_.map(blogAll, o => (
-          <Grid item lg = {6} key = {o.id}>
-            <PostWrapper post = {o}>
-              <IndexMainCard
-                rootSpacing = {8}
-                customClasses = {{
-                  overlayContainer: classes.trickOverlay,
-                  title: classes.smallTitle,
-                }}
-                imgSrc = {`${o.image}`}
-                chipText = {o.categories.data[0].details.data[0].name}
-                chipSlug = {o.categories.data[0].details.data[0].slug}
-                title = {o.title}
-                imgAlt = {o.title}
-                description = ''
-                time = ''
-                author = ''
-              />
-            </PostWrapper>
-          </Grid>
-        ))}
-      </Grid>
+      {/*<CategoryTitle title = 'Cẩm nang du lịch' scale = 'medium' subTitle = 'Xem thêm'  category_url = '/cam-nang-du-lich' />*/}
+      {/*<Grid container spacing = {16}>*/}
+      {/*{_.map(blogAll, o => (*/}
+      {/*<Grid item lg = {6} key = {o.id}>*/}
+      {/*<PostWrapper post = {o}>*/}
+      {/*<IndexMainCard*/}
+      {/*rootSpacing = {8}*/}
+      {/*customClasses = {{*/}
+      {/*overlayContainer: classes.trickOverlay,*/}
+      {/*title: classes.smallTitle,*/}
+      {/*}}*/}
+      {/*imgSrc = {`${o.image}`}*/}
+      {/*chipText = {o.categories.data[0].details.data[0].name}*/}
+      {/*chipSlug = {o.categories.data[0].details.data[0].slug}*/}
+      {/*title = {o.title}*/}
+      {/*imgAlt = {o.title}*/}
+      {/*description = ''*/}
+      {/*time = ''*/}
+      {/*author = ''*/}
+      {/*/>*/}
+      {/*</PostWrapper>*/}
+      {/*</Grid>*/}
+      {/*))}*/}
+      {/*</Grid>*/}
     </Fragment>
   );
 };

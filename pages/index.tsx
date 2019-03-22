@@ -25,9 +25,7 @@ import {
 import {BlogIndexGetParams} from '@/types/Requests/Blog/BlogRequests';
 
 const styles: any = (theme: ThemeCustom) => createStyles({
-  mainContent: {
-    marginTop: 32,
-  },
+
 });
 
 interface IProps extends WithStyles<typeof styles> {
@@ -55,13 +53,13 @@ const Index: NextFunctionComponent<IProps> = (props) => {
         <IndexCarousel />
         <GridContainer xs = {11} xl={10}>
           <IndexCategoryCarousel />
-          <Grid container className = {classes.mainContent} spacing = {32}>
-            <Grid item lg = {8}>
+          <Grid container spacing = {32} justify = 'center' alignContent = 'center'>
+            <Grid item lg = {10}>
               <MainIndexContent />
             </Grid>
-            <Grid item lg = {4}>
-              <SocialIndexBar />
-            </Grid>
+            {/*<Grid item lg = {4}>*/}
+            {/*<SocialIndexBar />*/}
+            {/*</Grid>*/}
           </Grid>
         </GridContainer>
       </BlogIndexContext.Provider>

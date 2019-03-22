@@ -3,20 +3,16 @@ import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, {WithStyles, StyleRules, CSSProperties, ClassNameMap} from '@material-ui/core/styles/withStyles';
 import React, {ComponentType, Fragment, useMemo, InvalidEvent} from 'react';
 import {compose} from 'recompose';
-import MenuCard from '@/components/Cards/MenuCard';
-import Grid, {GridSize, GridSpacing, GridItemsAlignment} from '@material-ui/core/Grid/Grid';
+import Grid from '@material-ui/core/Grid';
 import Gray from '@material-ui/core/colors/grey';
 import Blue from '@material-ui/core/colors/blue';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography/Typography';
 import {useElementHover} from '@/store/hooks/AnimationHooks';
-import _ from 'lodash';
-import moment, {MomentInput} from 'moment';
 import ChipCard from '@/components/Button/ChipCard';
 import InformationIndicate from '@/components/Bars/InformationIndicate';
 import Hidden from '@material-ui/core/Hidden/Hidden';
 import CardDescription from '@/components/Content/CardDescription';
-import {CustomClasses} from '@/types/Interfaces/CustomInterface';
 import {IIndexMainCard} from '@/types/Interfaces/Components/Card';
 import {imgPlaceholder} from '@/store/utils/imgPlaceholder';
 
@@ -84,9 +80,11 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   },
   title: {
     fontSize: '1.675rem',
+    fontFamily: '"Mali", cursive',
   },
   description: {
     color: 'rgba(0,0,0,0.7)',
+    fontFamily: '"KoHo", sans-serif',
   },
   timeIndicate: {
     color: 'rgba(0,0,0,0.46)',
@@ -132,7 +130,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
 
   const imgStyles = useMemo<CSSProperties>(() => ({
     maxHeight: imgHeight ? imgHeight : maxHeight,
-    height: imgHeight ? imgHeight : undefined,
+    height: imgHeight ? imgHeight - 1 : undefined,
   }), [imgHeight]);
 
   const horizontalBreakpoint = useMemo(() => horizontal ? 6 : 12, [horizontal]);
@@ -174,7 +172,7 @@ const IndexMainCard: ComponentType<IProps> = (props: IProps) => {
     <Fragment>
       <Grid container spacing = {rootSpacing} className = {classes.noneFocus}>
         <Grid item xs = {ratio.image || horizontalBreakpoint} container className = {classes.imgContainer}>
-          <div className = {classes.imgGradient}>
+          <div className = {classNames(classes.imgGradient, customClasses.maskImage)}>
             <img
               src = {`https://s3-ap-southeast-1.amazonaws.com/westay-img/lg/${imgSrc}`}
               alt = {imgAlt}

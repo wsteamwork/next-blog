@@ -14,8 +14,9 @@ const styles: any = (theme: ThemeCustom) => createStyles({
     color: Gray[800],
     borderBottom: `2px ${Gray[700]} solid`,
     paddingBottom: 12,
-    fontWeight: 600,
+    fontWeight: 700,
     marginBottom: -2,
+    fontFamily: '"Amatic SC", cursive',
   },
   categoryViewAll: {
     color: Blue[500],
@@ -26,6 +27,12 @@ const styles: any = (theme: ThemeCustom) => createStyles({
   categoryTitleContainer: {
     borderBottom: `2px ${Gray[300]} solid`,
     marginBottom: 30
+  },
+  btMore: {
+    textDecoration: 'none',
+    fontFamily: '"Mali", cursive',
+    fontSize: '1.075rem',
+    verticalAlign: 'bottom',
   },
 });
 
@@ -75,10 +82,10 @@ const CategoryTitle: ComponentType<IProps> = (props: IProps) => {
         }}>
           {title}
         </Typography>
-        <Typography align = 'right' variant = 'h6' component = 'h5' classes = {{
+        <Typography align = 'right' variant = 'h6' component = 'h5' style = {{lineHeight: 2}} classes = {{
           root: classes.categoryViewAll,
         }}>
-          <Link href = {category_url ? category_url : ''}><a style = {{textDecoration: 'none'}}>{subTitle}</a></Link>
+          <Link href = {category_url ? category_url : ''}><a className = {classes.btMore}>{subTitle}</a></Link>
         </Typography>
       </Grid>
     </Fragment>

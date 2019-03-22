@@ -47,6 +47,7 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
     paddingTop: 10,
     fontSize: '2.5rem',
     lineHeight: 1.08,
+    fontFamily: '"Mali", cursive',
   },
   postTime: {
     color: '#ffffff',
