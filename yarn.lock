@@ -5787,10 +5787,10 @@ raw-body@2.3.3:
     iconv-lite "0.4.23"
     unpipe "1.0.0"
 
-rc-pagination@^1.17.8:
-  version "1.17.8"
-  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.17.8.tgz#65583bebe13fffe4de7f418e1a6c86374ceabceb"
-  integrity sha512-duEV+K/b/nZNGr943+TMCEcY4xWkjAkpKW0Vr7fSR8wQk0DY7aTJC+k+vjl4X2EzEmPXqy85hibzpsO9vydKAw==
+rc-pagination@^1.17.10:
+  version "1.17.10"
+  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.17.10.tgz#e5804b15d81dcad5ddf777d5ee3d6f9565594ece"
+  integrity sha512-BaHiVtSSzQV7yJQwZf9i3Tzlwxe+NKJTNss3u6uHTB18ZefPjx5TrZnqxOc1htf8UbO3MdmmaVd3O0pPv9agiA==
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.5.7"

@@ -49,11 +49,13 @@ const CategoryListItem: ComponentType<ICategoryListItemProps> = (props: ICategor
 
   return (
     <Fragment>
-      <Typography variant = 'subtitle2' classes = {{
-        root: classes.typo,
-      }} component = 'a'>
-        <a style ={{textDecoration: 'none', color: 'black'}} href = {categoryUrl}>{label}</a>
-      </Typography>
+      <a style = {{textDecoration: 'none', color: 'black'}} href = {categoryUrl}>
+        <Typography variant = 'subtitle2' classes = {{
+          root: classes.typo,
+        }} component = 'a'>
+          {label}
+        </Typography>
+      </a>
     </Fragment>
   );
 };

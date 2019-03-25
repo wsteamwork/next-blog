@@ -34,3 +34,11 @@ export interface CategoryDetails{
   lang:string
   image: string
 }
+
+export interface MetaCategory {
+  total: number,
+  count: number,
+  per_page: number,
+  current_page: number,
+  total_pages: number
+}
