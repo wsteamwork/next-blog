@@ -30,8 +30,8 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
     width: 40,
     height: 40,
     margin: '0px 4px 0 4px',
-    fontWeight: 500,
-    fontFamily: 'Open Sans, sans-serif',
+    fontWeight: 700,
+    fontFamily: '"Amatic SC",cursive',
     '&:hover': {
       color: red[600],
     },
@@ -52,6 +52,8 @@ const styles: any = (theme: Required<ThemeCustom>) => createStyles({
     '&:hover': {
       color: grey[100],
     },
+    fontFamily: '"Amatic SC",cursive',
+    fontWeight: 700,
   },
   linkPage: {
     padding: 20,
@@ -70,6 +72,7 @@ const PaginateBar: ComponentType<IPaginateBarProps> = (props) => {
           classes,
           nextLabel,
           prevLabel,
+          pageCount,
           customClasses,
         } = props;
 
@@ -78,8 +81,9 @@ const PaginateBar: ComponentType<IPaginateBarProps> = (props) => {
       <ReactPaginate
         nextLabel = {nextLabel}
         previousLabel = {prevLabel}
-        pageCount = {100}
-        pageRangeDisplayed = {5}
+        initialPage = {0}
+        pageCount = {pageCount}
+        pageRangeDisplayed = {3}
         marginPagesDisplayed = {2}
         forcePage = {9}
         containerClassName = {classes.ulPaginateContainer}
@@ -116,6 +120,7 @@ const PaginateBar: ComponentType<IPaginateBarProps> = (props) => {
 PaginateBar.defaultProps = {
   prevLabel: 'Trang trước',
   nextLabel: 'Trang kế',
+  pageCount: 0,
 };
 
 export default compose<IPaginateBarProps, any>(

@@ -1,0 +1,18 @@
+.rc-pagination-item-active {
+  background-color: tomato;
+  border-color: tomato;
+}
+
+.rc-pagination-item:hover {
+  border-color: tomato;
+}
+
+.rc-pagination-item {
+  border-radius: 50px;
+}
+
+.rc-pagination {
+  font-size: 20px;
+  font-family: "Amatic SC", cursive;
+  font-weight: 700;
+}
