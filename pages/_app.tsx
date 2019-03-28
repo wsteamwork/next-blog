@@ -11,7 +11,7 @@ import {GlobalContext} from '@/store/context/GlobalContext';
 import {ThemeProvider, useTheme} from '@material-ui/styles';
 import {Breakpoint} from '@material-ui/core/styles/createBreakpoints';
 import NextSeo from 'next-seo';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 interface MainAppProps {
   width: Breakpoint
@@ -35,15 +35,15 @@ class CustomApp extends App<MainAppProps, MainAppState> {
 
     return {pageProps};
   }
-  initializeReactGA() {
-    console.log(window.location.pathname);
-    ReactGA.initialize('UA-137177093-1');
-    ReactGA.pageview(
-      `/${window.location.pathname} + ${
-      window.location.search
-      }`
-    );
-  }
+  // initializeReactGA() {
+  //   console.log(window.location.pathname);
+  //   ReactGA.initialize('UA-137177093-1');
+  //   ReactGA.pageview(
+  //     `/${window.location.pathname} + ${
+  //     window.location.search
+  //     }`
+  //   );
+  // }
   componentDidMount() {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles && jssStyles.parentNode) {
@@ -54,7 +54,7 @@ class CustomApp extends App<MainAppProps, MainAppState> {
   render() {
     const {Component, pageProps, width} = this.props;
     const {pageContext}                 = this.state;
-    this.initializeReactGA();
+    // this.initializeReactGA();
     return (
       <Container>
         <Head>
@@ -63,6 +63,17 @@ class CustomApp extends App<MainAppProps, MainAppState> {
           <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=vietnamese' />
           <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/icon?family=Material+Icons' />
           <link href = 'https://fonts.googleapis.com/css?family=Amatic+SC|Mali|KoHo' rel = 'stylesheet' />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137177093-1"></script>
+          <script dangerouslySetInnerHTML={{
+            __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'UA-137177093-1');
+                  `
+            }}>
+        </script>
+
         </Head>
         <NextSeo config = {{
           openGraph: {

@@ -44,17 +44,21 @@ const Index: NextFunctionComponent<IProps> = (props) => {
 
   return (
     <Fragment>
-      <NextSeo config = {{
-        title: 'Kênh thông tin tổng hợp về homestay - Westay.vn',
-      }} />
-      <BlogIndexContext.Provider value = {{state, dispatch}}>
+      <NextSeo
+        config={{
+          title: 'Kênh thông tin tổng hợp về homestay - Westay.vn',
+          description:
+            'Thông tin du lịch ở trong và ngoài nước cập nhật mới nhất 2019, nơi bạn có thể tìm kiếm thông tin hữu ích, nhanh chóng và thuận tiện'
+        }}
+      />
+      <BlogIndexContext.Provider value={{ state, dispatch }}>
         <ToTheTop />
         <NavTop />
         <IndexCarousel />
-        <GridContainer xs = {11} xl={10}>
+        <GridContainer xs={11} xl={10}>
           <IndexCategoryCarousel />
-          <Grid container spacing = {32} justify = 'center' alignContent = 'center'>
-            <Grid item lg = {10}>
+          <Grid container spacing={32} justify="center" alignContent="center">
+            <Grid item lg={10}>
               <MainIndexContent />
             </Grid>
             {/*<Grid item lg = {4}>*/}
