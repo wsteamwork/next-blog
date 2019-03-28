@@ -11,6 +11,7 @@ import {GlobalContext} from '@/store/context/GlobalContext';
 import {ThemeProvider, useTheme} from '@material-ui/styles';
 import {Breakpoint} from '@material-ui/core/styles/createBreakpoints';
 import NextSeo from 'next-seo';
+import ReactGA from 'react-ga';
 
 interface MainAppProps {
   width: Breakpoint
@@ -34,7 +35,15 @@ class CustomApp extends App<MainAppProps, MainAppState> {
 
     return {pageProps};
   }
-
+  initializeReactGA() {
+    console.log(window.location.pathname);
+    ReactGA.initialize('UA-137177093-1');
+    ReactGA.pageview(
+      `/${window.location.pathname} + ${
+      window.location.search
+      }`
+    );
+  }
   componentDidMount() {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles && jssStyles.parentNode) {
@@ -45,6 +54,7 @@ class CustomApp extends App<MainAppProps, MainAppState> {
   render() {
     const {Component, pageProps, width} = this.props;
     const {pageContext}                 = this.state;
+    this.initializeReactGA();
     return (
       <Container>
         <Head>
